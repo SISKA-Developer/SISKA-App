@@ -34,7 +34,7 @@
     </head>
 <body>
     <!-- Page Wrapper -->
-    <div id="main">
+    <div id="main" style="width: auto">
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <div class="row">
@@ -89,10 +89,14 @@
     function openNav() {
       document.getElementById("sidebar").style.width = "350px";
       document.getElementById("main").style.marginLeft = "350px";
+      document.getElementById("textprofile").style.display = "none";
+
 }
     function closeNav() {
       document.getElementById("sidebar").style.width = "0";
       document.getElementById("main").style.marginLeft= "0";
+      document.getElementById("textprofile").style.display = "block";
+
 }
     </script>
 </html>

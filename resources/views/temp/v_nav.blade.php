@@ -70,7 +70,7 @@
   top: 0;
   left: 0;
   /* background-color: #111; */
-  overflow-x: hidden;
+  overflow: hidden;
   transition: 0.5s;
   /* padding-top: 20px; */
 }
@@ -109,7 +109,7 @@
 @media screen and (min-width: 800px) {
   .sidebar {
   height: 100vh;
-  width: 340px;
+  width: 350px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -118,12 +118,13 @@
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 30px;
+  font-size: 16px;
 }
 .closebtn{
   visibility: hidden;
 }
  #main {
-  margin-left: 340px
+  margin-left: 350px
  }
     .openbtn {
       visibility: hidden;

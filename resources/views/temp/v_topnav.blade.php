@@ -5,7 +5,7 @@
       </div>
       <div class="col-9 d-flex justify-content-end">
       <div class="d-flex align-items-center">
-        <div class="text-center mx-4">
+        <div class="text-center mx-4" id="textprofile">
         <p class="my-0">Selamat Datang , Admin</p>
         <p class="my-0">Teknik Informatika</p>
         </div>

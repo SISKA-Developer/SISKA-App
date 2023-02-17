@@ -24,26 +24,21 @@
         <style>
             body {
                 overflow-x: hidden; /* Hide horizontal scrollbar */
-                overflow-y: scroll; /* Add vertical scrollbar */                background-color: #cbd5e0
+                overflow-y: scroll; /* Add vertical scrollbar */
                 font-family: 'Nunito', sans-serif;
             }
             #main{
-                width: auto
+                width: auto;
+                background-color: #D9D9D9
             }
         </style>
     </head>
 <body>
+    @include('temp.v_nav')
+    @include('temp.v_topnav')
     <!-- Page Wrapper -->
-    <div id="main" style="width: auto">
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-            <div class="row">
-                {{-- <div class="col-md-3 col-sm-12 col-xs-12 col-lg-3"> --}}
-                    @include('temp.v_nav')
-                {{-- </div> --}}
-                {{-- <div class="col-md-9 col-sm-12 col-xs-12 col-sm-9"> --}}
-                @include('temp.v_topnav')
-            <!-- Main Content -->
+    <main id="main" style="width: auto">
+        <!-- Main Content -->
             <div id="content" style="height:100vh">
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -56,14 +51,9 @@
                     @yield('isicontent')                    
                     <!-- Content Row -->
                 <!-- /.container-fluid -->
+                    </div>
 
-            </div>
-            <!-- End of Main Content -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
+                </main>
     <!-- End of Page Wrapper -->
 </div>
   

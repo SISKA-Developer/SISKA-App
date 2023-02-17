@@ -1,4 +1,4 @@
- <header class="navbar py-3 mb-3 border-bottom">
+ <header class="navbar py-3 mb-1 border-bottom bg-white">
     <div class="container-fluid" style="grid-template-columns: 1fr 2fr;">
       <div class="col-3 d-flex justify-content-start" style="padding: 0">
       <button class="openbtn" onclick="openNav()">☰</button>  

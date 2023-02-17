@@ -1,10 +1,9 @@
-<div class="sidebar d-flex flex-column flex-shrink-0 bg-light" id="sidebar">
+<div class="sidebar d-flex flex-column flex-shrink-0 bg-white" id="sidebar">
   <a href="/" class="d-flex align-items-center mt-2 mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
     <img src="https://www.stmik-bandung.ac.id/core/public/assets/img/core-img/logo_stmik_kampusmerdeka.png" width="100px">
     <span class="fs-4 mx-2">SISKA</span>
   </a>
   <a href="#" class="closebtn" onclick="closeNav()">×</a>
-
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
@@ -72,7 +71,9 @@
   /* background-color: #111; */
   overflow: hidden;
   transition: 0.5s;
-  /* padding-top: 20px; */
+  padding-top: 20px;
+  padding-left: 0px;
+  padding-right: 0px; 
 }
 .sidebar hr{
   color: black
@@ -117,11 +118,14 @@
   /* background-color: #111; */
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 30px;
+  padding-top: 20px;
   font-size: 16px;
 }
 .closebtn{
   visibility: hidden;
+}
+.textprofile{
+  display: block;
 }
  #main {
   margin-left: 350px

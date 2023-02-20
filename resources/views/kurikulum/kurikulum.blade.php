@@ -31,31 +31,19 @@
               <li class="nav-item">
                 <a href="#" class="nav-link active" aria-current="page">
                   <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-                  Home
+                  Mata Kuliah
                 </a>
               </li>
               <li>
                 <a href="#" class="nav-link link-dark">
                   <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-                  Dashboard
+                  Jadwal Mata Kuliah
                 </a>
               </li>
               <li>
                 <a href="#" class="nav-link link-dark">
                   <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                  Orders
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link link-dark">
-                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-                  Products
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link link-dark">
-                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-                  Customers
+                  Tujuan dan Capaian
                 </a>
               </li>
             </ul>
@@ -75,8 +63,9 @@
             </div>
           </div>
         
-                    <div class="ml-4 text-center text-lg text-gray-500 sm:text-right sm:ml-0">
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-                    </div>
+            <div class="ml-4 text-center text-lg text-gray-500 sm:text-right sm:ml-0">
+                Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+            </div>
+
     </body>
 </html>

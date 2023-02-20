@@ -1,5 +1,5 @@
 @extends('temp.v_temp')
-@section('title', ('Home'))
+@section('title', (''))
 @section('isicontent')
 
 <style>

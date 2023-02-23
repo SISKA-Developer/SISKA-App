@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Hashids\Hashids;
 class MatakuliahController extends Controller
 {
@@ -17,8 +18,8 @@ class MatakuliahController extends Controller
     }
     
     public function matakuliah(){
-
-        return view('kurikulum.matakuliah');
+        // echo $matakuliah;
+        return view('kurikulum.matakuliah');   
     }
     
     public function jadwalMatakuliah(){

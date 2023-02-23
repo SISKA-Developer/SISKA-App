@@ -15,9 +15,9 @@
     @foreach ($sidebar as $item)
     @if ($item->role == $url[1])
     <li class="nav-item">
-      <a href="{{route($item->url)}}" class="nav-link " aria-current="page">
+      <a href="{{route($item->url)}}" class="nav-link {{ Request::is($url[1]. '/' . $item->urlname) ? 'active' : '' }}" aria-current="page">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-           <span class="nav-link active">{{$item->name}}</span>
+           {{$item->name}}
       </a>
     </li>
     @endif

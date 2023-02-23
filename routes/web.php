@@ -19,28 +19,28 @@ use Illuminate\Support\Facades\Hash;
 |
 */
 
-// $sidebars = sidebars::get();
-// // echo $sidebars;        
-// foreach ($sidebars as $items) {
-//     $hash = $items->hashids;
-//     // $array_terpecah = array_split($hash);
-//     var_dump($hash);
-//     exit;
-// };
+$sidebar = sidebars::get();
+foreach ($sidebar as $data){
 
-        // $id = '783427324';
-        // $hashids = new Hashids();
-        // $id = $hashids->encode($id);
-        // echo $hash;
+ $item = $data->name = $data->hashids;   
+}
+ var_dump ($item);
+ exit();
+$matakuliah = '619332782';
+$jadwalmatakuliah = '235789234';
+$tujuandancapaian = '793146080';
 
-
-// Route::resource('sidebar', [sidebarController::class,'index'])->name('sidebar');
+$hashids = new Hashids();
+$matakuliah = $hashids->encode($matakuliah);
+$jadwalmatakuliah = $hashids->encode($jadwalmatakuliah);
+$tujuandancapaian = $hashids->encode($tujuandancapaian);
+    
 Route::get('/', function () {
     return view('v_home');
 });
-Route::get('/kurikulum/matakuliah', [MatakuliahController::class,'matakuliah'])->name('MatakuliahIndex');
-Route::get('/kurikulum/jadwalmatakuliah', [MatakuliahController::class,'jadwalMatakuliah'])->name('JadwalMatakuliahIndex');
-Route::get('/kurikulum/tujuandancapaian', [MatakuliahController::class,'tujuanCapaian'])->name('TujuanCapaianIndex');
+Route::get('/kurikulum/'. $matakuliah, [MatakuliahController::class,'matakuliah'])->name('MatakuliahIndex');
+Route::get('/kurikulum/'. $jadwalmatakuliah, [MatakuliahController::class,'jadwalMatakuliah'])->name('JadwalMatakuliahIndex');
+Route::get('/kurikulum/'. $tujuandancapaian, [MatakuliahController::class,'tujuanCapaian'])->name('TujuanCapaianIndex');
 // Route::get('/mahasiswa/{hashids}', [MahasiswaController::class,'myprofile'])->name('myprofile');
 Route::get('/mahasiswa/myprofile', [MahasiswaController::class,'myprofile'])->name('myprofile');
 Route::get('/mahasiswa/status', [MahasiswaController::class,'myprofile'])->name('statusIndex');

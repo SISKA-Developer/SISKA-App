@@ -22,4 +22,6 @@ Route::get('/kurikulum', function () {
 Route::get('/mahasiswa', function () {
     return view('mahasiswa/layouts/index');
 });
-
+Route::get('/evaluasi', function () {
+    return view('evaluasi/pembelajaran');
+});

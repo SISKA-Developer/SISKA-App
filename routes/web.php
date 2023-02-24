@@ -19,13 +19,13 @@ use Illuminate\Support\Facades\Hash;
 |
 */
 
-$sidebar = sidebars::get();
-foreach ($sidebar as $data){
+// $sidebar = sidebars::get();
+// foreach ($sidebar as $data){
 
- $item = $data->name = $data->hashids;   
-}
- var_dump ($item);
- exit();
+//  $item = $data->name = $data->hashids;   
+// }
+//  var_dump ($item);
+//  exit();
 $matakuliah = '619332782';
 $jadwalmatakuliah = '235789234';
 $tujuandancapaian = '793146080';

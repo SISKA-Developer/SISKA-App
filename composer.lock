@@ -963,16 +963,16 @@
         },
         {
             "name": "hashids/hashids",
-            "version": "5.0.1",
+            "version": "5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vinkla/hashids.git",
-                "reference": "c42c4c588fa13cd4b1608f911a8ec44e8e3c6ad8"
+                "reference": "197171016b77ddf14e259e186559152eb3f8cf33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vinkla/hashids/zipball/c42c4c588fa13cd4b1608f911a8ec44e8e3c6ad8",
-                "reference": "c42c4c588fa13cd4b1608f911a8ec44e8e3c6ad8",
+                "url": "https://api.github.com/repos/vinkla/hashids/zipball/197171016b77ddf14e259e186559152eb3f8cf33",
+                "reference": "197171016b77ddf14e259e186559152eb3f8cf33",
                 "shasum": ""
             },
             "require": {
@@ -1026,9 +1026,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vinkla/hashids/issues",
-                "source": "https://github.com/vinkla/hashids/tree/5.0.1"
+                "source": "https://github.com/vinkla/hashids/tree/5.0.2"
             },
-            "time": "2023-02-23T07:46:46+00:00"
+            "time": "2023-02-23T15:00:54+00:00"
         },
         {
             "name": "laravel/framework",

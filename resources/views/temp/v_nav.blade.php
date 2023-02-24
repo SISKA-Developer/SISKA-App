@@ -6,24 +6,22 @@
   <a href="#" class="closebtn" onclick="closeNav()">×</a>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
-  <li class="nav-item">
-    <a href="#" class="nav-link active" aria-current="page">
-      <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-      Mata Kuliah
-    </a>
-  </li>
-  <li>
-    <a href="#" class="nav-link link-dark">
-      <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-      Jadwal Mata Kuliah
-    </a>
-  </li>
-  <li>
-    <a href="#" class="nav-link link-dark">
-      <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-      Tujuan dan Capaian
-    </a>
-  </li>
+    @php
+    // $params = $request->query->all();
+    $params = Request::getRequestUri();
+    $url=explode("/", $params);
+    // echo $url[1];    
+    @endphp
+    @foreach ($sidebar as $item)
+    @if ($item->role == $url[1])
+    <li class="nav-item">
+      <a href="{{route($item->url)}}" class="nav-link {{ Request::is($url[1]. '/' . $item->urlname) ? 'active' : '' }}" aria-current="page">
+        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+           {{$item->name}}
+      </a>
+    </li>
+    @endif
+    @endforeach
   </ul>
   <hr>
   <footer class="sticky-footer bg-white">

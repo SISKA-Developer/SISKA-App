@@ -89,4 +89,6 @@
 
 }
     </script>
+    <script src="{{ asset('js/matakuliah.js') }}"></script>
+    @stack('matakuliah')
 </html>

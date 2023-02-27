@@ -6,6 +6,7 @@
   <a href="#" class="closebtn" onclick="closeNav()">×</a>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
+
     @php
     // $params = $request->query->all();
     $params = Request::getRequestUri();
@@ -22,6 +23,7 @@
     </li>
     @endif
     @endforeach
+
   </ul>
   <hr>
   <footer class="sticky-footer bg-white">

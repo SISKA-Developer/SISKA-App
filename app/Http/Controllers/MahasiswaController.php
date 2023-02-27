@@ -10,21 +10,31 @@ use Hashids\Hashids;
 
 class MahasiswaController extends Controller
 {
-    public function index(){
+    // public function index(){
+    //     return view('mahasiswa.myprofile'); 
+    // }
+    public function myprofile(){
+
         return view('mahasiswa.myprofile'); 
     }
-    public function myprofile(){
-        // $string = 'mahasiswa';
-            // $hash = Hash::make($string);
-        // if (Hash::check('mahasiswa', $hashids)) {
-            // Jika password benar
-            return view('mahasiswa.myprofile'); 
-            // return "pengguna ".$hashids;
-    
-        // }else{
-        //     // jika password tidak sesuai
-        //     return error(404);
-    
-        // }
+    public function status(){
+
+        return view('mahasiswa.status'); 
+    }
+    public function jadwalKuliah(){
+
+        return view('mahasiswa.jadwalkuliah'); 
+    }
+    public function dataindukmahasiswa(){
+
+        return view('mahasiswa.dataindukmahasiswa'); 
+    }
+    public function statusKeuangan(){
+
+        return view('mahasiswa.statuskeuangan'); 
+    }
+    public function transkripNilai(){
+
+        return view('mahasiswa.transkripnilai'); 
     }
 }

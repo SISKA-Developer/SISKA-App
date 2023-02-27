@@ -34,7 +34,7 @@ $evaluasi1 = '132445657';
 $evaluasi2 = '890763428';
 $evaluasi3 = '435677898';
 
-// $hashids = new Hashids();
+$hashids = new Hashids();
 
 $matakuliah = $hashids->encode($matakuliah);
 $jadwalmatakuliah = $hashids->encode($jadwalmatakuliah);

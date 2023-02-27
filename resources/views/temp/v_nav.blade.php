@@ -6,6 +6,7 @@
   <a href="#" class="closebtn" onclick="closeNav()">×</a>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
+
     @php
     // $params = $request->query->all();
     $params = Request::getRequestUri();
@@ -22,30 +23,7 @@
     </li>
     @endif
     @endforeach
-    {{-- <li> --}}
-      {{-- <a href="#" class="nav-link link-dark">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-        Dashboard
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link link-dark">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-        Orders
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link link-dark">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-        Products
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link link-dark">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-        Customers
-      </a>
-    </li> --}}
+
   </ul>
   <hr>
   <footer class="sticky-footer bg-white">

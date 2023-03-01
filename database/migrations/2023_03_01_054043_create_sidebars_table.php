@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMatakuliahModelsTable extends Migration
+class CreateSidebarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateMatakuliahModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('matakuliah_models', function (Blueprint $table) {
+        Schema::create('sidebars', function (Blueprint $table) {
             $table->id();
-            $table->kd_kur();
-            $table->kd_mk();
-            $table->nama_mk();
-            $table->jenis_mk();
-            $table->sks();
+            $table->string('name');
+            $table->string('urlname');
+            $table->string('url');
+            $table->string('icon');
+            $table->string('role');
+            $table->string('hashids');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateMatakuliahModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matakuliah_models');
+        Schema::dropIfExists('sidebars');
     }
 }

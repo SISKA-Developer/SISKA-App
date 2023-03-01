@@ -1,9 +1,17 @@
 @extends('temp.v_temp')
-@section('title', ('Matakuliah'))
 @section('isicontent')
-    <div class="container mt-5">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="#">SISKA</a></li>
+            <li><a href="#">Kurikulum</a></li>
+            <li>Mata Kuliah</li>
+        </ul>
         <div class="card">
-        <table class="table table-bordered yajra-datatable" style="background-color: white">
+            <div class="card-header">
+                <h5>Semester 1</h5>
+            </div>
+            <div class="card-body">
+        <table class="table table-striped table-bordered dt-responsive nowrap yajra-datatable" style="background-color: white">
             <thead>
                 <tr>
                     <th>No</th>
@@ -18,6 +26,7 @@
             <tbody>
             </tbody>
         </table>
+            </div>
     </div>
 </div>
     @push('matakuliah')
@@ -26,6 +35,7 @@
      $('.yajra-datatable').DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
         ajax: "{{ route('getmatakuliah') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},

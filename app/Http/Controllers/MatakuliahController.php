@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Hash;
 use Hashids\Hashids;
@@ -11,22 +12,21 @@ use App\Models\matakuliah;
 class MatakuliahController extends Controller
 {
     public function index (){
-        $id = '619332782';
-        $hashids = new Hashids();
-        $id = $hashids->encode($id);
-        // var_dump($id);
-        // exit();
+        
         return view('kurikulum.matakuliah');
     }
     
     public function matakuliah(){
- 
+        $data = json_decode(file_get_contents('http://api.stmik-bandung.ac.id:16080/server/public/api/matakuliah'), true);
+        dd($data);
         return view('kurikulum.matakuliah');   
     }
     public function getmatakuliah(Request $request){
  
     if ($request->ajax()) {
-        $data = matakuliah::all();
+        // $url = Http::('http://api.stmik-bandung.ac.id:16080/server/public/api/matakuliah')
+        // $json = response->json($url);
+        // dd($json)
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function($row){

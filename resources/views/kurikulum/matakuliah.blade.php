@@ -11,7 +11,7 @@
                 <h5>Semester 1</h5>
             </div>
             <div class="card-body">
-        <table class="table table-striped table-bordered dt-responsive nowrap yajra-datatable" style="background-color: white">
+        <table id="yajra-datatable" class="table table-striped table-bordered dt-responsive nowrap yajra-datatable" style="background-color: white">
             <thead>
                 <tr>
                     <th>No</th>
@@ -37,12 +37,13 @@
         serverSide: true,
         responsive: true,
         ajax: "{{ route('getmatakuliah') }}",
+        dataSrc: 'data',
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'kode_kurikulum'},
-            {data: 'kode_matkul'},
-            {data: 'nama_matkul'},
-            {data: 'jenis_matkul'},
+            {data: 'jur_id'},
+            {data: 'kd_mk'},
+            {data: 'nm_mk'},
+            {data: 'nm_jurusan'},
             {data: 'sks'},
             {
                 data: 'action', 

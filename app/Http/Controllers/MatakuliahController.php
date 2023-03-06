@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Http;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Hash;
 use Hashids\Hashids;
 use App\Models\matakuliah;
+use Yajra\Datatables\CollectionDataTable;
+
 class MatakuliahController extends Controller
 {
     public function index (){
@@ -17,27 +19,102 @@ class MatakuliahController extends Controller
     }
     
     public function matakuliah(){
-        $data = json_decode(file_get_contents('http://api.stmik-bandung.ac.id:16080/server/public/api/matakuliah'), true);
-        dd($data);
-        return view('kurikulum.matakuliah');   
+        
+        return view('kurikulum.matakuliah');
     }
-    public function getmatakuliah(Request $request){
- 
-    if ($request->ajax()) {
-        // $url = Http::('http://api.stmik-bandung.ac.id:16080/server/public/api/matakuliah')
-        // $json = response->json($url);
-        // dd($json)
-        return DataTables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function($row){
-                $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></a> <a href="javascript:void(0)" class="delete btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>';
-                return $actionBtn;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
-    return view('kurikulum.kurikulum');   
-    }   
+        public function getmatakuliahsmt1(Request $request){
+        if ($request->ajax()) {
+            $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/matakuliah');
+            $data = $response->json();
+            $datas = $data['semester1'];
+            return DataTables::of($datas)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('kurikulum.kurikulum');   
+        }
+
+        public function getmatakuliahsmt2(Request $request){
+            if ($request->ajax()) {
+                $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/matakuliah');
+                $data = $response->json();
+                $datas = $data['semester2'];
+                return DataTables::of($datas)
+                    ->addIndexColumn()
+                    ->make(true);
+                }
+            return view('kurikulum.kurikulum');   
+        }
+        public function getmatakuliahsmt3(Request $request){
+            if ($request->ajax()) {
+                $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/matakuliah');
+                $data = $response->json();
+                $datas = $data['semester3'];
+                return DataTables::of($datas)
+                    ->addIndexColumn()
+                    ->make(true);
+                }
+            return view('kurikulum.kurikulum');   
+        }
+        public function getmatakuliahsmt4(Request $request){
+            if ($request->ajax()) {
+                $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/matakuliah');
+                $data = $response->json();
+                $datas = $data['semester4'];
+                return DataTables::of($datas)
+                    ->addIndexColumn()
+                    ->make(true);
+                }
+            return view('kurikulum.kurikulum');   
+        }
+        public function getmatakuliahsmt5(Request $request){
+                    if ($request->ajax()) {
+                        $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/matakuliah');
+                        $data = $response->json();
+                        $datas = $data['semester5'];
+                        return DataTables::of($datas)
+                            ->addIndexColumn()
+                            ->make(true);
+                    }
+                    return view('kurikulum.kurikulum');   
+        }
+            
+        public function getmatakuliahsmt6(Request $request){
+            if ($request->ajax()) {
+            $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/matakuliah');
+            $data = $response->json();
+            $datas = $data['semester6'];
+            return DataTables::of($datas)
+                ->addIndexColumn()
+                ->make(true);
+                }
+            return view('kurikulum.kurikulum');   
+        }
+        public function getmatakuliahsmt7(Request $request){
+            if ($request->ajax()) {
+            $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/matakuliah');
+            $data = $response->json();
+            $datas = $data['semester7'];
+            return DataTables::of($datas)
+                ->addIndexColumn()
+                ->make(true);
+                }
+            return view('kurikulum.kurikulum');   
+        }
+                        
+        public function getmatakuliahsmt8(Request $request){
+            if ($request->ajax()) {
+            $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/matakuliah');
+            $data = $response->json();
+            $datas = $data['semester8'];
+            return DataTables::of($datas)
+                ->addIndexColumn()
+                ->make(true);
+                }
+            return view('kurikulum.kurikulum');   
+        }
+                        
+
     public function jadwalMatakuliah(){
         return view('kurikulum.jadwalmatakuliah');   
     }

@@ -57,7 +57,14 @@ Route::get('/', function () {
 Route::get('/kurikulum/'. $matakuliah, [MatakuliahController::class,'matakuliah'])->name('MatakuliahIndex');
 Route::get('/kurikulum/'. $jadwalmatakuliah, [MatakuliahController::class,'jadwalMatakuliah'])->name('JadwalMatakuliahIndex');
 Route::get('/kurikulum/'. $tujuandancapaian, [MatakuliahController::class,'tujuanCapaian'])->name('TujuanCapaianIndex');
-Route::get('matakuliah', [MatakuliahController::class,'getmatakuliah'])->name('getmatakuliah');
+Route::get('matakuliahsmt1', [MatakuliahController::class,'getmatakuliahsmt1'])->name('getmatakuliahsmt1');
+Route::get('matakuliahsmt2', [MatakuliahController::class,'getmatakuliahsmt2'])->name('getmatakuliahsmt2');
+Route::get('matakuliahsmt3', [MatakuliahController::class,'getmatakuliahsmt3'])->name('getmatakuliahsmt3');
+Route::get('matakuliahsmt4', [MatakuliahController::class,'getmatakuliahsmt4'])->name('getmatakuliahsmt4');
+Route::get('matakuliahsmt5', [MatakuliahController::class,'getmatakuliahsmt5'])->name('getmatakuliahsmt5');
+Route::get('matakuliahsmt6', [MatakuliahController::class,'getmatakuliahsmt6'])->name('getmatakuliahsmt6');
+Route::get('matakuliahsmt7', [MatakuliahController::class,'getmatakuliahsmt7'])->name('getmatakuliahsmt7');
+Route::get('matakuliahsmt8', [MatakuliahController::class,'getmatakuliahsmt8'])->name('getmatakuliahsmt8');
 
 Route::get('/mahasiswa/'. $myprofile, [MahasiswaController::class,'myprofile'])->name('myprofile');
 Route::get('/mahasiswa/'. $status, [MahasiswaController::class,'status'])->name('statusIndex');

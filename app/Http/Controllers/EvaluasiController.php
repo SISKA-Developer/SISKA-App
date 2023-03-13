@@ -9,14 +9,14 @@ class EvaluasiController extends Controller
 {
     public function evaluasiPembelajaran(){
 
-        return view('mahasiswa.myprofile'); 
+        return view('evaluasi.evaluasipembelajaran'); 
     }
     public function evaluasiSarana(){
 
-        return view('mahasiswa.myprofile'); 
+        return view('evaluasi.evaluasisarana'); 
     }
     public function evaluasiKeuangan(){
 
-        return view('mahasiswa.myprofile'); 
+        return view('evaluasi.evaluasikeuangan'); 
     }
 }

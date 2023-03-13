@@ -212,6 +212,23 @@
                 </div>
             </div>
         </div>
+        <div class="modal" tabindex="-1" id="modal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Detail Matakuliah</h5>
+                  <button type="button" class="btn-close" data-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Modal body text goes here.</p>
+                </div>
+                {{-- <div class="modal-footer">
+                  <button type="button" onclick="javascript.void(0)" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div> --}}
+              </div>
+            </div>
+          </div>
     </div>
 
             
@@ -234,9 +251,9 @@
                 {data: 'semester'},
                 {data: 'sks'},
                 {
-                    data: null, 
+                    data: 'mk_id', 
                     render: ((data, type, row)=>{
-                        return '<button type="button" onclick="editRowData('+ row.id +')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="deleteRowData('+ row.id +')" class="delete btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></button>'
+                        return '<button type="button" onclick="editRowData('+data+')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa-solid fa-eye"></i></button>'
                     }),
                     // name: 'action', 
                     orderable: true, 
@@ -260,9 +277,9 @@
                 {data: 'semester'},
                 {data: 'sks'},
                 {
-                    data: null, 
+                    data: 'mk_id', 
                     render: ((data, type, row)=>{
-                        return '<button type="button" onclick="editRowData('+ row.id +')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="deleteRowData('+ row.id +')" class="delete btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></button>'
+                        return '<button type="button" onclick="editRowData('+data+')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa-solid fa-eye"></i></button>'
                     }),
                     // name: 'action', 
                     orderable: true, 
@@ -286,9 +303,9 @@
                 {data: 'semester'},
                 {data: 'sks'},
                 {
-                    data: null, 
+                    data: 'mk_id', 
                     render: ((data, type, row)=>{
-                        return '<button type="button" onclick="editRowData('+ row.id +')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="deleteRowData('+ row.id +')" class="delete btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></button>'
+                        return '<button type="button" onclick="editRowData('+data+')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa-solid fa-eye"></i></button>'
                     }),
                     // name: 'action', 
                     orderable: true, 
@@ -312,9 +329,9 @@
                 {data: 'semester'},
                 {data: 'sks'},
                 {
-                    data: null, 
+                    data: 'mk_id', 
                     render: ((data, type, row)=>{
-                        return '<button type="button" onclick="editRowData('+ row.id +')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="deleteRowData('+ row.id +')" class="delete btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></button>'
+                        return '<button type="button" onclick="editRowData('+data+')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa-solid fa-eye"></i></button>'
                     }),
                     // name: 'action', 
                     orderable: true, 
@@ -338,9 +355,9 @@
                 {data: 'semester'},
                 {data: 'sks'},
                 {
-                    data: null, 
+                    data: 'mk_id', 
                     render: ((data, type, row)=>{
-                        return '<button type="button" onclick="editRowData('+ row.id +')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="deleteRowData('+ row.id +')" class="delete btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></button>'
+                        return '<button type="button" onclick="editRowData('+data+')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa-solid fa-eye"></i></button>'
                     }),
                     // name: 'action', 
                     orderable: true, 
@@ -364,9 +381,9 @@
                 {data: 'semester'},
                 {data: 'sks'},
                 {
-                    data: null, 
+                    data: 'mk_id', 
                     render: ((data, type, row)=>{
-                        return '<button type="button" onclick="editRowData('+ row.id +')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="deleteRowData('+ row.id +')" class="delete btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></button>'
+                        return '<button type="button" onclick="editRowData('+data+')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa-solid fa-eye"></i></button>'
                     }),
                     // name: 'action', 
                     orderable: true, 
@@ -390,9 +407,9 @@
                 {data: 'semester'},
                 {data: 'sks'},
                 {
-                    data: null, 
+                    data: 'mk_id', 
                     render: ((data, type, row)=>{
-                        return '<button type="button" onclick="editRowData('+ row.id +')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="deleteRowData('+ row.id +')" class="delete btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></button>'
+                        return '<button type="button" onclick="editRowData('+data+')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa-solid fa-eye"></i></button>'
                     }),
                     // name: 'action', 
                     orderable: true, 
@@ -402,11 +419,20 @@
     });
     $('#yajra-datatable-smt8').DataTable({
         processing: true,
+        language: {
+                processing: '<div class="card" style="width:100px; height:100px; background-color:white;"><span>Loading...</span></div>'
+                // '<span class="spinner-grow"></span><span class="spinner-grow"></span><span class="spinner-grow"></span>',
+            },
         serverSide: true,
         responsive: true,
         searching: true,
         sort: true,   
-        ajax: "{{ route('getmatakuliahsmt8') }}",
+        ajax: "{{route('getmatakuliahsmt8')}}",
+        //     success
+        // }",
+        // ajax: {
+
+        // }
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'kd_kur'},
@@ -416,9 +442,9 @@
                 {data: 'semester'},
                 {data: 'sks'},
                 {
-                    data: null, 
+                    data: 'mk_id', 
                     render: ((data, type, row)=>{
-                        return '<button type="button" onclick="editRowData('+ row.id +')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="deleteRowData('+ row.id +')" class="delete btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></button>'
+                        return '<button type="button" onclick="editRowData('+data+')" class="edit btn btn-success btn-sm"><i class="fa-solid fa-pencil"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modal"><i class="fa-solid fa-eye"></i></button>'
                     }),
                     // name: 'action', 
                     orderable: true, 
@@ -428,6 +454,14 @@
     });
     
   });
+        function detailRowData(mk_id) {
+            console.log(mk_id);
+            //ajax
+        }
+        function editRowData(mk_id) {
+            console.log(mk_id);
+            //ajax
+        }
     </script>
     @endpush
 @endsection

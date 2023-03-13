@@ -113,6 +113,22 @@ class MatakuliahController extends Controller
                 }
             return view('kurikulum.kurikulum');   
         }
+        public function getjadwalmatakuliah(Request $request){
+            if ($request->ajax()) {
+            $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/jadwal');
+            $data = $response->json();
+            $datas = $data['data'];
+            // if (!$datas['jadwal_kuliah']){
+            //     return 404;
+            // }
+            // else{
+            return DataTables::of($datas)
+                ->addIndexColumn()
+                ->make(true);
+                // }
+            }
+            return view('kurikulum.kurikulum');   
+        }
                         
 
     public function jadwalMatakuliah(){

@@ -1,3 +1,6 @@
+@php
+    session_start();
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -55,6 +58,12 @@
                 overflow-y: scroll; /* Add vertical scrollbar */
                 font-family: 'Nunito', sans-serif;
             }
+            .filter-radio{
+                margin-left: 30px
+                }
+            .filter-radio:first-child{
+                margin-left:0
+                }
             #main{
                 width: auto;
                 background-color: #D9D9D9
@@ -107,6 +116,13 @@
 <script src="{{asset('template')}}/plugins/datatables/js/datatables.responsive.min.js"></script>
 <script src="{{asset('template')}}/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 <script>
+    $(document).ready(function(){
+        sessionStorage.setItem("role", "Teknik Informatika");
+        sessionStorage.setItem("nama", "Ardhan");
+        
+        // var role = localStorage.getItem("role");
+        // console.log(role);
+    })
     function openNav() {
       document.getElementById("sidebar").style.width = "350px";
       document.getElementById("main").style.marginLeft = "350px";

@@ -11,10 +11,10 @@
                 <div class="col-6 p-0">
                     <h5>Tujuan dan Capaian Program Studi</h5>
                 </div>
-                {{-- <div class="col-6 d-flex justify-content-end">
-                    <button class="mx-1 p-1" data-bs-container="container" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Import File CSV"><i class="fa fa-file-o"></i></button>
-                    <button class="mx-1 p-1" data-bs-container="container" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Add File"><i class="fa fa-plus"></i></button>
-                </div> --}}
+                <div class="col-6 d-flex justify-content-end">
+                    {{-- <button class="mx-1 p-1" data-bs-container="container" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Import File CSV"><i class="fa fa-file-o"></i></button> --}}
+                    <button class="mx-1 p-1" data-toggle="modal" data-target="#modalsilabus" data-container="container" data-toggle="popover" data-placement="top" data-content="Add File"><i class="fa fa-plus"></i></button>
+                </div>
             </div>
             <div class="card-body">
                 <table id="yajra-datatable-jadwal" class="table table-striped table-bordered dt-responsive yajra-datatable" style="background-color: white">
@@ -58,5 +58,25 @@
                 </table>
             </div>
         </div>
+        <div class="modal" tabindex="-1" id="modalsilabus">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Tambah File Silabus</h5>
+                  <button type="button" class="btn-close" data-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Masukan File Silabus :</label>
+                        <input class="form-control" type="file" id="formFile">
+                      </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" onclick="javascript.void(0)" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
     </div>
     @endsection

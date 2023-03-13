@@ -57,6 +57,8 @@ Route::get('/', function () {
 Route::get('/mahasiswa', function () {
     return view('v_home');
 });
+
+//admin
 Route::get('/kurikulum/'. $matakuliah, [MatakuliahController::class,'matakuliah'])->name('MatakuliahIndex');
 Route::get('/kurikulum/'. $jadwalmatakuliah, [MatakuliahController::class,'jadwalMatakuliah'])->name('JadwalMatakuliahIndex');
 Route::get('/kurikulum/'. $tujuandancapaian, [MatakuliahController::class,'tujuanCapaian'])->name('TujuanCapaianIndex');
@@ -79,8 +81,8 @@ Route::get('/mahasiswa/'. $statuskeuangan, [MahasiswaController::class,'statusKe
 Route::get('/mahasiswa/'. $transkripnilai, [MahasiswaController::class,'transkripNilai'])->name('transkripnilaiIndex');
 
 Route::get('/evaluasi/'. $evaluasi1, [EvaluasiController::class,'evaluasiPembelajaran'])->name('evaluasipembelajaranIndex');
-Route::get('/evaluasi/'. $evaluasi2, [EvaluasiController::class,'evaluasiKeuangan'])->name('evaluasipengelolaanIndex');
-Route::get('/evaluasi/'. $evaluasi3, [EvaluasiController::class,'evaluasiSarana'])->name('evaluasisaranaIndex');
+Route::get('/evaluasi/'. $evaluasi2, [EvaluasiController::class,'evaluasiSarana'])->name('evaluasipengelolaanIndex');
+Route::get('/evaluasi/'. $evaluasi3, [EvaluasiController::class,'evaluasiKeuangan'])->name('evaluasisaranaIndex');
 
 // Route::get('/mahasiswa', function () {
 //     return view('mahasiswa/layouts/index');

@@ -6,8 +6,9 @@
       <div class="col-9 d-flex justify-content-end">
       <div class="d-flex align-items-center">
         <div class="text-center mx-4" id="textprofile">
-        <p class="my-0">Selamat Datang , Admin</p>
-        <p class="my-0">Teknik Informatika</p>
+        <p class="my-0" id="nama"></p>
+        <p class="my-0" id="role">
+        </p>
         </div>
         <div class="flex-shrink-0 dropdown mx-2">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,3 +50,17 @@
     }
   }
   </style>
+
+    @push('matakuliah')
+    <script>
+      $(document).ready(function(){
+        var role = sessionStorage.getItem("role");
+        var nama = sessionStorage.getItem("nama");
+        console.log(role);
+        document.getElementById("role").innerHTML = role;
+        document.getElementById("nama").innerHTML = "Selamat Datang, " + nama;
+
+
+      });
+    </script>
+    @endpush

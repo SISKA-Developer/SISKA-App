@@ -72,6 +72,7 @@ Route::get('matakuliahsmt6', [MatakuliahController::class,'getmatakuliahsmt6'])-
 Route::get('matakuliahsmt7', [MatakuliahController::class,'getmatakuliahsmt7'])->name('getmatakuliahsmt7');
 Route::get('matakuliahsmt8', [MatakuliahController::class,'getmatakuliahsmt8'])->name('getmatakuliahsmt8');
 Route::get('getjadwalmatakuliah', [MatakuliahController::class,'getjadwalmatakuliah'])->name('getjadwalmatakuliah');
+Route::post('filetujuanCapaian', [MatakuliahController::class, 'filetujuanCapaian']);
 
 Route::get('/mahasiswa/'. $myprofile, [MahasiswaController::class,'myprofile'])->name('myprofile');
 Route::get('/mahasiswa/'. $status, [MahasiswaController::class,'status'])->name('statusIndex');

@@ -1,6 +1,9 @@
 @extends('temp.v_temp')
 @section('isicontent')
     <div class="container">
+        @error('file')
+        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+        @enderror
         <ul class="breadcrumb">
             <li><a href="#">SISKA</a></li>
             <li><a href="#">Kurikulum</a></li>
@@ -11,7 +14,7 @@
                 <div class="col-6 p-0">
                     <h5>Tujuan dan Capaian Program Studi</h5>
                 </div>
-                <div class="col-6 d-flex justify-content-end">
+                <div class="col-6 d-flex justify-content-end" id="divbtntambah">
                     {{-- <button class="mx-1 p-1" data-bs-container="container" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Import File CSV"><i class="fa fa-file-o"></i></button> --}}
                     <button class="mx-1 p-1" data-toggle="modal" data-target="#modalsilabus" data-container="container" data-toggle="popover" data-placement="top" data-content="Add File"><i class="fa fa-plus"></i></button>
                 </div>
@@ -62,21 +65,41 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Tambah File Silabus</h5>
+                  <h5 class="modal-title">Tambah File Tujuan dan Capaian</h5>
                   <button type="button" class="btn-close" data-dismiss="modal" aria-label="close"></button>
                 </div>
+                <form id="upload-file" action="{{ url('filetujuanCapaian') }}" method="POST" enctype="multipart/form-data">
+					{{ csrf_field() }}
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Masukan File Silabus :</label>
-                        <input class="form-control" type="file" id="formFile">
-                      </div>
+                        <label for="formFile" class="form-label">Masukan File Tujuan dan Capaian :</label>
+                        <input class="form-control" name="file" type="file" id="formFile">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formText" class="form-label">Keterangan :</label>
+                        <textarea class="form-control" name="keterangan" id="formText"></textarea>
+                    </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" onclick="javascript.void(0)" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
+                </form>
               </div>
             </div>
           </div>
     </div>
     @endsection
+    @push('matakuliah')
+    <script>
+    var role = sessionStorage.getItem("role");
+    var x1 = document.getElementById("divbtntambah");
+    if(role == "Teknik Informatika" || role == "Sistem Informasi"){
+            console.log("guttt")
+            x1.style.visibility = "hidden";
+        }else{
+            console.log("notguutt")
+            x1.style.visibility = "visible";   
+        }
+    </script>
+    @endpush

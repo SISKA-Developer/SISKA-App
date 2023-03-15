@@ -37,6 +37,7 @@
                 <div class="tab-pane fade show active" id="smt1tab" role="tabpanel" aria-labelledby="smt1tab" tabindex="0">
                     <div class="card">
                         <div class="card-body">
+                            <div id="formcheck1">
                             <div class="form-check form-check-inline">
                                 <input class="filter-radio1 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Teknik Informatika">
                                 <label class="form-check-label" for="inlineRadio1">Teknik Informatika</label>
@@ -45,6 +46,7 @@
                                 <input class="filter-radio1 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Sistem Informasi">
                                 <label class="form-check-label" for="inlineRadio2">Sistem Informasi</label>
                               </div>
+                            </div>
                             <table id="yajra-datatable-smt1" class="table table-striped table-bordered dt-responsive yajra-datatable" style="background-color: white">
                                 <thead>
                                     <tr>
@@ -67,6 +69,7 @@
                 <div class="tab-pane fade" id="smt2-tab-pane" role="tabpanel" aria-labelledby="smt2-tab" tabindex="0">
                     <div class="card">
                         <div class="card-body">
+                            <div id="formcheck2">
                             <div class="form-check form-check-inline">
                                 <input class="filter-radio2 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Teknik Informatika">
                                 <label class="form-check-label" for="inlineRadio1">Teknik Informatika</label>
@@ -75,6 +78,7 @@
                                 <input class="filter-radio2 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Sistem Informasi">
                                 <label class="form-check-label" for="inlineRadio2">Sistem Informasi</label>
                               </div>
+                            </div>
                             <table id="yajra-datatable-smt2" class="table table-striped table-bordered dt-responsive yajra-datatable" style="background-color: white">
                                 <thead>
                                     <tr>
@@ -97,6 +101,7 @@
                 <div class="tab-pane fade" id="smt3-tab-pane" role="tabpanel" aria-labelledby="smt3-tab" tabindex="0">
                     <div class="card">
                         <div class="card-body">
+                            <div id="formcheck3">
                             <div class="form-check form-check-inline">
                                 <input class="filter-radio3 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Teknik Informatika">
                                 <label class="form-check-label" for="inlineRadio1">Teknik Informatika</label>
@@ -105,6 +110,7 @@
                                 <input class="filter-radio3 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Sistem Informasi">
                                 <label class="form-check-label" for="inlineRadio2">Sistem Informasi</label>
                               </div>
+                            </div>
                             <table id="yajra-datatable-smt3" class="table table-striped table-bordered dt-responsive yajra-datatable" style="background-color: white">
                                 <thead>
                                     <tr>
@@ -127,6 +133,7 @@
                 <div class="tab-pane fade" id="smt4-tab-pane" role="tabpanel" aria-labelledby="smt4-tab" tabindex="0">
                     <div class="card">
                         <div class="card-body">
+                            <div id="formcheck4">
                             <div class="form-check form-check-inline">
                                 <input class="filter-radio4 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Teknik Informatika">
                                 <label class="form-check-label" for="inlineRadio1">Teknik Informatika</label>
@@ -135,6 +142,7 @@
                                 <input class="filter-radio4 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Sistem Informasi">
                                 <label class="form-check-label" for="inlineRadio2">Sistem Informasi</label>
                               </div>
+                            </div>
                             <table id="yajra-datatable-smt4" class="table table-striped table-bordered dt-responsive yajra-datatable" style="background-color: white">
                                 <thead>
                                     <tr>
@@ -157,6 +165,7 @@
                 <div class="tab-pane fade" id="smt5-tab-pane" role="tabpanel" aria-labelledby="smt5-tab" tabindex="0">
                     <div class="card">
                         <div class="card-body">
+                            <div id="formcheck5">
                             <div class="form-check form-check-inline">
                                 <input class="filter-radio5 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Teknik Informatika">
                                 <label class="form-check-label" for="inlineRadio1">Teknik Informatika</label>
@@ -165,6 +174,7 @@
                                 <input class="filter-radio5 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Sistem Informasi">
                                 <label class="form-check-label" for="inlineRadio2">Sistem Informasi</label>
                               </div>
+                            </div>
                             <table id="yajra-datatable-smt5" class="table table-striped table-bordered dt-responsive yajra-datatable" style="background-color: white">
                                 <thead>
                                     <tr>
@@ -187,6 +197,7 @@
                 <div class="tab-pane fade" id="smt6-tab-pane" role="tabpanel" aria-labelledby="smt6-tab" tabindex="0">
                     <div class="card">
                         <div class="card-body">
+                            <div id="formcheck6">
                             <div class="form-check form-check-inline">
                                 <input class="filter-radio6 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Teknik Informatika">
                                 <label class="form-check-label" for="inlineRadio1">Teknik Informatika</label>
@@ -195,6 +206,7 @@
                                 <input class="filter-radio6 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Sistem Informasi">
                                 <label class="form-check-label" for="inlineRadio2">Sistem Informasi</label>
                               </div>
+                            </div>
                             <table id="yajra-datatable-smt6" class="table table-striped table-bordered dt-responsive yajra-datatable" style="background-color: white">
                                 <thead>
                                     <tr>
@@ -217,6 +229,7 @@
                 <div class="tab-pane fade" id="smt7-tab-pane" role="tabpanel" aria-labelledby="smt7-tab" tabindex="0">
                     <div class="card">
                         <div class="card-body">
+                            <div id="formcheck7">
                             <div class="form-check form-check-inline">
                                 <input class="filter-radio7 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Teknik Informatika">
                                 <label class="form-check-label" for="inlineRadio1">Teknik Informatika</label>
@@ -225,6 +238,7 @@
                                 <input class="filter-radio7 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Sistem Informasi">
                                 <label class="form-check-label" for="inlineRadio2">Sistem Informasi</label>
                               </div>
+                            </div>
                             <table id="yajra-datatable-smt7" class="table table-striped table-bordered dt-responsive yajra-datatable" style="background-color: white">
                                 <thead>
                                     <tr>
@@ -247,6 +261,7 @@
                 <div class="tab-pane fade" id="smt8-tab-pane" role="tabpanel" aria-labelledby="smt8-tab" tabindex="0">
                     <div class="card">
                         <div class="card-body">
+                            <div id="formcheck8">
                             <div class="form-check form-check-inline">
                                 <input class="filter-radio8 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Teknik Informatika">
                                 <label class="form-check-label" for="inlineRadio1">Teknik Informatika</label>
@@ -255,6 +270,7 @@
                                 <input class="filter-radio8 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Sistem Informasi">
                                 <label class="form-check-label" for="inlineRadio2">Sistem Informasi</label>
                               </div>
+                            </div>
                             <table id="yajra-datatable-smt8" class="table table-striped table-bordered dt-responsive yajra-datatable" style="background-color: white">
                                 <thead>
                                     <tr>
@@ -300,28 +316,63 @@
                   <h5 class="modal-title">Tambah File Silabus</h5>
                   <button type="button" class="btn-close" data-dismiss="modal" aria-label="close"></button>
                 </div>
+                {{-- <form action="/upload/proses" method="POST" enctype="multipart/form-data"> --}}
                 <div class="modal-body">
+                        {{-- {{ csrf_field() }} --}}
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Masukan File Silabus :</label>
                         <input class="form-control" type="file" id="formFile">
                       </div>
+                      <div class="mb-3">
+                        <label for="formFile" class="form-label">Masukan File Silabus :</label>
+                        <input class="form-control" type="text" id="formtext">
+                      </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" onclick="javascript.void(0)" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
-              </div>
-            </div>
-          </div>
+            {{-- </form> --}}
+        </div>
+    </div>
+</div>
 
 </div>
 
             
     @push('matakuliah')
     <script>
+        var role = sessionStorage.getItem("role");
+        var x1 = document.getElementById("formcheck1")
+        var x2 = document.getElementById("formcheck2")
+        var x3 = document.getElementById("formcheck3")
+        var x4 = document.getElementById("formcheck4")
+        var x5 = document.getElementById("formcheck5")
+        var x6 = document.getElementById("formcheck6")
+        var x7 = document.getElementById("formcheck7")
+        var x8 = document.getElementById("formcheck8")
+        if(role == "Teknik Informatika" || role == "Sistem Informasi"){
+            console.log("guttt")
+            x1.style.visibility = "hidden";
+            x2.style.visibility = "hidden";   
+            x3.style.visibility = "hidden";   
+            x4.style.visibility = "hidden";   
+            x5.style.visibility = "hidden";   
+            x6.style.visibility = "hidden";   
+            x7.style.visibility = "hidden";   
+            x8.style.visibility = "hidden";   
+        }else{
+            console.log("notguutt")
+            x1.style.visibility = "visible";   
+            x2.style.visibility = "visible";   
+            x3.style.visibility = "visible";   
+            x4.style.visibility = "visible";   
+            x5.style.visibility = "visible";   
+            x6.style.visibility = "visible";   
+            x7.style.visibility = "visible";   
+            x8.style.visibility = "visible";   
+        }
       $(document).ready(function(){
-        // $('#smt1-tab').on('click', function(e){
-        //     console.log("table1");
             table = $('#yajra-datatable-smt1').DataTable({
                 processing: true,
                 serverSide: true,
@@ -349,7 +400,8 @@
                     ]
             });
             table.draw()
-            $('.filter-radio1').on('change', function(e){
+            if(role == "Admin"|| role == "admin"){
+                $('.filter-radio1').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio1'), function(i,elem){
                     if($(elem).prop('checked')){
@@ -359,8 +411,11 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
-        // });
-  });
+            }else{
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }
+                })
         function detailRowData(mk_id) {
             console.log(mk_id);
             //ajax
@@ -399,7 +454,8 @@
                     ]
             });
             table.draw()
-            $('.filter-radio2').on('change', function(e){
+            if(role == "Admin"|| role == "admin"){
+                $('.filter-radio2').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio2'), function(i,elem){
                     if($(elem).prop('checked')){
@@ -409,6 +465,10 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
+            }else{
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }
         });
         $('#smt3-tab').on('click', function(e){
             console.log("table3");
@@ -439,7 +499,8 @@
                     ]
             });
             table.draw()
-            $('.filter-radio3').on('change', function(e){
+            if(role == "Admin"|| role == "admin"){
+                $('.filter-radio3').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio3'), function(i,elem){
                     if($(elem).prop('checked')){
@@ -449,6 +510,11 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
+            }else{
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }
+
         });
         $('#smt4-tab').on('click', function(e){
             console.log("table4");
@@ -479,7 +545,8 @@
                     ]
             });
             table.draw()
-            $('.filter-radio4').on('change', function(e){
+            if(role == "Admin"|| role == "admin"){
+                $('.filter-radio4').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio4'), function(i,elem){
                     if($(elem).prop('checked')){
@@ -489,6 +556,10 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
+            }else{
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }
         });
         $('#smt5-tab').on('click', function(e){
             console.log("table5");
@@ -519,7 +590,8 @@
                     ]
             });
             table.draw()
-            $('.filter-radio5').on('change', function(e){
+            if(role == "Admin"|| role == "admin"){
+                $('.filter-radio5').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio5'), function(i,elem){
                     if($(elem).prop('checked')){
@@ -529,7 +601,10 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
-        });
+            }else{
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }        });
         $('#smt6-tab').on('click', function(e){
             console.log("table6");
             table = $('#yajra-datatable-smt6').DataTable({
@@ -559,7 +634,8 @@
                     ]
             });
             table.draw()
-            $('.filter-radio6').on('change', function(e){
+            if(role == "Admin"|| role == "admin"){
+                $('.filter-radio6').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio6'), function(i,elem){
                     if($(elem).prop('checked')){
@@ -569,6 +645,10 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
+            }else{
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }
         });
         $('#smt7-tab').on('click', function(e){
             console.log("table7");
@@ -599,7 +679,8 @@
                     ]
             });
             table.draw()
-            $('.filter-radio7').on('change', function(e){
+            if(role == "Admin"|| role == "admin"){
+                $('.filter-radio7').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio7'), function(i,elem){
                     if($(elem).prop('checked')){
@@ -609,6 +690,10 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
+            }else{
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }
         });
         $('#smt8-tab').on('click', function(e){
             console.log("table8");
@@ -639,7 +724,8 @@
                     ]
             });
             table.draw()
-            $('.filter-radio8').on('change', function(e){
+            if(role == "Admin"|| role == "admin"){
+                $('.filter-radio8').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio8'), function(i,elem){
                     if($(elem).prop('checked')){
@@ -649,6 +735,10 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
+            }else{
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }
         })
     </script>
     @endpush

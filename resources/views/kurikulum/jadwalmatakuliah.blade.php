@@ -48,7 +48,7 @@
         serverSide: true,
         responsive: true,
         searching: true,
-        sort: true,   
+        sort: true,
         ajax: "{{ route('getjadwalmatakuliah') }}",
         columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},

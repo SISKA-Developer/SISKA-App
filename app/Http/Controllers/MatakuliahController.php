@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Hashids\Hashids;
 use App\Models\matakuliah;
 use Yajra\Datatables\CollectionDataTable;
+use App\Models\tujuancapaian;
+
 
 class MatakuliahController extends Controller
 {
@@ -113,29 +115,72 @@ class MatakuliahController extends Controller
                 }
             return view('kurikulum.kurikulum');   
         }
-        public function getjadwalmatakuliah(Request $request){
-            if ($request->ajax()) {
-            $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/jadwal');
-            $data = $response->json();
-            $datas = $data['data'];
-            // if (!$datas['jadwal_kuliah']){
-            //     return 404;
-            // }
-            // else{
-            return DataTables::of($datas)
-                ->addIndexColumn()
-                ->make(true);
-                // }
-            }
-            return view('kurikulum.kurikulum');   
+    public function fileSilabus(Request $request)
+        {
+            $this->validate($request, [
+                'file' => 'required|mimes:pdf,xlx,csv|max:2048',
+                'keterangan' => 'required',
+            ]); 
+    // menyimpan data file yang diupload ke variabel $file
+            $file = $request->file('file');
+    
+            $nama_file = "File Silabus ".$file->getClientOriginalName();
+    
+        // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'data_file';
+            $file->move($tujuan_upload,$nama_file);
+    
+            tujuancapaian::create([
+                'file' => $nama_file,
+                'keterangan' => $request->keterangan,
+            ]);
+    
+            return redirect()->back()->with('status', 'File Has been uploaded successfully');
         }
                         
-
     public function jadwalMatakuliah(){
         return view('kurikulum.jadwalmatakuliah');   
+    }
+    public function getjadwalmatakuliah(Request $request){
+        if ($request->ajax()) {
+        $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/jadwal');
+        $data = $response->json();
+        $datas = $data['data'];
+        // if (!$datas['jadwal_kuliah']){
+        //     return 404;
+        // }
+        // else{
+        return DataTables::of($datas)
+            ->addIndexColumn()
+            ->make(true);
+            // }
+        }
+        return view('kurikulum.kurikulum');   
     }
     
     public function tujuanCapaian(){
         return view('kurikulum.tujuancapaian');
+    }
+    public function filetujuanCapaian(Request $request)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:pdf,xlx,csv|max:2048',
+			'keterangan' => 'required',
+		]); 
+   // menyimpan data file yang diupload ke variabel $file
+		$file = $request->file('file');
+ 
+		$nama_file = "File Tujuan Capaian ".$file->getClientOriginalName();
+ 
+    // isi dengan nama folder tempat kemana file diupload
+		$tujuan_upload = 'data_file';
+		$file->move($tujuan_upload,$nama_file);
+ 
+		tujuancapaian::create([
+			'file' => $nama_file,
+			'keterangan' => $request->keterangan,
+		]);
+ 
+		return redirect()->back()->with('status', 'File Has been uploaded successfully');
     }
 }

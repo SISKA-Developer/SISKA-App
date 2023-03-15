@@ -11,6 +11,7 @@ use Hashids\Hashids;
 use App\Models\matakuliah;
 use Yajra\Datatables\CollectionDataTable;
 use App\Models\tujuancapaian;
+use App\Models\silabus;
 
 
 class MatakuliahController extends Controller
@@ -130,7 +131,7 @@ class MatakuliahController extends Controller
             $tujuan_upload = 'data_file';
             $file->move($tujuan_upload,$nama_file);
     
-            tujuancapaian::create([
+            silabus::create([
                 'file' => $nama_file,
                 'keterangan' => $request->keterangan,
             ]);
@@ -145,12 +146,12 @@ class MatakuliahController extends Controller
         if ($request->ajax()) {
         $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/jadwal');
         $data = $response->json();
-        $datas = $data['data'];
+        // $datas = $data['data'];
         // if (!$datas['jadwal_kuliah']){
         //     return 404;
         // }
         // else{
-        return DataTables::of($datas)
+        return DataTables::of($data)
             ->addIndexColumn()
             ->make(true);
             // }

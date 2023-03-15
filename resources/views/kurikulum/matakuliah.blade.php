@@ -316,15 +316,15 @@
                   <h5 class="modal-title">Tambah File Silabus</h5>
                   <button type="button" class="btn-close" data-dismiss="modal" aria-label="close"></button>
                 </div>
-                {{-- <form action="/upload/proses" method="POST" enctype="multipart/form-data"> --}}
+                <form action="{{ url('fileSilabus') }}" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
-                        {{-- {{ csrf_field() }} --}}
+                        {{ csrf_field() }}
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Masukan File Silabus :</label>
                         <input class="form-control" type="file" id="formFile">
                       </div>
                       <div class="mb-3">
-                        <label for="formFile" class="form-label">Masukan File Silabus :</label>
+                        <label for="formFile" class="form-label">Keterangan :</label>
                         <input class="form-control" type="text" id="formtext">
                       </div>
                 </div>
@@ -332,7 +332,7 @@
                   <button type="button" onclick="javascript.void(0)" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
-            {{-- </form> --}}
+            </form>
         </div>
     </div>
 </div>
@@ -389,11 +389,13 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'mk_id', 
+                            data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                var datas = data;
+                                console.log(datas);
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+datas+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
-                            // name: 'action', 
+                            name: 'action', 
                             orderable: true, 
                             searchable: true
                         },
@@ -416,12 +418,29 @@
                 table.column(4).search(jurusan).draw();
             }
                 })
-        function detailRowData(mk_id) {
-            console.log(mk_id);
-            //ajax
+        function detailRowData(data) {
+            console.log(data);
+            $.ajax({
+                type: 'GET', //THIS NEEDS TO BE GET
+                url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/kurikulum/'+ data,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                //     container.html('');
+                //     $.each(data, function(index, item) {
+                //     container.html(''); //clears container for new data
+                //     $.each(data, function(i, item) {
+                //         container.append('<div class="row"><div class="ten columns"><div class="editbuttoncont"><button class="btntimestampnameedit" data-seek="' + item.timestamp_time + '">' +  new Date(item.timestamp_time * 1000).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0] +' - '+ item.timestamp_name +'</button></div></div> <div class="one columns"><form action="'+ item.timestamp_id +'/deletetimestamp" method="POST">' + '{!! csrf_field() !!}' +'<input type="hidden" name="_method" value="DELETE"><button class="btntimestampdelete"><i aria-hidden="true" class="fa fa-trash buttonicon"></i></button></form></div></div>');
+                // });
+                //         container.append('<br>');
+                //     });
+                },error:function(){ 
+                    console.log(data);
+                }
+    });
         }
-        function editRowData(mk_id) {
-            console.log(mk_id);
+        function editRowData(kd_mk) {
+            console.log(kd_mk);
             //ajax
         }
      
@@ -443,7 +462,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'mk_id', 
+                            data: 'kd_mk', 
                             render: ((data, type, row)=>{
                                 return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
@@ -488,7 +507,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'mk_id', 
+                            data: 'kd_mk', 
                             render: ((data, type, row)=>{
                                 return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
@@ -534,7 +553,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'mk_id', 
+                            data: 'kd_mk', 
                             render: ((data, type, row)=>{
                                 return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
@@ -579,7 +598,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'mk_id', 
+                            data: 'kd_mk', 
                             render: ((data, type, row)=>{
                                 return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
@@ -623,7 +642,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'mk_id', 
+                            data: 'kd_mk', 
                             render: ((data, type, row)=>{
                                 return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
@@ -668,7 +687,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'mk_id', 
+                            data: 'kd_mk', 
                             render: ((data, type, row)=>{
                                 return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
@@ -713,7 +732,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'mk_id', 
+                            data: 'kd_mk', 
                             render: ((data, type, row)=>{
                                 return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),

@@ -58,6 +58,8 @@
                 {data: 'sks'},
                 {data: 'semester'},
                 {data: 'jadwal_kuliah1'},
+                {data: 'jam'},
+                {data: 'kd_ruang'},
             
             ]
     });

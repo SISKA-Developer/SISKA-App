@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Hash;
 use Hashids\Hashids;
-
 
 class MahasiswaController extends Controller
 {
@@ -14,9 +15,14 @@ class MahasiswaController extends Controller
     //     return view('mahasiswa.myprofile'); 
     // }
     public function myprofile(){
-
-        return view('mahasiswa.myprofile'); 
+        
+        $asd = HTTP::get('http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/1219019');
+        
+        // $test=$asd->json();
+        // dd($asd);
+        return view('mahasiswa.myprofile',compact('asd'));
     }
+
     public function status(){
 
         return view('mahasiswa.status'); 

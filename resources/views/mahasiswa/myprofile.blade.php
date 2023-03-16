@@ -19,59 +19,49 @@
                 <br>
                 
                 <div class="profile-left">
-                    <table class="table-left">
+                    <table id="myprofile-left" class="table-left ">
+                        <?php $int=0; ?>
                         <tr>
                             <td>Nama</td>
-                            <td>Rena Wijaya</td>
+                            <td>{{$asd}}</td>
                         </tr>
                         <tr>
                             <td>Nim</td>
-                            <td>1219012</td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
-                            <td>Pangalengan</td>
                         </tr>
                         <tr>
                             <td>Email</td>
-                            <td>rena@gmail.com</td>
                         </tr>
                         <tr>
                             <td>No.Telp</td>
-                            <td>08123456789</td>
                         </tr>
                         <tr>
                             <td>Tempat/Tgl Lahir</td>
-                            <td>Bandung, 19 Januari 2001</td>
                         </tr>  
                     </table>
                 </div>
 
                 <div class="profile-right">
-                <table class="table-right">
+                <table id="myprofile-right" class="table-right">
                         <tr>
                             <td>Jenis Kelamin</td>
-                            <td>Laki-Laki</td>
                         </tr>
                         <tr>
                             <td>Angkatan</td>
-                            <td>2019</td>
                         </tr>
                         <tr>
                             <td>Jurusan</td>
-                            <td>Teknik Informatika</td>
                         </tr>
                         <tr>
                             <td>Jenis Mahasiswa</td>
-                            <td>Reguler Pagi</td>
                         </tr>
                         <tr>
                             <td>Dosen Wali</td>
-                            <td>Mina Ismu Rahayu, M.T</td>
                         </tr>
                         <tr>
                             <td>Status Mahasiswa</td>
-                            <td>Aktif</td>
                         </tr>
                     </table>
                 </div>
@@ -109,9 +99,34 @@
         }
     </style>
 
-  
-    <script>
-        
-    </script>
+    @push('mahasiswa')
+    <!-- <script>
+        $(document).ready(function(){
+            table = $('#myprofile-left').DataTable({
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                searching: true,
+                sort: true,   
+                ajax: "{{ route('myprofile') }}",
+                columns: [
+                        {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                        {data: 'nm_mhs'},
+                        {data: 'nim'},
+                        {data: 'tgl_lahir'},
+                        // {
+                        //     data: 'mk_id', 
+                        //     render: ((data, type, row)=>{
+                        //         return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                        //     }),
+                        //     // name: 'action', 
+                        //     orderable: true, 
+                        //     searchable: true
+                        // },
+                    ]
+            });
+        })
+    </script> -->
 
-    @endsection
+    @endpush
+@endsection

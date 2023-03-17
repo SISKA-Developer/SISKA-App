@@ -11,7 +11,7 @@ use Hashids\Hashids;
 use App\Models\matakuliah;
 use Yajra\Datatables\CollectionDataTable;
 use App\Models\tujuancapaian;
-use App\Models\silabus;
+use App\Models\linkSilabus;
 
 
 class MatakuliahController extends Controller
@@ -119,21 +119,15 @@ class MatakuliahController extends Controller
     public function fileSilabus(Request $request)
         {
             $this->validate($request, [
-                'file' => 'required|mimes:pdf,xlx,csv|max:2048',
+                'link' => 'required',
                 'keterangan' => 'required',
+                'kd_mk' => 'required',
             ]); 
-    // menyimpan data file yang diupload ke variabel $file
-            $file = $request->file('file');
     
-            $nama_file = "File Silabus ".$file->getClientOriginalName();
-    
-        // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'data_file';
-            $file->move($tujuan_upload,$nama_file);
-    
-            silabus::create([
-                'file' => $nama_file,
+            linkSilabus::create([
+                'link' => $request->file,
                 'keterangan' => $request->keterangan,
+                'kd_mk' => $request->kd_mk
             ]);
     
             return redirect()->back()->with('status', 'File Has been uploaded successfully');

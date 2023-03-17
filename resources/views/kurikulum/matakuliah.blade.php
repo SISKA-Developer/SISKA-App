@@ -297,15 +297,86 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title">Detail Matakuliah</h5>
-                  <button type="button" class="btn-close" data-dismiss="modal" aria-label="close"></button>
+                  <button type="button" id="closetabs" class="btn-close" data-dismiss="modal" aria-label="close" onclick="closetabs()"></button>
                 </div>
-                <div class="modal-body">
-                  <p>Modal body text goes here.</p>
+                    <div class="modal-body">
+                          <div class="row">
+                            <div class="col-7 col-sm-5">
+                              Nama Matakuliah
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                :
+                              </div>
+                            <div class="col-4 col-sm-6" id="nm_mk">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 col-sm-5">
+                              Kode Matakuliah
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                :
+                              </div>
+                            <div class="col-4 col-sm-6" id="kd_mk">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 col-sm-5">
+                              Nama Jurusan
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                :
+                              </div>
+                            <div class="col-4 col-sm-6" id="nm_jurusan">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 col-sm-5">
+                              Kode Jurusan
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                :
+                              </div>
+                            <div class="col-4 col-sm-6" id="kd_jur">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 col-sm-5">
+                              Kode Kurikulum
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                :
+                              </div>
+                            <div class="col-4 col-sm-6" id="kd_kur">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 col-sm-5">
+                              Semester
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                :
+                              </div>
+                            <div class="col-4 col-sm-6" id="semester">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 col-sm-5">
+                              SKS
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                :
+                              </div>
+                            <div class="col-4 col-sm-6" id="sks">
+                            </div>
+                        </div>
+                  {{-- <p>Modal body text goes here.</p> --}}
+                  {{-- <table class="table no-border result"> --}}
                 </div>
-                {{-- <div class="modal-footer">
-                  <button type="button" onclick="javascript.void(0)" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div> --}}
+                <div class="modal-footer">
+                  {{-- <button type="button" onclick="javascript.void(0)" id="" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+                  {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                </div>
               </div>
             </div>
           </div>
@@ -320,12 +391,13 @@
                 <div class="modal-body">
                         {{ csrf_field() }}
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Masukan File Silabus :</label>
-                        <input class="form-control" type="file" id="formFile">
+                        <label for="formFile" class="form-label">Masukan Link File Silabus :</label>
+                        <input class="form-control" type="text" id="link" name="link">
+                        <input class="form-control"  type="text" id="kd_mk" name="kode_mk" value="">
                       </div>
                       <div class="mb-3">
                         <label for="formFile" class="form-label">Keterangan :</label>
-                        <input class="form-control" type="text" id="formtext">
+                        <input class="form-control" type="text" id="keterangan" name="keterangan">
                       </div>
                 </div>
                 <div class="modal-footer">
@@ -392,8 +464,8 @@
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
                                 var datas = data;
-                                console.log(datas);
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+datas+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                // console.log(datas);
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+datas+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
                             name: 'action', 
                             orderable: true, 
@@ -417,7 +489,7 @@
                 var jurusan = sessionStorage.getItem("role");
                 table.column(4).search(jurusan).draw();
             }
-                })
+                });
         function detailRowData(data) {
             console.log(data);
             $.ajax({
@@ -425,7 +497,23 @@
                 url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/kurikulum/'+ data,
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data);
+                    var datas = data.data[0];
+                    console.log(datas);
+                    $("#nm_jurusan").append("<p>" + datas.nm_jurusan + "</p>");
+                    $("#nm_mk").append("<p>" + datas.nm_mk + "</p>");
+                    $("#kd_mk").append("<p>" + datas.kd_mk + "</p>");
+                    $("#kd_jur").append("<p>" + datas.kd_jur + "</p>");
+                    $("#kd_kur").append("<p>" + datas.kd_kur + "</p>");
+                    $("#semester").append("<p>" + datas.semester + "</p>");
+                    $("#sks").append("<p>" + datas.sks + "</p>");
+                    // $.each(datas, function(index, data, val) {
+                    //     $("#nama").text(datas.sks);
+                    //     console.log(val);
+                    //     console.log(data);
+                    // $("#nama").text(datas.sks); 
+                    // });
+                    // $(".result").html(data);
+                    // document.getElementById("nama").innerHTML = "Selamat Datang, " + data.data[0].nm_jurusan;
                 //     container.html('');
                 //     $.each(data, function(index, item) {
                 //     container.html(''); //clears container for new data
@@ -439,10 +527,22 @@
                 }
     });
         }
-        function editRowData(kd_mk) {
-            console.log(kd_mk);
+        function editRowData(data) {
+            var datas = data;
+            console.log(data);
             //ajax
+            document.getElementById("kode_mk").value = datas;
         }
+        $('#closetabs').on('click', function(e){
+            //ajax
+        document.getElementById("nm_jurusan").innerHTML = ""
+        document.getElementById("nm_mk").innerHTML = ""
+        document.getElementById("kd_mk").innerHTML = ""
+        document.getElementById("kd_jur").innerHTML = ""
+        document.getElementById("kd_kur").innerHTML = ""
+        document.getElementById("semester").innerHTML = ""
+        document.getElementById("sks").innerHTML = ""
+        })
      
         $('#smt2-tab').on('click', function(e){
             console.log("table2");

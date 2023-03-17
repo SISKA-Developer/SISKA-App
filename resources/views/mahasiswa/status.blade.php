@@ -16,7 +16,7 @@
             <div class="card-body">
                 <div class="statusMatkul">
                     <div class="daftarMatkul" >
-                        <table id="" class="table table-striped table-bordered dt-responsive" style="background-color: white">
+                        <table id="daftarMK" class="table table-striped table-bordered dt-responsive" style="background-color: white">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -44,7 +44,7 @@
             <div class="card-body">
                 <div class="statusPendaftaran">
                     <div class="statusMahasiswa" >
-                        <table id="" class="table table-striped table-bordered dt-responsive" style="background-color: white">
+                        <table id="statusMhs" class="table table-striped table-bordered dt-responsive" style="background-color: white">
                             <thead>
                                 <tr>
                                     <th>Tahun</th>
@@ -65,4 +65,36 @@
     </div>
 </div>
 
+<!-- <style>
+
+</style> -->
+
+@push('matakuliah')
+<script>
+    $(document).ready(function(){
+        
+        // $.ajax({
+        //     type: 'GET', //THIS NEEDS TO BE GET
+        //     url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/jadwal/1219019',
+        //     dataType: 'json',
+        //     success: function (data,val) {
+        //         table = $('daftarMK').DataTable({
+        //             processing: true,
+        //             serverSide: true,
+        //             responsive: true,
+        //             searching: true,
+        //             sort: true,   
+        //             ajax: "{{ route('statusIndex') }}",
+        //             })
+        //             columns: [
+
+        //             ]
+        //     },error:function(){ 
+        //         console.log("errror",data);
+        //     }
+        // });
+    });
+</script>
+
+@endpush
 @endsection

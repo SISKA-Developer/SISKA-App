@@ -14,13 +14,11 @@ class MahasiswaController extends Controller
     // public function index(){
     //     return view('mahasiswa.myprofile'); 
     // }
+    
     public function myprofile(){
-        
-        $asd = HTTP::get('http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/1219019');
-        
-        // $test=$asd->json();
-        // dd($asd);
-        return view('mahasiswa.myprofile',compact('asd'));
+
+        // return view('mahasiswa.myprofile',compact('datas'));
+        return view('mahasiswa.myprofile');
     }
 
     public function status(){

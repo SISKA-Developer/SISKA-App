@@ -77,10 +77,11 @@ Route::post('filetujuanCapaian', [MatakuliahController::class, 'filetujuanCapaia
 Route::post('fileSilabus', [MatakuliahController::class, 'fileSilabus']);
 
 
-Route::get('/mahasiswa/'. $myprofile, [MahasiswaController::class,'myprofile'])->name('myprofileIndex');
-Route::get('/mahasiswa/'. $myprofile.'/myprofile1', [MahasiswaController::class,'getmyprofile'])->name('myprofile');
+Route::get('/mahasiswa/'. $myprofile, [MahasiswaController::class,'myprofile'])->name('myprofile');
+// Route::get('/mahasiswa/'. $myprofile.'/myprofile1', [MahasiswaController::class,'getmyprofile'])->name('myprofile');
 
 Route::get('/mahasiswa/'. $status, [MahasiswaController::class,'status'])->name('statusIndex');
+
 Route::get('/mahasiswa/'. $jadwalperkuliahan, [MahasiswaController::class,'jadwalKuliah'])->name('jadwalkuliahIndex');
 Route::get('/mahasiswa/'. $pengkiniandata, [MahasiswaController::class,'dataindukmahasiswa'])->name('datamahasiswaIndex');
 Route::get('/mahasiswa/'. $statuskeuangan, [MahasiswaController::class,'statusKeuangan'])->name('statuskeuanganIndex');

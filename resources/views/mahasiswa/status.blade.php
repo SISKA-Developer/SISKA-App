@@ -22,10 +22,8 @@
                                     <th>No</th>
                                     <th>Kode Matakuliah</th>
                                     <th>Nama Matakuliah</th>
-                                    <th>Kelas</th>
+                                    <th>Ruang</th>
                                     <th>SKS</th>
-                                    <th>Kehadiran</th>
-                                    <th>Nilai</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,27 +70,21 @@
 @push('matakuliah')
 <script>
     $(document).ready(function(){
-        
-        // $.ajax({
-        //     type: 'GET', //THIS NEEDS TO BE GET
-        //     url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/jadwal/1219019',
-        //     dataType: 'json',
-        //     success: function (data,val) {
-        //         table = $('daftarMK').DataTable({
-        //             processing: true,
-        //             serverSide: true,
-        //             responsive: true,
-        //             searching: true,
-        //             sort: true,   
-        //             ajax: "{{ route('statusIndex') }}",
-        //             })
-        //             columns: [
-
-        //             ]
-        //     },error:function(){ 
-        //         console.log("errror",data);
-        //     }
-        // });
+        table = $('#daftarMK').DataTable({
+            processing: true,
+            serverSide: true,
+            responsive: true,
+            searching: true,
+            sort: true,   
+            ajax: "{{ route('statusIndex') }}",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'kd_mk'},
+                {data: 'nm_mk'},
+                {data: 'kd_ruang'},
+                {data: 'sks'},
+            ]
+        });
     });
 </script>
 

@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-6 d-flex justify-content-end" id="divbtntambah">
                     {{-- <button class="mx-1 p-1" data-bs-container="container" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Import File CSV"><i class="fa fa-file-o"></i></button> --}}
-                    <button class="mx-1 p-1" data-toggle="modal" data-target="#modalsilabus" data-container="container" data-toggle="popover" data-placement="top" data-content="Add File"><i class="fa fa-plus"></i></button>
+                    <button class="mx-1 px-2" data-toggle="modal" data-target="#modalsilabus" data-container="container" data-toggle="popover" data-placement="top" data-content="Add File"><i class="fa fa-plus"></i></button>
                 </div>
             </div>
             <div class="card-body">

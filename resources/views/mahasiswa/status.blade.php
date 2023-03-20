@@ -11,7 +11,7 @@
 
     <div class="card">
             <div class="card-header">
-                Daftar Kuliah Semester 1 2022-2023
+                Daftar Kuliah
             </div>
             <div class="card-body">
                 <div class="statusMatkul">
@@ -69,6 +69,7 @@
 
 @push('matakuliah')
 <script>
+    // daftarMk
     $(document).ready(function(){
         table = $('#daftarMK').DataTable({
             processing: true,
@@ -86,6 +87,10 @@
             ]
         });
     });
+
+    // statusMhs
+    
+    
 </script>
 
 @endpush

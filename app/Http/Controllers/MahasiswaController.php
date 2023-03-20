@@ -4,21 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Hash;
 use Hashids\Hashids;
-
 
 class MahasiswaController extends Controller
 {
     // public function index(){
     //     return view('mahasiswa.myprofile'); 
     // }
+    
     public function myprofile(){
 
-        return view('mahasiswa.myprofile'); 
+        // return view('mahasiswa.myprofile',compact('datas'));
+        return view('mahasiswa.myprofile');
     }
-    public function status(){
 
+    public function status(Request $request){
+        if ($request->ajax()) {
+            $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/jadwal/1219019');
+            $data = $response->json();
+            $datas = $data['data'];
+            return DataTables::of($datas)
+                ->addIndexColumn()
+                ->make(true);
+        }
         return view('mahasiswa.status'); 
     }
     public function jadwalKuliah(){

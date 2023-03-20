@@ -8,6 +8,7 @@ use App\Models\sidebars;
 use Hashids\Hashids;
 use Illuminate\Support\Facades\Hash;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,9 +74,14 @@ Route::get('matakuliahsmt7', [MatakuliahController::class,'getmatakuliahsmt7'])-
 Route::get('matakuliahsmt8', [MatakuliahController::class,'getmatakuliahsmt8'])->name('getmatakuliahsmt8');
 Route::get('getjadwalmatakuliah', [MatakuliahController::class,'getjadwalmatakuliah'])->name('getjadwalmatakuliah');
 Route::post('filetujuanCapaian', [MatakuliahController::class, 'filetujuanCapaian']);
+Route::post('fileSilabus', [MatakuliahController::class, 'fileSilabus']);
+
 
 Route::get('/mahasiswa/'. $myprofile, [MahasiswaController::class,'myprofile'])->name('myprofile');
+// Route::get('/mahasiswa/'. $myprofile.'/myprofile1', [MahasiswaController::class,'getmyprofile'])->name('myprofile');
+
 Route::get('/mahasiswa/'. $status, [MahasiswaController::class,'status'])->name('statusIndex');
+
 Route::get('/mahasiswa/'. $jadwalperkuliahan, [MahasiswaController::class,'jadwalKuliah'])->name('jadwalkuliahIndex');
 Route::get('/mahasiswa/'. $pengkiniandata, [MahasiswaController::class,'dataindukmahasiswa'])->name('datamahasiswaIndex');
 Route::get('/mahasiswa/'. $statuskeuangan, [MahasiswaController::class,'statusKeuangan'])->name('statuskeuanganIndex');

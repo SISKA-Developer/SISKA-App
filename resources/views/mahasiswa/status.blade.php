@@ -16,16 +16,14 @@
             <div class="card-body">
                 <div class="statusMatkul">
                     <div class="daftarMatkul" >
-                        <table id="" class="table table-striped table-bordered dt-responsive" style="background-color: white">
+                        <table id="daftarMK" class="table table-striped table-bordered dt-responsive" style="background-color: white">
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Kode Matakuliah</th>
                                     <th>Nama Matakuliah</th>
-                                    <th>Kelas</th>
+                                    <th>Ruang</th>
                                     <th>SKS</th>
-                                    <th>Kehadiran</th>
-                                    <th>Nilai</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,7 +42,7 @@
             <div class="card-body">
                 <div class="statusPendaftaran">
                     <div class="statusMahasiswa" >
-                        <table id="" class="table table-striped table-bordered dt-responsive" style="background-color: white">
+                        <table id="statusMhs" class="table table-striped table-bordered dt-responsive" style="background-color: white">
                             <thead>
                                 <tr>
                                     <th>Tahun</th>
@@ -65,4 +63,30 @@
     </div>
 </div>
 
+<!-- <style>
+
+</style> -->
+
+@push('matakuliah')
+<script>
+    $(document).ready(function(){
+        table = $('#daftarMK').DataTable({
+            processing: true,
+            serverSide: true,
+            responsive: true,
+            searching: true,
+            sort: true,   
+            ajax: "{{ route('statusIndex') }}",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'kd_mk'},
+                {data: 'nm_mk'},
+                {data: 'kd_ruang'},
+                {data: 'sks'},
+            ]
+        });
+    });
+</script>
+
+@endpush
 @endsection

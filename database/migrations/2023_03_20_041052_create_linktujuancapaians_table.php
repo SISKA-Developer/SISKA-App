@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSilabusesTable extends Migration
+class CreateLinktujuancapaiansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateSilabusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('silabus', function (Blueprint $table) {
+        Schema::create('linktujuancapaian', function (Blueprint $table) {
             $table->id();
-            $table->string('file');
+            $table->string('link');
             $table->string('keterangan');
-            $table->string('kd_mk');
+            $table->string('program_studi');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateSilabusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('silabus');
+        Schema::dropIfExists('linktujuancapaians');
     }
 }

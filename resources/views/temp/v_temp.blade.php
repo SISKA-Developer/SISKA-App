@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Laravel</title>        
+        <title>SISKA | STMIK Bandung</title>        
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -58,6 +58,13 @@
                 overflow-y: scroll; /* Add vertical scrollbar */
                 font-family: 'Nunito', sans-serif;
             }
+            .dataTables_wrapper .dataTables_processing {
+                z-index: 99999;
+                background: white;
+                border: 2px solid rgb(43, 43, 43);
+                border-radius: 5px;
+                text-align: center
+                }
             .filter-radio{
                 margin-left: 30px
                 }

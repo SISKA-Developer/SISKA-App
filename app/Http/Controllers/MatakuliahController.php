@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Hashids\Hashids;
 use App\Models\matakuliah;
 use Yajra\Datatables\CollectionDataTable;
-use App\Models\tujuancapaian;
+use App\Models\linktujuancapaian;
 use App\Models\linkSilabus;
 
 
@@ -118,23 +118,11 @@ class MatakuliahController extends Controller
         }
     public function fileSilabus(Request $request)
         {
-            // $this->validate($request, [
-            //     'link' => 'required',
-            //     'keterangan' => 'required',
-            //     'kd_mk' => 'required',
-            // ]); 
-    // dd($request);
            $blog = linkSilabus::create([
                 'link' => $request->link,
                 'keterangan' => $request->keterangan,
                 'kd_mk' => $request->kode_mk
             ]);
-            // $blog = Blog::create([
-            //     'image'     => $image->hashName(),
-            //     'title'     => $request->title,
-            //     'content'   => $request->content
-            // ]);
-        
             if($blog){
                 //redirect dengan pesan sukses
                 return redirect()->back()->with(['success' => 'Data Berhasil Disimpan!']);
@@ -171,15 +159,20 @@ class MatakuliahController extends Controller
     }
     public function filetujuanCapaian(Request $request)
     {
-        $this->validate($request, [
-            'file' => 'required',
-			'keterangan' => 'required',
-		]); 
-		tujuancapaian::create([
-			'file' => $nama_file,
+		$blog = linktujuancapaian::create([
+			'link' => $request->link,
 			'keterangan' => $request->keterangan,
+			'program_studi' => $request->program_studi,
 		]);
+
+        if($blog){
+            //redirect dengan pesan sukses
+            return redirect()->back()->with(['success' => 'Data Berhasil Disimpan!']);
+        }else{
+            //redirect dengan pesan error
+            return redirect()->back()->with(['error' => 'Data Gagal Disimpan!']);
+        }
  
-		return redirect()->back()->with('status', 'File Has been uploaded successfully');
+		// return redirect()->back()->with('status', 'File Has been uploaded successfully');
     }
 }

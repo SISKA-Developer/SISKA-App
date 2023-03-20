@@ -1,9 +1,6 @@
 @extends('temp.v_temp')
 @section('isicontent')
     <div class="container">
-        @error('file')
-        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-        @enderror
         <ul class="breadcrumb">
             <li><a href="#">SISKA</a></li>
             <li><a href="#">Kurikulum</a></li>
@@ -14,7 +11,7 @@
                 <div class="col-6 p-0">
                     <h5>Tujuan dan Capaian Program Studi</h5>
                 </div>
-                <div class="col-6 d-flex justify-content-end" id="divbtntambah">
+                <div class="col-6 d-flex justify-content-end" hidden id="divbtntambah">
                     {{-- <button class="mx-1 p-1" data-bs-container="container" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Import File CSV"><i class="fa fa-file-o"></i></button> --}}
                     <button class="mx-1 px-2" data-toggle="modal" data-target="#modalsilabus" data-container="container" data-toggle="popover" data-placement="top" data-content="Add File"><i class="fa fa-plus"></i></button>
                 </div>
@@ -69,11 +66,19 @@
                   <button type="button" class="btn-close" data-dismiss="modal" aria-label="close"></button>
                 </div>
                 <form id="upload-file" action="{{ url('filetujuanCapaian') }}" method="POST" enctype="multipart/form-data">
-					{{ csrf_field() }}
+					@csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Masukan File Tujuan dan Capaian :</label>
-                        <input class="form-control" name="file" type="file" id="formFile">
+                        <label for="formFile" class="form-label">Masukan Link File Tujuan dan Capaian :</label>
+                        <input class="form-control" name="link" type="text" id="formFile">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formProgram" class="form-label">Program Studi :</label>
+                        <select class="form-select" id="formProgram" name="program_studi">
+                            <option selected>Pilih Program Studi</option>
+                            <option value="informatika">Teknik Informatika</option>
+                            <option value="informasi">Sistem Informasi</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="formText" class="form-label">Keterangan :</label>
@@ -81,7 +86,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" onclick="javascript.void(0)" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" onclick="javascript.void(0)" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
                 </form>

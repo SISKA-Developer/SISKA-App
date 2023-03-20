@@ -1,8 +1,8 @@
 @extends('temp.v_temp')
 @section('isicontent')
     <div class="container">
-            {{ session('success') }}
-            {{ session('error') }}
+            {{-- {{ session('success') }}
+            {{ session('error') }} --}}
         <ul class="breadcrumb">
             <li><a href="#">SISKA</a></li>
             <li><a href="#">Kurikulum</a></li>
@@ -39,16 +39,30 @@
                 <div class="tab-pane fade show active" id="smt1tab" role="tabpanel" aria-labelledby="smt1tab" tabindex="0">
                     <div class="card">
                         <div class="card-body">
-                            <div id="formcheck1">
-                            <div class="form-check form-check-inline">
-                                <input class="filter-radio1 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Teknik Informatika">
-                                <label class="form-check-label" for="inlineRadio1">Teknik Informatika</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="filter-radio1 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Sistem Informasi">
-                                <label class="form-check-label" for="inlineRadio2">Sistem Informasi</label>
-                              </div>
-                            </div>
+                            {{-- <div class="col-md-12 d-flex my-2 mx-0 p-0"> --}}
+                                <div id="formcheck1" class="col-md-6 my-1">
+                                    {{-- <div class="form-check form-check-inline">
+                                        <label class="mb-2">Jurusan :</label>
+                                    </div> --}}
+                                    <div class="form-check form-check-inline">
+                                        <input class="filter-radio1 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Teknik Informatika">
+                                        <label class="form-check-label" for="inlineRadio1">Teknik Informatika</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="filter-radio1 mx-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Sistem Informasi">
+                                        <label class="form-check-label" for="inlineRadio2">Sistem Informasi</label>
+                                    </div>
+                                </div>
+                                {{-- <div class="col-md-6">
+                                    <label>Jenis Kelas :</label>
+                                    <select class="form-control status-dropdown">
+                                        <option selected>Pilih Kelas</option>
+                                        <option value="R">Regular</option>
+                                        <option value="K">Karyawan</option>
+                                        <option value="E">Eksekutif</option>
+                                    </select>
+                                </div> --}}
+                            {{-- </div> --}}
                             <table id="yajra-datatable-smt1" class="table table-striped table-bordered dt-responsive yajra-datatable" style="background-color: white">
                                 <thead>
                                     <tr>
@@ -372,8 +386,6 @@
                             <div class="col-4 col-sm-6" id="sks">
                             </div>
                         </div>
-                  {{-- <p>Modal body text goes here.</p> --}}
-                  {{-- <table class="table no-border result"> --}}
                 </div>
                 <div class="modal-footer">
                   {{-- <button type="button" onclick="javascript.void(0)" id="" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
@@ -382,6 +394,7 @@
               </div>
             </div>
           </div>
+
           <div class="modal" tabindex="-1" id="modalsilabus">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -453,6 +466,9 @@
                 responsive: true,
                 searching: true,
                 sort: true,   
+                language: {
+                    processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
+                    },      
                 ajax: "{{ route('getmatakuliahsmt1') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -552,7 +568,10 @@
                 serverSide: true,
                 responsive: true,
                 searching: true,
-                sort: true,   
+                sort: true,
+                language: {
+                    processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
+                    },     
                 ajax: "{{ route('getmatakuliahsmt2') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -597,7 +616,10 @@
                 serverSide: true,
                 responsive: true,
                 searching: true,
-                sort: true,   
+                sort: true, 
+                language: {
+                    processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
+                    },    
                 ajax: "{{ route('getmatakuliahsmt3') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -642,7 +664,10 @@
                 serverSide: true,
                 responsive: true,
                 searching: true,
-                sort: true,   
+                sort: true,
+                language: {
+                    processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
+                    },     
                 ajax: "{{ route('getmatakuliahsmt4') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -687,7 +712,10 @@
                 serverSide: true,
                 responsive: true,
                 searching: true,
-                sort: true,   
+                sort: true,
+                language: {
+                    processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
+                    },     
                 ajax: "{{ route('getmatakuliahsmt5') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -732,7 +760,10 @@
                 serverSide: true,
                 responsive: true,
                 searching: true,
-                sort: true,   
+                sort: true,
+                language: {
+                    processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
+                    },     
                 ajax: "{{ route('getmatakuliahsmt6') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -777,7 +808,10 @@
                 serverSide: true,
                 responsive: true,
                 searching: true,
-                sort: true,   
+                sort: true,
+                language: {
+                    processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
+                    },     
                 ajax: "{{ route('getmatakuliahsmt7') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -822,7 +856,10 @@
                 serverSide: true,
                 responsive: true,
                 searching: true,
-                sort: true,   
+                sort: true,
+                language: {
+                    processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
+                    },     
                 ajax: "{{ route('getmatakuliahsmt8') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},

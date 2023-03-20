@@ -29,7 +29,7 @@
                             <th>Hari</th>
                             <th>Jam</th>
                             <th>Ruang</th>
-                            {{-- <th>Action</th> --}}
+                            <th>Action</th>    
                         </tr>
                     </thead>
                     <tbody>
@@ -49,6 +49,9 @@
         responsive: true,
         searching: true,
         sort: true,
+        language: {
+                    processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
+                    },  
         ajax: "{{ route('getjadwalmatakuliah') }}",
         columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -72,15 +75,17 @@
                     var datas = data.jadwal_kuliah1;
                     var n = datas.split(',');
                     // alert(n[0]); 
-                    return data.jam + n[1];
+                    return data.jam + " dan " + n[1];
                     }),},
                 {data: 'kd_ruang'},
+                {data: 'jns_mhs'},
+
                 // {data: 'nim'}
             ]
         });
-                // table.column(7).visible(false);
-                var nim = "3222001"
-                // table.column(7).search(nim).draw();
+                table.column(9).visible(false);
+                // var nim = ""
+                // table.column(9).search(nim).draw();
                 table.draw()
                
 });

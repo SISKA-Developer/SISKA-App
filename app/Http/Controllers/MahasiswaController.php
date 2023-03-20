@@ -17,13 +17,12 @@ class MahasiswaController extends Controller
     
     public function myprofile(){
 
-        // return view('mahasiswa.myprofile',compact('datas'));
         return view('mahasiswa.myprofile');
     }
 
     public function status(Request $request){
         if ($request->ajax()) {
-            $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/jadwal/1219019');
+            $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/jadwal/1219010');
             $data = $response->json();
             $datas = $data['data'];
             return DataTables::of($datas)
@@ -32,12 +31,21 @@ class MahasiswaController extends Controller
         }
         return view('mahasiswa.status'); 
     }
-    public function jadwalKuliah(){
-
-        return view('mahasiswa.jadwalkuliah'); 
+    public function jadwalKuliah(Request $request){
+        if ($request->ajax()) {
+            $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/jadwal/1219010');
+            $data = $response->json();
+            $datas = $data['data'];
+            return DataTables::of($datas)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('mahasiswa.jadwalKuliah'); 
     }
     public function dataindukmahasiswa(){
-
+        // $detail = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/detail/1219010');
+        
+        // dd($detail);
         return view('mahasiswa.dataindukmahasiswa'); 
     }
     public function statusKeuangan(){

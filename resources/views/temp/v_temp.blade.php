@@ -119,7 +119,7 @@
 <script src="{{asset('template')}}/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 <script>
     $(document).ready(function(){
-        sessionStorage.setItem("role", "Teknik Informatika");
+        sessionStorage.setItem("role", "Admin");
         sessionStorage.setItem("nama", "Ardhan");
         
         // var role = localStorage.getItem("role");

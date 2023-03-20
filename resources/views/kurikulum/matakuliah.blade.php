@@ -1,6 +1,8 @@
 @extends('temp.v_temp')
 @section('isicontent')
     <div class="container">
+            {{ session('success') }}
+            {{ session('error') }}
         <ul class="breadcrumb">
             <li><a href="#">SISKA</a></li>
             <li><a href="#">Kurikulum</a></li>
@@ -389,11 +391,11 @@
                 </div>
                 <form action="{{ url('fileSilabus') }}" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
-                        {{ csrf_field() }}
+                        @csrf
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Masukan Link File Silabus :</label>
                         <input class="form-control" type="text" id="link" name="link">
-                        <input class="form-control"  type="text" id="kd_mk" name="kode_mk" value="">
+                        <input class="form-control" hidden type="text" id="kode_mk" name="kode_mk" value="">
                       </div>
                       <div class="mb-3">
                         <label for="formFile" class="form-label">Keterangan :</label>
@@ -463,9 +465,7 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                var datas = data;
-                                // console.log(datas);
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+datas+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
                             name: 'action', 
                             orderable: true, 
@@ -474,7 +474,10 @@
                     ]
             });
             table.draw()
-            if(role == "Admin"|| role == "admin"){
+            if(role == "Teknik Informatika"|| role == "Sistem Informasi"){
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }else{
                 $('.filter-radio1').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio1'), function(i,elem){
@@ -485,9 +488,6 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
-            }else{
-                var jurusan = sessionStorage.getItem("role");
-                table.column(4).search(jurusan).draw();
             }
                 });
         function detailRowData(data) {
@@ -532,6 +532,7 @@
             console.log(data);
             //ajax
             document.getElementById("kode_mk").value = datas;
+            // document.getElementById("kode_mk").value = "My value";
         }
         $('#closetabs').on('click', function(e){
             //ajax
@@ -564,7 +565,7 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
                             // name: 'action', 
                             orderable: true, 
@@ -573,7 +574,10 @@
                     ]
             });
             table.draw()
-            if(role == "Admin"|| role == "admin"){
+            if(role == "Teknik Informatika"|| role == "Sistem Informasi"){
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }else{
                 $('.filter-radio2').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio2'), function(i,elem){
@@ -584,9 +588,6 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
-            }else{
-                var jurusan = sessionStorage.getItem("role");
-                table.column(4).search(jurusan).draw();
             }
         });
         $('#smt3-tab').on('click', function(e){
@@ -609,7 +610,7 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
                             // name: 'action', 
                             orderable: true, 
@@ -618,7 +619,10 @@
                     ]
             });
             table.draw()
-            if(role == "Admin"|| role == "admin"){
+            if(role == "Teknik Informatika"|| role == "Sistem Informasi"){
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }else{
                 $('.filter-radio3').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio3'), function(i,elem){
@@ -629,11 +633,7 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
-            }else{
-                var jurusan = sessionStorage.getItem("role");
-                table.column(4).search(jurusan).draw();
             }
-
         });
         $('#smt4-tab').on('click', function(e){
             console.log("table4");
@@ -655,7 +655,7 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
                             // name: 'action', 
                             orderable: true, 
@@ -664,7 +664,10 @@
                     ]
             });
             table.draw()
-            if(role == "Admin"|| role == "admin"){
+            if(role == "Teknik Informatika"|| role == "Sistem Informasi"){
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }else{
                 $('.filter-radio4').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio4'), function(i,elem){
@@ -675,9 +678,6 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
-            }else{
-                var jurusan = sessionStorage.getItem("role");
-                table.column(4).search(jurusan).draw();
             }
         });
         $('#smt5-tab').on('click', function(e){
@@ -700,7 +700,7 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
                             // name: 'action', 
                             orderable: true, 
@@ -709,7 +709,10 @@
                     ]
             });
             table.draw()
-            if(role == "Admin"|| role == "admin"){
+            if(role == "Teknik Informatika"|| role == "Sistem Informasi"){
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }else{
                 $('.filter-radio5').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio5'), function(i,elem){
@@ -720,10 +723,8 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
-            }else{
-                var jurusan = sessionStorage.getItem("role");
-                table.column(4).search(jurusan).draw();
-            }        });
+            }
+        });
         $('#smt6-tab').on('click', function(e){
             console.log("table6");
             table = $('#yajra-datatable-smt6').DataTable({
@@ -744,7 +745,7 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
                             // name: 'action', 
                             orderable: true, 
@@ -753,7 +754,10 @@
                     ]
             });
             table.draw()
-            if(role == "Admin"|| role == "admin"){
+            if(role == "Teknik Informatika"|| role == "Sistem Informasi"){
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }else{
                 $('.filter-radio6').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio6'), function(i,elem){
@@ -764,9 +768,6 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
-            }else{
-                var jurusan = sessionStorage.getItem("role");
-                table.column(4).search(jurusan).draw();
             }
         });
         $('#smt7-tab').on('click', function(e){
@@ -789,7 +790,7 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
                             // name: 'action', 
                             orderable: true, 
@@ -798,7 +799,10 @@
                     ]
             });
             table.draw()
-            if(role == "Admin"|| role == "admin"){
+            if(role == "Teknik Informatika"|| role == "Sistem Informasi"){
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }else{
                 $('.filter-radio7').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio7'), function(i,elem){
@@ -809,9 +813,6 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
-            }else{
-                var jurusan = sessionStorage.getItem("role");
-                table.column(4).search(jurusan).draw();
             }
         });
         $('#smt8-tab').on('click', function(e){
@@ -834,7 +835,7 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData('+data+')" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData('+data+')" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                             }),
                             // name: 'action', 
                             orderable: true, 
@@ -843,7 +844,10 @@
                     ]
             });
             table.draw()
-            if(role == "Admin"|| role == "admin"){
+            if(role == "Teknik Informatika"|| role == "Sistem Informasi"){
+                var jurusan = sessionStorage.getItem("role");
+                table.column(4).search(jurusan).draw();
+            }else{
                 $('.filter-radio8').on('change', function(e){
                 var searchTerms = "";
                 $.each($('.filter-radio8'), function(i,elem){
@@ -854,9 +858,6 @@
                     console.log(searchTerms);
                     table.column(4).search(searchTerms).draw();
                 })
-            }else{
-                var jurusan = sessionStorage.getItem("role");
-                table.column(4).search(jurusan).draw();
             }
         })
     </script>

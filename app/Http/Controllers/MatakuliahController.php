@@ -118,19 +118,32 @@ class MatakuliahController extends Controller
         }
     public function fileSilabus(Request $request)
         {
-            $this->validate($request, [
-                'link' => 'required',
-                'keterangan' => 'required',
-                'kd_mk' => 'required',
-            ]); 
-    
-            linkSilabus::create([
-                'link' => $request->file,
+            // $this->validate($request, [
+            //     'link' => 'required',
+            //     'keterangan' => 'required',
+            //     'kd_mk' => 'required',
+            // ]); 
+    // dd($request);
+           $blog = linkSilabus::create([
+                'link' => $request->link,
                 'keterangan' => $request->keterangan,
-                'kd_mk' => $request->kd_mk
+                'kd_mk' => $request->kode_mk
             ]);
+            // $blog = Blog::create([
+            //     'image'     => $image->hashName(),
+            //     'title'     => $request->title,
+            //     'content'   => $request->content
+            // ]);
+        
+            if($blog){
+                //redirect dengan pesan sukses
+                return redirect()->back()->with(['success' => 'Data Berhasil Disimpan!']);
+            }else{
+                //redirect dengan pesan error
+                return redirect()->back()->with(['error' => 'Data Gagal Disimpan!']);
+            }
     
-            return redirect()->back()->with('status', 'File Has been uploaded successfully');
+            // return redirect()->back()->with('status', 'File Has been uploaded successfully');
         }
                         
     public function jadwalMatakuliah(){
@@ -159,18 +172,9 @@ class MatakuliahController extends Controller
     public function filetujuanCapaian(Request $request)
     {
         $this->validate($request, [
-            'file' => 'required|mimes:pdf,xlx,csv|max:2048',
+            'file' => 'required',
 			'keterangan' => 'required',
 		]); 
-   // menyimpan data file yang diupload ke variabel $file
-		$file = $request->file('file');
- 
-		$nama_file = "File Tujuan Capaian ".$file->getClientOriginalName();
- 
-    // isi dengan nama folder tempat kemana file diupload
-		$tujuan_upload = 'data_file';
-		$file->move($tujuan_upload,$nama_file);
- 
 		tujuancapaian::create([
 			'file' => $nama_file,
 			'keterangan' => $request->keterangan,

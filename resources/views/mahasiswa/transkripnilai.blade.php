@@ -57,11 +57,31 @@
                     </table>
                 </div>
 
-            </div>            
-        </div>
+                <div class="transkrip-down table-responsive">
+                    <table id="transkripMhs-down" class="table-down ">
+                        <tr>
+                            <td>Jumlah Mata Kuliah</td>
+                            <td id="jumlah_mk"></td>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td>Jumlah Kredit Kumulatif</td>
+                            <td id="jumlah-Krkumulatif"></td>
+                        </tr>
+                        <tr>
+                            <td>Indeks Prestasi Kumulatif</td>
+                            <td id="ipk"></td>
+                        </tr>
+                    </table>
+                </div>
 
-        <div>
-            
+                <div class="ttd_dosen">
+                    <p>Bandung</p>
+                    <p>   </p>
+                    <p>Mina Ismu Rahayu, M.T.<br><span>Ka. Prodi TEKNIK INFORMATIKA</span></p>
+                </div>
+
+            </div>            
         </div>
 
 </div>
@@ -85,6 +105,20 @@
     .table-right {
         border-collapse: collapse;
         width: 70%;
+    }
+    .transkrip-down {
+        width: 50%;
+        float: left;
+        padding: 15px;
+    }
+    .table-down {
+        border-collapse: collapse;
+        width: 70%;
+    }
+    .ttd_dosen {
+        width: 50%;
+        float: left;
+        padding: 15px;
     }
     p {
         margin-left: 15px;

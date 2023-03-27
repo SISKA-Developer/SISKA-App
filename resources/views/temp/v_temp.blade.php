@@ -6,7 +6,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SISKA | STMIK Bandung</title>        
+        <title>SISKA | STMIK Bandung</title>    
+        <link rel="icon" href="https://stmik-bandung.merdeka.academy/solmit.ico" /> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -56,6 +57,9 @@
             body {
                 overflow-x: hidden; /* Hide horizontal scrollbar */
                 overflow-y: scroll; /* Add vertical scrollbar */
+                /* height: 100%;
+                 */
+                background-color: #D9D9D9;
                 font-family: 'Nunito', sans-serif;
             }
             .dataTables_wrapper .dataTables_processing {
@@ -73,7 +77,8 @@
                 }
             #main{
                 width: auto;
-                background-color: #D9D9D9
+                height: auto;
+                /* background-color: #D9D9D9 */
             }
             .yajra-datatable {
                 background-color: #D9D9D9
@@ -84,7 +89,7 @@
     @include('temp.v_nav')
     @include('temp.v_topnav')
     <!-- Page Wrapper -->
-    <main id="main" style="width: auto">
+    <main id="main">
         <!-- Main Content -->
             <div id="content" style="height:100vh">
                 <!-- Begin Page Content -->

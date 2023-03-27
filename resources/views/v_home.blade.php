@@ -36,6 +36,9 @@ ul.breadcrumb li a:hover {
         <li>Mata Kuliah</li>
     </ul>
             <div class="col-md-12">
+              <a href="{{ URL::route('MatakuliahIndex') }}" class="btn btn-default"> Kurikulum </a>
+              <a href="{{ URL::route('myprofile') }}" class="btn btn-default"> Mahasiswa </a>
+              <a href="{{ URL::route('evaluasipembelajaranIndex') }}" class="btn btn-default"> Evaluasi </a>
                     <div class="card">
                         <div class="card-header">Semester 1</div>
                         <div class="card-body">

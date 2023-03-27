@@ -348,6 +348,16 @@
                         </div>
                         <div class="row">
                             <div class="col-7 col-sm-5">
+                              Nama Jurusan Dalam Bahasa Internasional
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                :
+                              </div>
+                            <div class="col-4 col-sm-6" id="nm_intl">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 col-sm-5">
                               Kode Jurusan
                             </div>
                             <div class="col-1 col-sm-1">
@@ -522,6 +532,12 @@
                     $("#kd_kur").append("<p>" + datas.kd_kur + "</p>");
                     $("#semester").append("<p>" + datas.semester + "</p>");
                     $("#sks").append("<p>" + datas.sks + "</p>");
+                    if(datas.nm_intl == null || datas.nm_intl == "null"){
+                        $("#nm_intl").append("-");
+                    }else{
+                        $("#nm_intl").append("<p>" + datas.nm_intl + "</p>");
+                    }
+                    
                     // $.each(datas, function(index, data, val) {
                     //     $("#nama").text(datas.sks);
                     //     console.log(val);
@@ -559,6 +575,7 @@
         document.getElementById("kd_kur").innerHTML = ""
         document.getElementById("semester").innerHTML = ""
         document.getElementById("sks").innerHTML = ""
+        document.getElementById("nm_intl").innerHTML = ""
         })
      
         $('#smt2-tab').on('click', function(e){

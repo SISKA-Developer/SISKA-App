@@ -9,6 +9,120 @@
         <li>Status Keuangan</li>
     </ul>
 
+    <div class="card col-sm-8">
+        <div class="card-header">
+            Data Mahasiswa
+        </div>
+        <div class="card-body">
+            <div class="dataMhs">   
+                <form>
+
+                    <div class="mb-3 row">      
+                        <label for="staticNim" class="col-sm-6 col-form-label">NIM</label>
+                        <div class="col-sm-6"
+                        id="nim">
+                            
+                        </div>
+                    </div>
+
+                        <div class="mb-3 row">      
+                        <label for="staticNama" class="col-sm-6 col-form-label">Nama Lengkap</label>
+                        <div id="nm_mhs" class="col-sm-6">
+                            
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">      
+                        <label for="staticJurusan" class="col-sm-6 col-form-label">Jurusan</label>
+                        <div id="jurusan" class="col-sm-6">
+                            
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">      
+                        <label for="staticKelas" class="col-sm-6 col-form-label">Kelas</label>
+                        <div id="kelas" class="col-sm-6">
+                            
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">      
+                        <label for="staticThnMsk" class="col-sm-6 col-form-label">Tahun Masuk</label>
+                        <div id="masuk_tahun" class="col-sm-6">
+                        
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">      
+                        <label for="staticDosenWali" class="col-sm-6 col-form-label">Dosen Wali</label>
+                        <div id="dosen_wali" class="col-sm-6">
+                        
+                        </div>
+                    </div>
+
+                    <!-- <div class="mb-3 row">      
+                        <label for="staticBeasiswa" class="col-sm-6 col-form-label">Beasiswa</label>
+                        <div id="beasiswa" class="col-sm-6">
+                        
+                        </div>
+                    </div> -->
+
+                    <div class="mb-3 row col-sm-3">
+                        <button type="submit" class="btn btn-primary mb-3">Edit</button>
+                    </div>
+
+                </form>
+            </div>       
+        </div>
+    </div>
+    
+    <div class="card col-sm-12">
+        <div class="card-header">
+            Keuangan
+        </div>
+        <div class="card-body">
+            <div class="stsKeuangan">   
+
+            </div>
+        </div>
+    </div>
+
 </div>
 
+<style>
+    h6 {
+        margin-left: 15px;
+        margin-top: 10px;
+    }
+</style>
+
+@push('matakuliah')
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                type: 'GET', //THIS NEEDS TO BE GET
+                url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/detail/1219010',
+                dataType: 'json',
+                success: function (data,val) {
+                    console.log(data);
+                    $("#nim").append("<h6>"+data.data.nim+"</h6>");
+
+                    $("#nm_mhs").append("<h6>"+data.data.nm_mhs+"</h6>");
+
+                    $("#jurusan").append("<h6>"+data.data.nama_jurusan+"</h6>");
+
+                    $("#kelas").append("<h6>"+data.data.jns_mhs+"</h6>");
+
+                    $("#masuk_tahun").append("<h6>"+data.data.masuk_tahun+"</h6>");
+
+                    $("#dosen_wali").append("<h6>"+data.data.dosen_wali+"</h6>");
+
+                },error:function(){ 
+                    console.log("errror",data);
+                }
+            });
+        })
+    </script>
+
+    @endpush
 @endsection

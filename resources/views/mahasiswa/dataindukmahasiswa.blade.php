@@ -1,7 +1,6 @@
 @extends('temp.v_temp')
 @section('isicontent')
 
-
 <div class="container">
 
     <ul class="breadcrumb">
@@ -10,109 +9,110 @@
         <li>Pengkinian Data Induk Mahasiswa</li>
     </ul>
 
-    <!-- <h3 style="text-align: center">Pengkinian Data Induk Mahasiswa</h3> -->
+    <div class="row align-items-center vh-100">
+        <div class="col-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    Data Induk Mahasiswa
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <div class="dataMhs">   
+                        <form>
 
-    <div class="card col-sm-8">
-        <div class="card-header">
-            Data Mahasiswa
+                            <div class="mb-3 row">      
+                                <label for="staticNim" class="col-sm-6 col-form-label">NIM</label>
+                            <div class="col-sm-6"
+                            id="nim">
+                                
+                            </div>
+                            </div>
+
+                            <div class="mb-3 row">      
+                                <label for="staticNama" class="col-sm-6 col-form-label">Nama Lengkap</label>
+                            <div id="nm_mhs" class="col-sm-6">
+                                
+                            </div>
+                            </div>
+
+                            <div class="mb-3 row">      
+                                <label for="staticJurusan" class="col-sm-6 col-form-label">Jurusan</label>
+                            <div id="jurusan" class="col-sm-6">
+                                
+                            </div>
+                            </div>
+
+                            <div class="mb-3 row">      
+                                <label for="staticKelas" class="col-sm-6 col-form-label">Kelas</label>
+                            <div id="kelas" class="col-sm-6">
+                                
+                            </div>
+                            </div>
+
+                            <div class="mb-3 row">      
+                                <label for="staticThnMsk" class="col-sm-6 col-form-label">Tahun Masuk</label>
+                            <div id="masuk_tahun" class="col-sm-6">
+                                
+                            </div>
+                            </div>
+
+                            <div class="mb-3 row">      
+                                <label for="staticJK" class="col-sm-6 col-form-label">Jenis Kelamin</label>
+                            <div id="jk" class="col-sm-6">
+                                
+                            </div>
+                            </div>
+
+                            <div class="mb-3 row">      
+                                <label for="staticTTL" class="col-sm-6 col-form-label">Tempat & Tanggal Lahir</label>
+                            <div id="ttl" class="col-sm-6">
+                                
+                            </div>
+                            </div>
+                            
+                            <div class="mb-3 row">      
+                                <label for="staticGoldar" class="col-sm-6 col-form-label">Golongan Darah</label>
+                            <div id="gol_darah" class="col-sm-6">
+                            
+                            </div>
+                            </div>
+
+                            <div class="mb-3 row">      
+                                <label for="staticStsKwn" class="col-sm-6 col-form-label">Status Kawin</label>
+                            <div id="sts_kawin" class="col-sm-6">
+                            
+                            </div>
+                            </div>
+
+                            <div class="mb-3 row">      
+                                <label for="staticNik" class="col-sm-6 col-form-label">NIK</label>
+                            <div id="nmr_ktp" class="col-sm-6">
+                            
+                            </div>
+                            </div>
+
+                            <div class="mb-3 row">      
+                                <label for="staticTelp" class="col-sm-6 col-form-label">No Hp</label>
+                            <div id="nmr_hp" class="col-sm-6">
+                                
+                            </div>
+                            </div>
+
+                            <div class="mb-3 row">      
+                                <label for="staticEmail" class="col-sm-6 col-form-label">Email</label>
+                            <div id="email" class="col-sm-6">
+                                
+                            </div>
+                            </div>
+
+                            <div class="mb-3 row col-sm-3">
+                                <button type="submit" class="btn btn-primary mb-3">Edit</button>
+                            </div>
+
+                        </form>
+                    </div>       
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <div class="dataMhs">   
-                <form>
-
-                    <div class="mb-3 row">      
-                        <label for="staticNim" class="col-sm-6 col-form-label">NIM</label>
-                    <div class="col-sm-6"
-                    id="nim">
-                        
-                    </div>
-                    </div>
-
-                    <div class="mb-3 row">      
-                        <label for="staticNama" class="col-sm-6 col-form-label">Nama Lengkap</label>
-                    <div id="nm_mhs" class="col-sm-6">
-                        
-                    </div>
-                    </div>
-
-                    <div class="mb-3 row">      
-                        <label for="staticJurusan" class="col-sm-6 col-form-label">Jurusan</label>
-                    <div id="jurusan" class="col-sm-6">
-                        
-                    </div>
-                    </div>
-
-                    <div class="mb-3 row">      
-                        <label for="staticKelas" class="col-sm-6 col-form-label">Kelas</label>
-                    <div id="kelas" class="col-sm-6">
-                        
-                    </div>
-                    </div>
-
-                    <div class="mb-3 row">      
-                        <label for="staticThnMsk" class="col-sm-6 col-form-label">Tahun Masuk</label>
-                    <div id="masuk_tahun" class="col-sm-6">
-                        
-                    </div>
-                    </div>
-
-                    <div class="mb-3 row">      
-                        <label for="staticJK" class="col-sm-6 col-form-label">Jenis Kelamin</label>
-                    <div id="jk" class="col-sm-6">
-                        
-                    </div>
-                    </div>
-
-                    <div class="mb-3 row">      
-                        <label for="staticTTL" class="col-sm-6 col-form-label">Tempat & Tanggal Lahir</label>
-                    <div id="ttl" class="col-sm-6">
-                        
-                    </div>
-                    </div>
-                    
-                    <div class="mb-3 row">      
-                        <label for="staticGoldar" class="col-sm-6 col-form-label">Golongan Darah</label>
-                    <div id="gol_darah" class="col-sm-6">
-                      
-                    </div>
-                    </div>
-
-                    <div class="mb-3 row">      
-                        <label for="staticStsKwn" class="col-sm-6 col-form-label">Status Kawin</label>
-                    <div id="sts_kawin" class="col-sm-6">
-                       
-                    </div>
-                    </div>
-
-                    <div class="mb-3 row">      
-                        <label for="staticNik" class="col-sm-6 col-form-label">NIK</label>
-                    <div id="nmr_ktp" class="col-sm-6">
-                       
-                    </div>
-                    </div>
-
-                    <div class="mb-3 row">      
-                        <label for="staticTelp" class="col-sm-6 col-form-label">No Hp</label>
-                    <div id="nmr_hp" class="col-sm-6">
-                        
-                    </div>
-                    </div>
-
-                    <div class="mb-3 row">      
-                        <label for="staticEmail" class="col-sm-6 col-form-label">Email</label>
-                    <div id="email" class="col-sm-6">
-                        
-                    </div>
-                    </div>
-
-                    <div class="mb-3 row col-sm-3">
-                        <button type="submit" class="btn btn-primary mb-3">Edit</button>
-                    </div>
-
-                </form>
-            </div>       
-        </div>
-
     </div>
 
 </div>

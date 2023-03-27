@@ -18,8 +18,8 @@
             Jadwal Perkuliahan
         </div>
         <div class="card-body">
-            <div class="statusMatkul">
-                <div class="daftarMatkul" >
+            <div class="statusMatkul ">
+                <div class="daftarMatkul table-responsive" >
                     <table id="jadwalPerkuliahan" class="table table-striped table-bordered dt-responsive" style="background-color: white">
                         <thead>
                             <tr>

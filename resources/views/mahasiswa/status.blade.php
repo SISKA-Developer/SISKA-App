@@ -15,7 +15,7 @@
             </div>
             <div class="card-body">
                 <div class="statusMatkul">
-                    <div class="daftarMatkul" >
+                    <div class="daftarMatkul table-responsive" >
                         <table id="daftarMK" class="table table-striped table-bordered dt-responsive" style="background-color: white">
                             <thead>
                                 <tr>
@@ -41,7 +41,7 @@
             </div>
             <div class="card-body">
                 <div class="statusPendaftaran">
-                    <div class="statusMahasiswa" >
+                    <div class="statusMahasiswa table-responsive" >
                         <table id="statusMhs" class="table table-striped table-bordered dt-responsive" style="background-color: white">
                             <thead>
                                 <tr>

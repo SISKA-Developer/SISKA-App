@@ -43,6 +43,7 @@
                 <div class="statusPendaftaran">
                     <div class="statusMahasiswa table-responsive" >
                         <table id="statusMhs" class="table table-striped table-bordered dt-responsive" style="background-color: white">
+                        <span id="total"></span>
                             <thead>
                                 <tr>
                                     <th>Tahun</th>
@@ -53,6 +54,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <!-- <tr>
+                                <td>{{date('Y')}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -71,7 +79,7 @@
 <script>
     // daftarMk
     $(document).ready(function(){
-        table = $('#daftarMK').DataTable({
+        var table = $('#daftarMK').DataTable({
             processing: true,
             serverSide: true,
             responsive: true,
@@ -84,13 +92,87 @@
                 {data: 'nm_mk'},
                 {data: 'kd_ruang'},
                 {data: 'sks'},
-            ]
+            ],
+            drawCallback: function() {
+                var sks = table.columns(5).data().sum();
+                $('#total').html(sum);
+            }
         });
-    });
 
     // statusMhs
-    
-    
+        var test = table.columns(3).count() + 1;
+        // console.log(test);
+        sessionStorage.setItem('nm_mk', test)
+        
+        // var sks = table.columns(4).data().sum();
+        // console.log(sks);
+
+       
+        // sessionStorage.setItem('sks', sks)
+
+        $.ajax({
+            type: 'GET', //THIS NEEDS TO BE GET
+            url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/detail/1219010',
+            dataType: 'json',
+            success: function (data) {
+                var datas = data.data;
+                // console.log(data);
+                $('#statusMhs').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    responsive: true,
+                    searching: true,
+                    sort: true,
+                    columns: [
+                        {
+                            data: null, 
+                            render: ((data)=>{
+                                const year = new Date()
+                                return year.getFullYear()
+                            }),
+                        },
+                        {
+                            data: null,
+                            render: ((data)=>{
+                                if(datas.masuk_tahun % 2 == 0 ){
+                                    return 'Genap';
+                                }else{   
+                                    return 'Ganjil' 
+                                }
+                            }),
+                        },
+                        {
+                            data: null, 
+                            render: ((data)=>{
+                                if(datas.sts_mhs == null || datas.sts_mhs == "null"){
+                                    return 'Tidak Aktif';
+                                }else{   
+                                    return 'Aktif' 
+                                }
+                            }),
+                        },
+                        {
+                            data: null, 
+                            render: ((data)=>{
+                                const MK = sessionStorage.getItem('nm_mk')
+                                return MK
+                            }),
+                        },
+                        {
+                            data: null, 
+                            render: ((data)=>{
+                                const SKS = sessionStorage.getItem('sks')
+                                return SKS
+                            }),
+                        }
+                    ]
+                })
+            },error:function(){ 
+                console.log(data);
+            }
+        })
+    });
+
 </script>
 
 @endpush

@@ -136,9 +136,6 @@
                     $("#jns_mhs").append("<p>"+data.data[0].jns_mhs+"</p>");
                     $("#dosen_wali").append("<p>"+data.data[0].dosen_wali+"</p>");
                     $("#sts_mhs").append("<p>"+data.data[0].sts_mhs+"</p>");
-
-                    // $("#nama").val(data.data[0].nm_mhs);
-                    // alert(data.data[0].nm_mhs);
                 },error:function(){ 
                     console.log("errror",data);
                 }

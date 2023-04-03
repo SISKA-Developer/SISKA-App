@@ -78,7 +78,6 @@ Route::post('fileSilabus', [MatakuliahController::class, 'fileSilabus']);
 
 
 Route::get('/mahasiswa/'. $myprofile, [MahasiswaController::class,'myprofile'])->name('myprofile');
-// Route::get('/mahasiswa/'. $myprofile.'/myprofile1', [MahasiswaController::class,'getmyprofile'])->name('myprofile');
 
 Route::get('/mahasiswa/'. $status, [MahasiswaController::class,'status'])->name('statusIndex');
 

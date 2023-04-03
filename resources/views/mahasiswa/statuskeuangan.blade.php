@@ -111,7 +111,14 @@
 
                     $("#jurusan").append("<h6>"+data.data.nama_jurusan+"</h6>");
 
-                    $("#kelas").append("<h6>"+data.data.jns_mhs+"</h6>");
+                    if(data.data.jns_mhs == "R")
+                    {
+                        $("#kelas").append("<h6> Reguler </h6>");
+                    }else if(data.data.jns_mhs == "K"){
+                        $("#kelas").append("<h6> Karyawan </h6>");
+                    }else{
+                        $("#kelas").append("<h6> Eksekutif </h6>");
+                    }
 
                     $("#masuk_tahun").append("<h6>"+data.data.masuk_tahun+"</h6>");
 

@@ -16,8 +16,9 @@ class MahasiswaController extends Controller
     // }
     
     public function myprofile(){
-
+        
         return view('mahasiswa.myprofile');
+
     }
 
     public function status(Request $request){

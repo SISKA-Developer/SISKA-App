@@ -93,10 +93,6 @@
                 {data: 'kd_ruang'},
                 {data: 'sks'},
             ],
-            drawCallback: function() {
-                var sks = table.columns(5).data().sum();
-                $('#total').html(sum);
-            }
         });
 
     // statusMhs
@@ -133,13 +129,13 @@
                         },
                         {
                             data: null,
-                            render: ((data)=>{
-                                if(datas.masuk_tahun % 2 == 0 ){
-                                    return 'Genap';
-                                }else{   
-                                    return 'Ganjil' 
-                                }
-                            }),
+                            // render: ((data)=>{
+                            //     if(datas.masuk_tahun % 2 == 0 ){
+                            //         return 'Genap';
+                            //     }else{   
+                            //         return 'Ganjil' 
+                            //     }
+                            // }),
                         },
                         {
                             data: null, 
@@ -160,12 +156,16 @@
                         },
                         {
                             data: null, 
-                            render: ((data)=>{
-                                const SKS = sessionStorage.getItem('sks')
-                                return SKS
-                            }),
+                            // render: ((data)=>{
+                            //     const SKS = sessionStorage.getItem('sks')
+                            //     return SKS
+                            // }),
                         }
-                    ]
+                    ],
+                    // drawCallback: function() {
+                    //     var sks = table.columns(5).data().sum();
+                    //     $('#total').html(sum);
+                    // }
                 })
             },error:function(){ 
                 console.log(data);

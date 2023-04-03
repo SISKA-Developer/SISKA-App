@@ -13,8 +13,8 @@
                 My Profile
             </div>
             <div class="card-body">
-                <div class="row">
-                    <img src="" alt="profile" class="img-profile rounded-circle">
+                <div class="text-center h-100" id="profile-img">
+                    <!-- <img src="{{url('$images')}}" alt="profile" class="card-img-top smallimg rounded-circle"> -->
                 </div>
                 <br>                
                 <div class="profile-left">
@@ -85,10 +85,9 @@
     </div>
 
     <style>
-        .img-profile {
-            display: flex;
-            justify-content: center;
-            width: 40%;
+        .smallimg {
+            width: 200px; 
+            height: 200px;
         }
         .profile-left {
             width: 50%;
@@ -117,29 +116,67 @@
     @push('matakuliah')
     <script>
         $(document).ready(function(){
-            
+
+            // sessionStorage.setItem("nim", "1219010");
+            var nim = sessionStorage.getItem("nim");
+            console.log(nim);
+
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET
-                url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/1219010',
+                url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/'+ nim,
                 dataType: 'json',
                 success: function (data,val) {
                     console.log(data);
                     $("#nm_mhs").append("<p>"+data.data[0].nm_mhs+"</p>");
+
                     $("#nim").append("<p>"+data.data[0].nim+"</p>");
+
                     $("#alamat").append("<p>"+data.data[0].alamat+"</p>");
+
                     $("#email").append("<p>"+data.data[0].email+"</p>");
+
                     $("#telp").append("<p>"+data.data[0].nmr_hp+"</p>");
+
                     $("#ttl").append("<p>"+data.data[0].tmp_lahir+", "+data.data[0].tgl_lahir+"</p>");
-                    $("#jk").append("<p>"+data.data[0].jk+"</p>");
+
+                    if(data.data[0].jk == "L")
+                    {
+                        $("#jk").append("<p> Laki-Laki </p>");
+                    } else {
+                        $("#jk").append("<p> Perempuan </p>");
+                    }
+
                     $("#angkatan").append("<p>"+data.data[0].angkatan+"</p>");
+
                     $("#nama_jurusan").append("<p>"+data.data[0].nama_jurusan+"</p>");
-                    $("#jns_mhs").append("<p>"+data.data[0].jns_mhs+"</p>");
+
+                    if(data.data[0].jns_mhs == "R")
+                    {
+                        $("#jns_mhs").append("<p> Reguler </p>");
+                    }else if(data.data[0].jns_mhs == "K"){
+                        $("#jns_mhs").append("<p> Karyawan </p>");
+                    }else{
+                        $("#jns_mhs").append("<p> Eksekutif </p>");
+                    }
+
                     $("#dosen_wali").append("<p>"+data.data[0].dosen_wali+"</p>");
-                    $("#sts_mhs").append("<p>"+data.data[0].sts_mhs+"</p>");
+                    
+                    if(data.data[0].sts_mhs == "A")
+                    {
+                        $("#sts_mhs").append("<p> Aktif </p>");
+                    }else{
+                        $("#sts_mhs").append("<p> Tidak Aktif </p>")
+                    }
+
+                    $("#profile-img").append(
+                        "<img src='/foto_profile/"+data.data[0].nim+".jpg' alt='profile' class='card-img-top smallimg rounded-circle'>")
                 },error:function(){ 
                     console.log("errror",data);
                 }
             });
+
+            
+
         })
 
     </script>

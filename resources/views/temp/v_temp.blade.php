@@ -133,6 +133,7 @@
     $(document).ready(function(){
         sessionStorage.setItem("role", "Admin");
         sessionStorage.setItem("nama", "Ardhan");
+        sessionStorage.setItem("nim", "1219010");
         
         // var role = localStorage.getItem("role");
         // console.log(role);

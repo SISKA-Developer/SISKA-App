@@ -1,8 +1,8 @@
 @extends('temp.v_temp')
 @section('isicontent')
     <div class="container">
-            {{-- {{ session('success') }}
-            {{ session('error') }} --}}
+            {{ session('success') }}
+            {{ session('error') }}
         <ul class="breadcrumb">
             <li><a href="#">SISKA</a></li>
             <li><a href="#">Kurikulum</a></li>
@@ -406,9 +406,9 @@
                 <div class="modal-body">
                         @csrf
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Masukan Link File Silabus :</label>
-                        <input class="form-control" type="text" id="link" name="link">
-                        <input class="form-control" hidden type="text" id="kode_mk" name="kode_mk" value="">
+                        <label for="formFile" class="form-label">Masukan File Silabus :</label>
+                        <input class="form-control" type="file" id="link" name="link">
+                        <input class="form-control" type="text" id="kode_mk" name="kode_mk" value="">
                       </div>
                       <div class="mb-3">
                         <label for="formFile" class="form-label">Keterangan :</label>
@@ -423,7 +423,26 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade" tabindex="-1" id="modalseesilabus">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          @foreach($data as $item)
+          <a href="{{$item->link}}" class="btn btn-primary">test</a>
+            {{$item->link}}
+          @endforeach
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
             
@@ -460,6 +479,7 @@
             x8.style.visibility = "visible";   
         }
       $(document).ready(function(){
+        $("body").tooltip({ selector: '[data-bs-toggle=tooltip]' });
             table = $('#yajra-datatable-smt1').DataTable({
                 processing: true,
                 serverSide: true,
@@ -481,7 +501,14 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                var role = sessionStorage.getItem("role");
+                                if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
+                                    console.log('guuttt')
+                                return '<div class="d-flex mx-1"><a href="/display/'+data+'" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Lihat Silabus" ><i class="fa-solid fa-eye"></i></a> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }else{
+                                    console.log('notguuttt')
+                                    return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }
                             }),
                             name: 'action', 
                             orderable: true, 
@@ -543,6 +570,22 @@
                 }
     });
         }
+
+        function editRowData(data) {
+            console.log(data);
+            $.ajax({
+                type: 'GET', //THIS NEEDS TO BE GET
+                url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/kurikulum/'+ data,
+                dataType: 'json',
+                success: function (data) {
+                    var datas = data.data[0];
+                    console.log(datas);
+                },error:function(){ 
+                    console.log(data);
+                }
+    });
+        }
+
         function editRowData(data) {
             var datas = data;
             console.log(data);
@@ -584,9 +627,16 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                var role = sessionStorage.getItem("role");
+                                if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
+                                    console.log('guuttt')
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Lihat Silabus" data-toggle="modal" data-target="#modalseesilabus"><i class="fa-solid fa-eye"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }else{
+                                    console.log('notguuttt')
+                                    return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }
                             }),
-                            // name: 'action', 
+                            name: 'action', 
                             orderable: true, 
                             searchable: true
                         },
@@ -632,9 +682,16 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                var role = sessionStorage.getItem("role");
+                                if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
+                                    console.log('guuttt')
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Lihat Silabus" data-toggle="modal" data-target="#modalseesilabus"><i class="fa-solid fa-eye"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }else{
+                                    console.log('notguuttt')
+                                    return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }
                             }),
-                            // name: 'action', 
+                            name: 'action', 
                             orderable: true, 
                             searchable: true
                         },
@@ -680,9 +737,16 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                var role = sessionStorage.getItem("role");
+                                if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
+                                    console.log('guuttt')
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Lihat Silabus" data-toggle="modal" data-target="#modalseesilabus"><i class="fa-solid fa-eye"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }else{
+                                    console.log('notguuttt')
+                                    return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }
                             }),
-                            // name: 'action', 
+                            name: 'action', 
                             orderable: true, 
                             searchable: true
                         },
@@ -728,9 +792,16 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                var role = sessionStorage.getItem("role");
+                                if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
+                                    console.log('guuttt')
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Lihat Silabus" data-toggle="modal" data-target="#modalseesilabus"><i class="fa-solid fa-eye"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }else{
+                                    console.log('notguuttt')
+                                    return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }
                             }),
-                            // name: 'action', 
+                            name: 'action', 
                             orderable: true, 
                             searchable: true
                         },
@@ -776,9 +847,16 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                var role = sessionStorage.getItem("role");
+                                if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
+                                    console.log('guuttt')
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Lihat Silabus" data-toggle="modal" data-target="#modalseesilabus"><i class="fa-solid fa-eye"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }else{
+                                    console.log('notguuttt')
+                                    return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }
                             }),
-                            // name: 'action', 
+                            name: 'action', 
                             orderable: true, 
                             searchable: true
                         },
@@ -824,9 +902,16 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                var role = sessionStorage.getItem("role");
+                                if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
+                                    console.log('guuttt')
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Lihat Silabus" data-toggle="modal" data-target="#modalseesilabus"><i class="fa-solid fa-eye"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }else{
+                                    console.log('notguuttt')
+                                    return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }
                             }),
-                            // name: 'action', 
+                            name: 'action', 
                             orderable: true, 
                             searchable: true
                         },
@@ -872,9 +957,16 @@
                         {
                             data: 'kd_mk', 
                             render: ((data, type, row)=>{
-                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                var role = sessionStorage.getItem("role");
+                                if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
+                                    console.log('guuttt')
+                                return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Lihat Silabus" data-toggle="modal" data-target="#modalseesilabus"><i class="fa-solid fa-eye"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }else{
+                                    console.log('notguuttt')
+                                    return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
+                                }
                             }),
-                            // name: 'action', 
+                            name: 'action', 
                             orderable: true, 
                             searchable: true
                         },

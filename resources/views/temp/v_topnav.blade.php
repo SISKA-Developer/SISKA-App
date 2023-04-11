@@ -8,6 +8,9 @@
         <div class="text-center mx-4" id="textprofile">
         <p class="my-0" id="nama"></p>
         <p class="my-0" id="role">
+          {{-- <h4>Nama: {{auth()->user()->name}}</h4>
+          <h4>Role: {{auth()->user()->role}}</h4> --}}
+
         </p>
         </div>
         <div class="flex-shrink-0 dropdown mx-2">
@@ -19,7 +22,7 @@
             <li><a class="dropdown-item" href="#">Settings</a></li>
             <li><a class="dropdown-item" href="#">Profile</a></li> --}}
             {{-- <li><hr class="dropdown-divider"></li> --}}
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
+            <li><a href="http://sso.stmikbandung.test/" class="dropdown-item" href="#">Sign out</a></li>
           </ul>
         </div>
       </div>
@@ -54,8 +57,11 @@
     @push('matakuliah')
     <script>
       $(document).ready(function(){
-        var role = sessionStorage.getItem("role");
-        var nama = sessionStorage.getItem("nama");
+        // getCookie("username");
+        // var role = sessionStorage.getItem("role");
+        // var nama = sessionStorage.getItem("nama");
+        var role =         getCookie("role");
+        var nama =         getCookie("nama");
         console.log(role);
         document.getElementById("role").innerHTML = role;
         document.getElementById("nama").innerHTML = "Selamat Datang, " + nama;

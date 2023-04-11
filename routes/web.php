@@ -4,9 +4,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\EvaluasiController;
-use App\Models\sidebars;
+use App\Http\Controllers\pdfController;
+// use App\Models\sidebars;
 use Hashids\Hashids;
-use Illuminate\Support\Facades\Hash;
+// use Illuminate\Http\Request;
+// use Cookie;
+// use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,42 +57,104 @@ $transkripnilai = $hashids->encode($transkripnilai);
 $evaluasi1 = $hashids->encode($evaluasi1);
 $evaluasi2 = $hashids->encode($evaluasi2);
 $evaluasi3 = $hashids->encode($evaluasi3);
-
-Route::get('/', function () {
-    return view('v_home');
-});
-Route::get('/mahasiswa', function () {
-    return view('v_home');
-});
-
-//admin
-Route::get('/kurikulum/'. $matakuliah, [MatakuliahController::class,'matakuliah'])->name('MatakuliahIndex');
-Route::get('/kurikulum/'. $jadwalmatakuliah, [MatakuliahController::class,'jadwalMatakuliah'])->name('JadwalMatakuliahIndex');
-Route::get('/kurikulum/'. $tujuandancapaian, [MatakuliahController::class,'tujuanCapaian'])->name('TujuanCapaianIndex');
-
-Route::get('matakuliahsmt1', [MatakuliahController::class,'getmatakuliahsmt1'])->name('getmatakuliahsmt1');
-Route::get('matakuliahsmt2', [MatakuliahController::class,'getmatakuliahsmt2'])->name('getmatakuliahsmt2');
-Route::get('matakuliahsmt3', [MatakuliahController::class,'getmatakuliahsmt3'])->name('getmatakuliahsmt3');
-Route::get('matakuliahsmt4', [MatakuliahController::class,'getmatakuliahsmt4'])->name('getmatakuliahsmt4');
-Route::get('matakuliahsmt5', [MatakuliahController::class,'getmatakuliahsmt5'])->name('getmatakuliahsmt5');
-Route::get('matakuliahsmt6', [MatakuliahController::class,'getmatakuliahsmt6'])->name('getmatakuliahsmt6');
-Route::get('matakuliahsmt7', [MatakuliahController::class,'getmatakuliahsmt7'])->name('getmatakuliahsmt7');
-Route::get('matakuliahsmt8', [MatakuliahController::class,'getmatakuliahsmt8'])->name('getmatakuliahsmt8');
-Route::get('getjadwalmatakuliah', [MatakuliahController::class,'getjadwalmatakuliah'])->name('getjadwalmatakuliah');
-Route::post('filetujuanCapaian', [MatakuliahController::class, 'filetujuanCapaian']);
-Route::post('fileSilabus', [MatakuliahController::class, 'fileSilabus']);
+// $request = new Request();
+// $token = Cookie::get('siska_session');
+ 
+// Get the currently authenticated user...
+// $user = Auth::user();
+// dd($user);
+// dd($user);
+ 
+// Get the currently authenticated user's ID...
+// $id = Auth::id();
+    // if(!$token){
+    //     Route::get('/', function () {
+    //         return view('v_home');
+    //     })->middleware('auth');
+        
+    //     Route::get('/login', function(){
+    //         return redirect('http://sso.stmikbandung.test/login');
+    //     })->name('login');
+        
+    // }else{
 
 
-Route::get('/mahasiswa/'. $myprofile, [MahasiswaController::class,'myprofile'])->name('myprofile');
-Route::get('/mahasiswa/'. $status, [MahasiswaController::class,'status'])->name('statusIndex');
-Route::get('/mahasiswa/'. $jadwalperkuliahan, [MahasiswaController::class,'jadwalKuliah'])->name('jadwalkuliahIndex');
-Route::get('/mahasiswa/'. $pengkiniandata, [MahasiswaController::class,'dataindukmahasiswa'])->name('datamahasiswaIndex');
-Route::get('/mahasiswa/'. $statuskeuangan, [MahasiswaController::class,'statusKeuangan'])->name('statuskeuanganIndex');
-Route::get('/mahasiswa/'. $transkripnilai, [MahasiswaController::class,'transkripNilai'])->name('transkripnilaiIndex');
+    Route::get('/login', function(Request $request){
+        $request->session()->put("state", $state = Str::random(40));
+        $query = http_build_query([
+            "client_id" => "98e75d8a-b1be-4b9b-8d59-377fdff92a0c",
+            "redirect_uri" => "http://siska.stmikbandung.test:81/callback",
+            "response_type" => "code",
+            "scope" => "",
+            "state" => $state
+        ]);
+        return redirect("http://sso.stmikbandung.test:80/oauth/authorize?" . $query);
+        // return redirect('http://sso.stmikbandung.test/login');
+    })->name('login');
 
-Route::get('/evaluasi/'. $evaluasi1, [EvaluasiController::class,'evaluasiPembelajaran'])->name('evaluasipembelajaranIndex');
-Route::get('/evaluasi/'. $evaluasi2, [EvaluasiController::class,'evaluasiSarana'])->name('evaluasipengelolaanIndex');
-Route::get('/evaluasi/'. $evaluasi3, [EvaluasiController::class,'evaluasiKeuangan'])->name('evaluasisaranaIndex');
+    Route::get('/callback', function(Request $request) {
+        $state = $request->session()->pull("state");
+        // dd($state);
+        // throw_unless(strlen($state) > 0 && $state == $request->$state,
+        // InvalidArgumentException::class);
+
+        $response = Http::asForm()->post(
+            "http://sso.stmikbandung.test:80/oauth/token",
+            [
+                "grant_type" => "authorization_code",
+                "client_id" => "98e75d8a-b1be-4b9b-8d59-377fdff92a0c",
+                "client_secret" => "orIjVahKcdmV39jaKShPn0tecq5ZbTONwBPZl7a4",
+                "redirect_uri" => "http://siska.stmikbandung.test:81/callback",
+                "code" => $request->code
+            ]);
+            return $response->json(); 
+    });
+
+    Route::get('/logout', function(){
+        return redirect('http://sso.stmikbandung.test/logout');
+    })->name('logout');
+
+    Route::get('/', function () {
+        return view('v_home');
+    });
+
+    Route::get('/mahasiswa', function () {
+        return view('v_home');
+    });
+
+    //admin
+    Route::get('/kurikulum/'. $matakuliah, [MatakuliahController::class,'matakuliah'])->name('MatakuliahIndex');
+    Route::get('/kurikulum/'. $jadwalmatakuliah, [MatakuliahController::class,'jadwalMatakuliah'])->name('JadwalMatakuliahIndex');
+    Route::get('/kurikulum/'. $tujuandancapaian, [MatakuliahController::class,'tujuanCapaian'])->name('TujuanCapaianIndex');
+
+    Route::get('matakuliahsmt1', [MatakuliahController::class,'getmatakuliahsmt1'])->name('getmatakuliahsmt1');
+    Route::get('matakuliahsmt2', [MatakuliahController::class,'getmatakuliahsmt2'])->name('getmatakuliahsmt2');
+    Route::get('matakuliahsmt3', [MatakuliahController::class,'getmatakuliahsmt3'])->name('getmatakuliahsmt3');
+    Route::get('matakuliahsmt4', [MatakuliahController::class,'getmatakuliahsmt4'])->name('getmatakuliahsmt4');
+    Route::get('matakuliahsmt5', [MatakuliahController::class,'getmatakuliahsmt5'])->name('getmatakuliahsmt5');
+    Route::get('matakuliahsmt6', [MatakuliahController::class,'getmatakuliahsmt6'])->name('getmatakuliahsmt6');
+    Route::get('matakuliahsmt7', [MatakuliahController::class,'getmatakuliahsmt7'])->name('getmatakuliahsmt7');
+    Route::get('matakuliahsmt8', [MatakuliahController::class,'getmatakuliahsmt8'])->name('getmatakuliahsmt8');
+    Route::get('getjadwalmatakuliah', [MatakuliahController::class,'getjadwalmatakuliah'])->name('getjadwalmatakuliah');
+    Route::post('filetujuanCapaian', [MatakuliahController::class, 'filetujuanCapaian']);
+    Route::post('fileSilabus', [MatakuliahController::class, 'fileSilabus']);
+
+
+    Route::get('/mahasiswa/'. $myprofile, [MahasiswaController::class,'myprofile'])->name('myprofile');
+    Route::get('/mahasiswa/'. $status, [MahasiswaController::class,'status'])->name('statusIndex');
+    Route::get('/mahasiswa/'. $jadwalperkuliahan, [MahasiswaController::class,'jadwalKuliah'])->name('jadwalkuliahIndex');
+    Route::get('/mahasiswa/'. $pengkiniandata, [MahasiswaController::class,'dataindukmahasiswa'])->name('datamahasiswaIndex');
+    Route::get('/mahasiswa/'. $statuskeuangan, [MahasiswaController::class,'statusKeuangan'])->name('statuskeuanganIndex');
+    Route::get('/mahasiswa/'. $transkripnilai, [MahasiswaController::class,'transkripNilai'])->name('transkripnilaiIndex');
+
+    Route::get('/evaluasi/'. $evaluasi1, [EvaluasiController::class,'evaluasiPembelajaran'])->name('evaluasipembelajaranIndex');
+    Route::get('/evaluasi/'. $evaluasi2, [EvaluasiController::class,'evaluasiSarana'])->name('evaluasipengelolaanIndex');
+    Route::get('/evaluasi/'. $evaluasi3, [EvaluasiController::class,'evaluasiKeuangan'])->name('evaluasisaranaIndex');
+
+    //for displaying PDF
+    Route::get('/display/{mk_id}',[pdfController::class,'getSilabus']);
+
+    // }
 
 // Route::get('/mahasiswa', function () {
 //     return view('mahasiswa/layouts/index');

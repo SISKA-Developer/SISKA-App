@@ -5,6 +5,7 @@ use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\EvaluasiController;
 use App\Http\Controllers\pdfController;
+use App\Http\Controllers\SSOController;
 // use App\Models\sidebars;
 use Hashids\Hashids;
 // use Illuminate\Http\Request;
@@ -79,36 +80,11 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     // }else{
 
 
-    Route::get('/login', function(Request $request){
-        $request->session()->put("state", $state = Str::random(40));
-        $query = http_build_query([
-            "client_id" => "98e75d8a-b1be-4b9b-8d59-377fdff92a0c",
-            "redirect_uri" => "http://siska.stmikbandung.test:81/callback",
-            "response_type" => "code",
-            "scope" => "",
-            "state" => $state
-        ]);
-        return redirect("http://sso.stmikbandung.test:80/oauth/authorize?" . $query);
-        // return redirect('http://sso.stmikbandung.test/login');
-    })->name('login');
+    Route::get('/login', [SSOController::class,'getlogin'])->name('login');
 
-    Route::get('/callback', function(Request $request) {
-        $state = $request->session()->pull("state");
-        // dd($state);
-        // throw_unless(strlen($state) > 0 && $state == $request->$state,
-        // InvalidArgumentException::class);
+    Route::get('/callback', [SSOController::class,'getcallback'])->name('callback');
 
-        $response = Http::asForm()->post(
-            "http://sso.stmikbandung.test:80/oauth/token",
-            [
-                "grant_type" => "authorization_code",
-                "client_id" => "98e75d8a-b1be-4b9b-8d59-377fdff92a0c",
-                "client_secret" => "orIjVahKcdmV39jaKShPn0tecq5ZbTONwBPZl7a4",
-                "redirect_uri" => "http://siska.stmikbandung.test:81/callback",
-                "code" => $request->code
-            ]);
-            return $response->json(); 
-    });
+    Route::get('/authuser', [SSOController::class,'getuser'])->name('authuser');
 
     Route::get('/logout', function(){
         return redirect('http://sso.stmikbandung.test/logout');
@@ -117,10 +93,33 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Route::get('/', function () {
         return view('v_home');
     });
-
-    Route::get('/mahasiswa', function () {
-        return view('v_home');
+    Route::get('/kurikulum', function (Request $request) {
+    $token = $request->session()->get("access_token"); 
+        if(!$token){
+            $request->session()->push('halaman', 'kurikulum');
+            return redirect(route('login'));
+        }else{
+            return redirect(route('MatakuliahIndex'));
+        }
     });
+    Route::get('/mahasiswa', function (Request $request) {
+    $token = $request->session()->get("access_token"); 
+        if(!$token){
+            $request->session()->push('halaman', 'mahasiswa');
+            return redirect(route('login'));
+        }else{
+        return redirect(route('myprofile'));
+        }
+    });    
+    Route::get('/evaluasi', function (Request $request) {
+    $token = $request->session()->get("access_token"); 
+        if(!$token){
+            $request->session()->push('halaman', 'evaluasi');
+            return redirect(route('login'));
+        }else{
+            return redirect(route('evaluasipembelajaranIndex'));
+            }
+        });
 
     //admin
     Route::get('/kurikulum/'. $matakuliah, [MatakuliahController::class,'matakuliah'])->name('MatakuliahIndex');

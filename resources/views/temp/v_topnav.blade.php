@@ -6,10 +6,10 @@
       <div class="col-9 d-flex justify-content-end">
       <div class="d-flex align-items-center">
         <div class="text-center mx-4" id="textprofile">
-        <p class="my-0" id="nama"></p>
-        <p class="my-0" id="role">
-          {{-- <h4>Nama: {{auth()->user()->name}}</h4>
-          <h4>Role: {{auth()->user()->role}}</h4> --}}
+        {{-- <p class="my-0" id="nama"></p>
+        <p class="my-0" id="role"> --}}
+          <p class="my-0">Selamat Datang, {{request()->session()->get('name')}}</p>
+          <p class="my-0">{{request()->session()->get('role')}}</p>
 
         </p>
         </div>

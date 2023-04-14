@@ -127,9 +127,13 @@
     @push('matakuliah')
     <script>
         $(document).ready(function(){
+
+            var nim = sessionStorage.getItem("nim");
+            // console.log(nim);
+
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET
-                url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/detail/1219010',
+                url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/detail/'+ nim,
                 dataType: 'json',
                 success: function (data,val) {
                     console.log(data);

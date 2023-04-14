@@ -119,7 +119,7 @@
 
             // sessionStorage.setItem("nim", "1219010");
             var nim = sessionStorage.getItem("nim");
-            console.log(nim);
+            // console.log(nim);
 
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET

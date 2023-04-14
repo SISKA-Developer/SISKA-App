@@ -44,9 +44,7 @@ class MahasiswaController extends Controller
         return view('mahasiswa.jadwalKuliah'); 
     }
     public function dataindukmahasiswa(){
-        // $detail = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/detail/1219010');
-        
-        // dd($detail);
+ 
         return view('mahasiswa.dataindukmahasiswa'); 
     }
     public function statusKeuangan(){

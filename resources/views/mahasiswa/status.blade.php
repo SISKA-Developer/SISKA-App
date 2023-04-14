@@ -102,13 +102,14 @@
         
         // var sks = table.columns(4).data().sum();
         // console.log(sks);
-
        
         // sessionStorage.setItem('sks', sks)
 
+        var nim = sessionStorage.getItem("nim");
+
         $.ajax({
             type: 'GET', //THIS NEEDS TO BE GET
-            url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/detail/1219010',
+            url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/detail/'+ nim,
             dataType: 'json',
             success: function (data) {
                 var datas = data.data;
@@ -129,13 +130,13 @@
                         },
                         {
                             data: null,
-                            // render: ((data)=>{
-                            //     if(datas.masuk_tahun % 2 == 0 ){
-                            //         return 'Genap';
-                            //     }else{   
-                            //         return 'Ganjil' 
-                            //     }
-                            // }),
+                            render: ((data)=>{
+                                if(datas.masuk_tahun % 2 == 0 ){
+                                    return 'Genap';
+                                }else{   
+                                    return 'Ganjil' 
+                                }
+                            }),
                         },
                         {
                             data: null, 

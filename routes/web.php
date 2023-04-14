@@ -90,6 +90,8 @@ Route::get('/evaluasi/'. $evaluasi1, [EvaluasiController::class,'evaluasiPembela
 Route::get('/evaluasi/'. $evaluasi2, [EvaluasiController::class,'evaluasiSarana'])->name('evaluasipengelolaanIndex');
 Route::get('/evaluasi/'. $evaluasi3, [EvaluasiController::class,'evaluasiKeuangan'])->name('evaluasisaranaIndex');
 
+Route::post('/image', [ImageController::class,'store'])->name('image.store');
+
 // Route::get('/mahasiswa', function () {
 //     return view('mahasiswa/layouts/index');
 // });

@@ -8,8 +8,8 @@
         <div class="text-center mx-4" id="textprofile">
         {{-- <p class="my-0" id="nama"></p>
         <p class="my-0" id="role"> --}}
-          <p class="my-0">Selamat Datang, {{request()->session()->get('name')}}</p>
-          <p class="my-0">{{request()->session()->get('role')}}</p>
+          <p class="my-0" id="nama">Selamat Datang, {{request()->session()->get('name')}}</p>
+          <p class="my-0" id="role">{{request()->session()->get('role')}}</p>
 
         </p>
         </div>
@@ -60,11 +60,14 @@
         // getCookie("username");
         // var role = sessionStorage.getItem("role");
         // var nama = sessionStorage.getItem("nama");
-        var role =         getCookie("role");
-        var nama =         getCookie("nama");
+        var role =  "{{request()->session()->get('role')}}";
+        var nama =  "{{request()->session()->get('name')}}";
         console.log(role);
-        document.getElementById("role").innerHTML = role;
-        document.getElementById("nama").innerHTML = "Selamat Datang, " + nama;
+        console.log(nama);
+        sessionStorage.setItem("role", role);
+        sessionStorage.setItem("nama", nama);
+        // document.getElementById("role").innerHTML = role;
+        // document.getElementById("nama").innerHTML = "Selamat Datang, " + nama;
 
 
       });

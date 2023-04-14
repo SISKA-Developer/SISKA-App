@@ -125,10 +125,7 @@
 <script src="{{asset('template')}}/plugins/datatables/js/datatables.responsive.min.js"></script>
 <script src="{{asset('template')}}/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 <script>
-    $(document).ready(function(){
-        sessionStorage.setItem("role", "Admin");
-        sessionStorage.setItem("nama", "Ardhan");
-        
+    $(document).ready(function(){        
         // var role = localStorage.getItem("role");
         // console.log(role);
     })

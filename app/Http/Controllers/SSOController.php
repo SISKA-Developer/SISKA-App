@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 
@@ -48,9 +50,23 @@ class SSOController extends Controller
         $response = Http::withHeaders([
             "Accept" => "application/json",
             "Authorization" => "Bearer " . $access_token
-        ])->get("http://sso.stmikbandung.test:80/api/user");
-        // Cookie::queue(Cookie::make('user', $access_token, 120));
-        // dd($response);
+        ])->get("http://sso.stmikbandung.test:80/api/user");        
+        $userArray = $response->json();
+            try {
+                $email = $userArray['email'];
+            } catch (\Throwable $th) {
+                return redirect('login')->withErrors("Failed to Login, Try Again!");
+            }
+        $user = User::where("email", $email)->first();
+        if (!$user) {
+            $user = new User;
+            $user->name = $userArray['name'];
+            $user->email = $userArray['email'];
+            $user->email_verified_at = $userArray['email_verified_at'];
+            $user->nim = $userArray['nim'];
+            $user->role = $userArray['role'];
+        }    
+        Auth::login($user);
         $request->session()->put($response->json());
         $data = $request->session()->all();
         $halaman = $request->session()->get("halaman");

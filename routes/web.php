@@ -93,6 +93,7 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Route::get('/', function () {
         return view('v_home');
     });
+    
     Route::get('/kurikulum', function (Request $request) {
     $token = $request->session()->get("access_token"); 
         if(!$token){

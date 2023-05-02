@@ -86,9 +86,10 @@ $evaluasi3 = $hashids->encode($evaluasi3);
 
     Route::get('/authuser', [SSOController::class,'getuser'])->name('authuser');
 
-    // Route::get('/logout', function(){
-    //     return redirect('http://sso.stmikbandung.test/logout');
-    // })->name('logout');
+    Route::post('/sso/logout', function(Request $request){
+        $request->session()->flush();
+        return redirect('http://sso.stmikbandung.test/logout');
+    })->name('sso.logout');
 
     Route::get('/', function () {
         return view('v_home');
@@ -156,10 +157,7 @@ $evaluasi3 = $hashids->encode($evaluasi3);
 
     // }
 
-// Route::get('/mahasiswa', function () {
-//     return view('mahasiswa/layouts/index');
-// });
 
-Auth::routes(['register' => false, 'reset' => false]);
+    Auth::routes(['register' => false, 'reset' => false]);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

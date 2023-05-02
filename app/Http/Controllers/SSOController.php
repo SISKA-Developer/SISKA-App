@@ -71,12 +71,15 @@ class SSOController extends Controller
         $data = $request->session()->all();
         $halaman = $request->session()->get("halaman");
         if($halaman == 'kurikulum'){
+            $request->session()->forget('halaman');
             return redirect(route('MatakuliahIndex'));
         }
         else if($halaman == 'mahasiswa'){
+            $request->session()->forget('halaman');
             return redirect(route('myprofile'));
         }
         else if($halaman == 'evaluasi'){
+            $request->session()->forget('halaman');
             return redirect(route('evaluasipembelajaranIndex'));
         }else{
             return $data;

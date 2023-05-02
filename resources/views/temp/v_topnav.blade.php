@@ -22,7 +22,7 @@
             <li><a class="dropdown-item" href="#">Settings</a></li>
             <li><a class="dropdown-item" href="#">Profile</a></li> --}}
             {{-- <li><hr class="dropdown-divider"></li> --}}
-            <li><a href="http://sso.stmikbandung.test/" class="dropdown-item" href="#">Sign out</a></li>
+            <li><a href="{{route('sso.logout')}}" class="dropdown-item" href="#">Sign out</a></li>
           </ul>
         </div>
       </div>

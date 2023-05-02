@@ -70,6 +70,7 @@ class SSOController extends Controller
         $request->session()->put($response->json());
         $data = $request->session()->all();
         $halaman = $request->session()->get("halaman");
+
         if($halaman == 'kurikulum'){
             $request->session()->forget('halaman');
             return redirect(route('MatakuliahIndex'));
@@ -82,7 +83,12 @@ class SSOController extends Controller
             $request->session()->forget('halaman');
             return redirect(route('evaluasipembelajaranIndex'));
         }else{
-            return $data;
+            $halaman1 = $request->session()->get("halaman");
+            $halaman = json_encode($halaman1);
+            $string = preg_replace('/[^\p{L}\p{N}\s]/u', '', $halaman);
+            return redirect('http://siska.stmikbandung.test:81/'.$string);
+            // dd($string);
+            
         }
         // return redirect('/');
     }

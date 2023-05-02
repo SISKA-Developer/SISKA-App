@@ -86,20 +86,27 @@ $evaluasi3 = $hashids->encode($evaluasi3);
 
     Route::get('/authuser', [SSOController::class,'getuser'])->name('authuser');
 
-    Route::post('/sso/logout', function(Request $request){
+    Route::get('/sso/logout', function(Request $request){
         $request->session()->flush();
-        return redirect('http://sso.stmikbandung.test/logout');
+        $request->session()->save();
+            // return redirect(route('authuser'));
+            return redirect('http://sso.stmikbandung.test/home');
     })->name('sso.logout');
 
-    Route::get('/', function () {
-        return view('v_home');
+    Route::get('/', function (Request $request) {
+        $token = $request->session()->get("access_token"); 
+        if(!$token){
+            return redirect('http://sso.stmikbandung.test/login');
+        }else{
+            return redirect(route('MatakuliahIndex'));
+        }
     });
     
     Route::get('/kurikulum', function (Request $request) {
     $token = $request->session()->get("access_token"); 
         if(!$token){
             $request->session()->push('halaman', 'kurikulum');
-            return redirect(route('login'));
+            return redirect(route('sso.login'));
         }else{
             return redirect(route('MatakuliahIndex'));
         }
@@ -108,7 +115,7 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     $token = $request->session()->get("access_token"); 
         if(!$token){
             $request->session()->push('halaman', 'mahasiswa');
-            return redirect(route('login'));
+            return redirect(route('sso.login'));
         }else{
         return redirect(route('myprofile'));
         }
@@ -117,7 +124,7 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     $token = $request->session()->get("access_token"); 
         if(!$token){
             $request->session()->push('halaman', 'evaluasi');
-            return redirect(route('login'));
+            return redirect(route('sso.login'));
         }else{
             return redirect(route('evaluasipembelajaranIndex'));
             }

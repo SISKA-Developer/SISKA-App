@@ -29,7 +29,7 @@ ul.breadcrumb li a:hover {
 </style>
 
 <div class="container">
-    <div class="row justify-content-center">
+    {{-- <div class="row justify-content-center">
     <ul class="breadcrumb">
         <li><a href="#">SISKA</a></li>
         <li><a href="#">Kurikulum</a></li>
@@ -182,40 +182,11 @@ ul.breadcrumb li a:hover {
                     </div>
                 </div>
             </div>
-    </div>
+    </div> --}}
 </div>
     @endsection
-{{-- <script>
-    $(function () {
-      $("#table1").DataTables({
-        "responsive": true,
-        "autowidth": true,
-        "paging": true,
-      });
-    });
-    $('#datepicker').datepicker({
-            weekStart: 1,
-            daysOfWeekHighlighted: "6,0",
-            autoclose: true,
-            todayHighlight: true,
-        });
-        $('#datepicker').datepicker("setDate", new Date());
-    
-    </script> --}}
     @push('scripts')
     <script type="text/javascript">
-    $(document).ready(function () {
-       $('#table1').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{{ url()->current() }}',
-            columns: [
-                { data: 'id', name: 'id' },
-                { data: 'name', name: 'nama_lengkap' },
-                { data: 'email', name: 'email' },
-    
-            ]
-        });
-     });
+  
     </script>
     @endpush

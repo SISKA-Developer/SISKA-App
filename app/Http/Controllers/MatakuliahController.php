@@ -12,7 +12,8 @@ use App\Models\matakuliah;
 use Yajra\Datatables\CollectionDataTable;
 use App\Models\linktujuancapaian;
 use App\Models\linkSilabus;
-
+use Illuminate\Support\Facades\Storage;
+use Facade\FlareClient\Http\Response;
 
 class MatakuliahController extends Controller
 {
@@ -22,11 +23,15 @@ class MatakuliahController extends Controller
     }
     
     public function matakuliah(){
-        
-        return view('kurikulum.matakuliah');
+
+        $data = linkSilabus::all();
+        // $data = json_encode($blogs);
+        // dd($data);
+        return view('kurikulum.matakuliah',compact('data'));
     }
         public function getmatakuliahsmt1(Request $request){
         if ($request->ajax()) {
+            // $data = linkSilabus::where();
             $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/kurikulum');
             $data = $response->json();
             $datas = $data['semester1'];
@@ -118,11 +123,42 @@ class MatakuliahController extends Controller
         }
     public function fileSilabus(Request $request)
         {
-           $blog = linkSilabus::create([
-                'link' => $request->link,
-                'keterangan' => $request->keterangan,
-                'kd_mk' => $request->kode_mk
+            $this->validate($request, [
+                'link'     => 'required|mimes:csv,txt,xlx,xls,pdf|max:4048',
+                'keterangan' => 'required',
+                'kode_mk'   => 'required'
             ]);
+            // //get data Blog by ID
+            // $blog = linkSilabus::findOrFail($request->kd_mk);
+
+            // if($request->file('link') == "") {
+                // upload image
+                // $nama = $request->kode_mk;
+            $nama = $request->file('link')->getClientOriginalName();
+            $image = $request->file('link');
+            // $request->file('file')->store('public/files');
+            $image->store('public/data_file', $nama );
+        
+            $blog = linkSilabus::create([
+                'link'     => $nama,
+                'keterangan' => $request->keterangan,
+                'kd_mk'   => $request->kode_mk
+            ]);
+            // } else {
+            //     //hapus old image
+            //     Storage::disk('local')->delete('public/data_file/'.$blog->link);
+
+            //     //upload new image
+            //     $image = $request->file('link');
+            //     $image->storeAs('public/data_file',$request->kd_mk);
+
+            //     $blog->update([
+            //         'link'     => $request->kd_mk,
+            //         'keterangan' => $request->keterangan,
+            //         'kd_mk'   => $request->kd_mk
+            //     ]);
+
+            // }
             if($blog){
                 //redirect dengan pesan sukses
                 return redirect()->back()->with(['success' => 'Data Berhasil Disimpan!']);

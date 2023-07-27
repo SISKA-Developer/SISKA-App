@@ -458,7 +458,8 @@
             
     @push('matakuliah')
     <script>
-        var role = sessionStorage.getItem("role");
+        var role =  "{{request()->session()->get('role')}}";
+        // var role = sessionStorage.getItem("role");
         var x1 = document.getElementById("formcheck1")
         var x2 = document.getElementById("formcheck2")
         var x3 = document.getElementById("formcheck3")

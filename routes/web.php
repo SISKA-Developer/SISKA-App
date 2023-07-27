@@ -92,13 +92,13 @@ $evaluasi3 = $hashids->encode($evaluasi3);
         $request->session()->flush();
         $request->session()->save();
             // return redirect(route('authuser'));
-            return redirect('http://sso.stmikbandung.ac.id:16081/home');
+            return redirect('http://sso.stmik-bandung.ac.id:16081/sso/home');
     })->name('sso.logout');
 
     Route::get('/', function (Request $request) {
         $token = $request->session()->get("access_token"); 
         if(!$token){
-            return redirect('http://sso.stmikbandung.ac.id:16081/login');
+            return redirect('http://sso.stmik-bandung.ac.id:16081/sso/login');
         }else{
             return redirect(route('MatakuliahIndex'));
         }
@@ -133,6 +133,10 @@ $evaluasi3 = $hashids->encode($evaluasi3);
         });
 
     //admin
+
+    // Route::get('/kurikulum', [MatakuliahController::class,'index']);
+    
+    
     Route::get('/kurikulum/'. $matakuliah, [MatakuliahController::class,'matakuliah'])->name('MatakuliahIndex');
     Route::get('/kurikulum/'. $jadwalmatakuliah, [MatakuliahController::class,'jadwalMatakuliah'])->name('JadwalMatakuliahIndex');
     Route::get('/kurikulum/'. $tujuandancapaian, [MatakuliahController::class,'tujuanCapaian'])->name('TujuanCapaianIndex');
@@ -171,4 +175,4 @@ $evaluasi3 = $hashids->encode($evaluasi3);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::post('/image', [ImageController::class,'store'])->name('image.store');
+// Route::post('/image', [ImageController::class,'store'])->name('image.store');

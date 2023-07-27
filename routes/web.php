@@ -90,13 +90,13 @@ $evaluasi3 = $hashids->encode($evaluasi3);
         $request->session()->flush();
         $request->session()->save();
             // return redirect(route('authuser'));
-            return redirect('http://sso.stmikbandung.test/home');
+            return redirect('http://sso.stmikbandung.ac.id:16081/home');
     })->name('sso.logout');
 
     Route::get('/', function (Request $request) {
         $token = $request->session()->get("access_token"); 
         if(!$token){
-            return redirect('http://sso.stmikbandung.test/login');
+            return redirect('http://sso.stmikbandung.ac.id:16081/login');
         }else{
             return redirect(route('MatakuliahIndex'));
         }
@@ -105,9 +105,9 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Route::get('/kurikulum', function (Request $request) {
     $token = $request->session()->get("access_token"); 
         if(!$token){
-            $request->session()->push('halaman', 'kurikulum');
             return redirect(route('sso.login'));
         }else{
+            $request->session()->push('halaman', 'kurikulum');
             return redirect(route('MatakuliahIndex'));
         }
     });

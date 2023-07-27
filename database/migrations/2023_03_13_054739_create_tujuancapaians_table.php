@@ -28,6 +28,6 @@ class CreateTujuancapaiansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tujuancapaians');
+        Schema::dropIfExists('tujuancapaian');
     }
 }

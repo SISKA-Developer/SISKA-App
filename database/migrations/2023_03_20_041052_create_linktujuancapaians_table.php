@@ -29,6 +29,6 @@ class CreateLinktujuancapaiansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('linktujuancapaians');
+        Schema::dropIfExists('linktujuancapaian');
     }
 }

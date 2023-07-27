@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,6 +59,7 @@ $transkripnilai = $hashids->encode($transkripnilai);
 $evaluasi1 = $hashids->encode($evaluasi1);
 $evaluasi2 = $hashids->encode($evaluasi2);
 $evaluasi3 = $hashids->encode($evaluasi3);
+
 // $request = new Request();
 // $token = Cookie::get('siska_session');
  
@@ -168,3 +170,5 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Auth::routes(['register' => false, 'reset' => false]);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/image', [ImageController::class,'store'])->name('image.store');

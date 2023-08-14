@@ -15,7 +15,7 @@ class SSOController extends Controller
     {
         $request->session()->put("state", $state = Str::random(40));
         $query = http_build_query([
-            "client_id" => "98e75d8a-b1be-4b9b-8d59-377fdff92a0c",
+            "client_id" => "99139d45-2a13-4230-bf5e-3b2330db7b00",
             "redirect_uri" => "http://siska.stmikbandung.test:81/callback",
             "response_type" => "code",
             "scope" => "",
@@ -34,8 +34,8 @@ class SSOController extends Controller
             "http://sso.stmikbandung.test:80/oauth/token",
             [
                 "grant_type" => "authorization_code",
-                "client_id" => "98e75d8a-b1be-4b9b-8d59-377fdff92a0c",
-                "client_secret" => "orIjVahKcdmV39jaKShPn0tecq5ZbTONwBPZl7a4",
+                "client_id" => "99139d45-2a13-4230-bf5e-3b2330db7b00",
+                "client_secret" => "vEjspImYL4fW2iIjYDCWDWJQBsxmNaKVMysWEJMk ",
                 "redirect_uri" => "http://siska.stmikbandung.test:81/callback",
                 "code" => $request->code
             ]);
@@ -52,6 +52,7 @@ class SSOController extends Controller
             "Authorization" => "Bearer " . $access_token
         ])->get("http://sso.stmikbandung.test:80/api/user");        
         $userArray = $response->json();
+        // dd($userArray); 
             try {
                 $email = $userArray['email'];
             } catch (\Throwable $th) {
@@ -70,7 +71,7 @@ class SSOController extends Controller
         $request->session()->put($response->json());
         $data = $request->session()->all();
         $halaman = $request->session()->get("halaman");
-
+        // dd($data);
         if($halaman == 'kurikulum'){
             $request->session()->forget('halaman');
             return redirect(route('MatakuliahIndex'));
@@ -88,7 +89,7 @@ class SSOController extends Controller
             $string = preg_replace('/[^\p{L}\p{N}\s]/u', '', $halaman);
             return redirect('http://siska.stmikbandung.test:81/'.$string);
             // dd($string);
-            
+            return $data;
         }
         // return redirect('/');
     }

@@ -105,7 +105,7 @@
        
         // sessionStorage.setItem('sks', sks)
 
-        var nim = sessionStorage.getItem("nim");
+        var nim = "{{request()->session()->get('nim')}}";
 
         $.ajax({
             type: 'GET', //THIS NEEDS TO BE GET

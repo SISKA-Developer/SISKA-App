@@ -23,7 +23,8 @@ class MahasiswaController extends Controller
 
     public function status(Request $request){
         if ($request->ajax()) {
-            $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/jadwal/1219010');
+            $nim = $request->session()->get("nim");
+            $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/jadwal/'.$nim);
             $data = $response->json();
             $datas = $data['data'];
             return DataTables::of($datas)
@@ -34,7 +35,8 @@ class MahasiswaController extends Controller
     }
     public function jadwalKuliah(Request $request){
         if ($request->ajax()) {
-            $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/jadwal/1219010');
+            $nim = $request->session()->get("nim");
+            $response = Http::get('http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/jadwal/'.$nim);
             $data = $response->json();
             $datas = $data['data'];
             return DataTables::of($datas)

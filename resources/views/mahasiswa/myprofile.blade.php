@@ -118,7 +118,7 @@
         $(document).ready(function(){
 
             // sessionStorage.setItem("nim", "1219010");
-            var nim = sessionStorage.getItem("nim");
+            var nim = "{{request()->session()->get('nim')}}";
             // console.log(nim);
 
             $.ajax({

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLinktujuancapaiansTable extends Migration
+class CreateMatakuliahTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateLinktujuancapaiansTable extends Migration
      */
     public function up()
     {
-        Schema::create('linktujuancapaian', function (Blueprint $table) {
+        Schema::create('matakuliah', function (Blueprint $table) {
             $table->id();
-            $table->string('link');
-            $table->string('keterangan');
-            $table->string('program_studi');
+            $table->string('nama');
+            $table->string('kd_mk');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateLinktujuancapaiansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('linktujuancapaian');
+        Schema::dropIfExists('matakuliah');
     }
 }

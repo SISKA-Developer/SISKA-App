@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class EvaluasiController extends Controller
 {
     public function evaluasiPembelajaran(){
-
+            
         return view('evaluasi.evaluasipembelajaran'); 
     }
     public function evaluasiSarana(){

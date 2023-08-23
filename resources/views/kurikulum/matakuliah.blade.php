@@ -8,7 +8,7 @@
             <li><a href="#">Kurikulum</a></li>
             <li>Mata Kuliah</li>
         </ul>
-        <div style="background-color: white">
+        <div class="tabel" style="background-color: white">
             <ul class="nav nav-tabs" id="matakuliahtab" role="tablist">
                 <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="smt1-tab" data-bs-toggle="tab" data-bs-target="#smt1tab" type="button" role="tab" aria-controls="smt1tab" aria-selected="true">Semester 1</button>
@@ -38,7 +38,7 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="smt1tab" role="tabpanel" aria-labelledby="smt1tab" tabindex="0">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body tabel">
                             {{-- <div class="col-md-12 d-flex my-2 mx-0 p-0"> --}}
                                 <div id="formcheck1" class="col-md-6 my-1">
                                     {{-- <div class="form-check form-check-inline">
@@ -63,8 +63,8 @@
                                     </select>
                                 </div> --}}
                             {{-- </div> --}}
-                            <table id="yajra-datatable-smt1" class="table table-striped table-bordered dt-responsive yajra-datatable" style="background-color: white">
-                                <thead>
+                            <table id="yajra-datatable-smt1" class="table tabel table-striped table-bordered dt-responsive yajra-datatable" style="background-color: white">
+                                <thead class="tabel">
                                     <tr>
                                         <th>No</th>
                                         <th>Kode Kurikulum</th>
@@ -493,6 +493,7 @@
         $("body").tooltip({ selector: '[data-bs-toggle=tooltip]' });
             table = $('#yajra-datatable-smt1').DataTable({
                 processing: true,
+                autoWidth: true,
                 serverSide: true,
                 responsive: true,
                 searching: true,

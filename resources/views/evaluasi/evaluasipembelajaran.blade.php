@@ -46,36 +46,311 @@ ul.breadcrumb li a:hover {
   </li>
 </ul>
 
-<h5 style="margin:5px">Kegiatan Awal Pembelajaran</h5>
-
 <div class="tab-content" id="myTabContent">
   <!-- kalkulus content -->
   <div class="tab-pane fade show active" id="kalkulus-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-    <div>
-      Dosen menjelaskan silabus awal perkuliahan
-    </div>
-    <div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-        <label class="form-check-label" for="inlineRadio1">1</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-        <label class="form-check-label" for="inlineRadio2">2</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-        <label class="form-check-label" for="inlineRadio3">3</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-        <label class="form-check-label" for="inlineRadio3">4</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-        <label class="form-check-label" for="inlineRadio3">5</label>
-      </div>
-    </div>
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="kalkulus" hidden>
+  <table class="table" id="kegiatan_pembelajaran_kalkulus">
+    <thead>
+    <th scope="col"><h5 style="margin:5px">Kegiatan Awal Pembelajaran</h5></th>
+      <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio5">5</label></th>
+      <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio4">4</label></th>
+      <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio3">3</label></th>
+      <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio2">2</label></th>
+      <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio1">1</label></th>
+    </thead>
+    <tbody>
+      <tr>
+      <td>
+        <p class="m-1 p-1">Dosen menjelaskan silabus awal perkuliahan</p>
+      </td>
+      <td>
+        <div class="form-check form-check-inline m-1 p-1">
+        <input class="form-check-input" type="radio" name="p1" id="inlineRadio1" value="5">
+        </div>
+      </td>
+      <td>
+        <div class="form-check form-check-inline m-1 p-1">
+        <input class="form-check-input" type="radio" name="p1" id="inlineRadio4" value="4">
+        </div>
+      </td>
+      <td>
+        <div class="form-check form-check-inline m-1 p-1">
+        <input class="form-check-input" type="radio" name="p1" id="inlineRadio3" value="3">
+        </div>
+      </td>
+      <td>
+        <div class="form-check form-check-inline m-1 p-1">
+        <input class="form-check-input" type="radio" name="p1" id="inlineRadio2" value="2">
+        </div>
+      </td>
+      <td>
+        <div class="form-check form-check-inline m-1 p-1">
+        <input class="form-check-input" type="radio" name="p1" id="inlineRadio1" value="1">
+        </div>
+      </td>
+      </tr>
+      {{-- ////2//// --}}
+      <tr>
+        <td>
+          <p class="m-1 p-1">Dosen menyampaikan informasi tentang tujuan pembelajaran yang akan dicapai</p>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p2" id="inlineRadio1" value="5">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p2" id="inlineRadio4" value="4">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p2" id="inlineRadio3" value="3">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p2" id="inlineRadio2" value="2">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p2" id="inlineRadio1" value="1">
+          </div>
+        </td>
+        </tr>
+        {{-- ////3//// --}}
+      <tr>
+        <td>
+          <p class="m-1 p-1">Dosen menginformasikan kompetensi yang harus dicapai mahasiswa</p>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p3" id="inlineRadio1" value="5">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p3" id="inlineRadio4" value="4">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p3" id="inlineRadio3" value="3">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p3" id="inlineRadio2" value="2">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p3" id="inlineRadio1" value="1">
+          </div>
+        </td>
+        </tr>
+        {{-- ////4//// --}}
+      <tr>
+        <td>
+          <p class="m-1 p-1">Dosen menyampaikan sumber referensi yang digunakan dalam perkuliahan</p>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p4" id="inlineRadio1" value="5">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p4" id="inlineRadio4" value="4">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p4" id="inlineRadio3" value="3">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p4" id="inlineRadio2" value="2">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p4" id="inlineRadio1" value="1">
+          </div>
+        </td>
+        </tr>
+    </tbody>
+  </table>
+  <table class="table" id="pelaksanaan_pembelajaran_kalkulus">
+    <thead>
+    <th scope="col"><h5 style="margin:5px">Pelaksanaan Pembelajaran</h5></th>
+      <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio5">5</label></th>
+      <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio4">4</label></th>
+      <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio3">3</label></th>
+      <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio2">2</label></th>
+      <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio1">1</label></th>
+    </thead>
+    <tbody>
+      <tr>
+      <td>
+        <p class="m-1 p-1">Dosen memasuki kelas dengan mengucapkan salam</p>
+      </td>
+      <td>
+        <div class="form-check form-check-inline m-1 p-1">
+        <input class="form-check-input" type="radio" name="p5" id="inlineRadio1" value="5">
+        </div>
+      </td>
+      <td>
+        <div class="form-check form-check-inline m-1 p-1">
+        <input class="form-check-input" type="radio" name="p5" id="inlineRadio4" value="4">
+        </div>
+      </td>
+      <td>
+        <div class="form-check form-check-inline m-1 p-1">
+        <input class="form-check-input" type="radio" name="p5" id="inlineRadio3" value="3">
+        </div>
+      </td>
+      <td>
+        <div class="form-check form-check-inline m-1 p-1">
+        <input class="form-check-input" type="radio" name="p5" id="inlineRadio2" value="2">
+        </div>
+      </td>
+      <td>
+        <div class="form-check form-check-inline m-1 p-1">
+        <input class="form-check-input" type="radio" name="p5" id="inlineRadio1" value="1">
+        </div>
+      </td>
+      </tr>
+      {{-- ////2//// --}}
+      <tr>
+        <td>
+          <p class="m-1 p-1">Dosen memberikan motivasi belajar kepada mahasiswa</p>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p6" id="inlineRadio1" value="5">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p6" id="inlineRadio4" value="4">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p6" id="inlineRadio3" value="3">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p6" id="inlineRadio2" value="2">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p6" id="inlineRadio1" value="1">
+          </div>
+        </td>
+        </tr>
+        {{-- ////3//// --}}
+      <tr>
+        <td>
+          <p class="m-1 p-1">Dosen membangkitkan minat belajar mahasiswa untuk mengikuti perkuliahan</p>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p7" id="inlineRadio1" value="5">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p7" id="inlineRadio4" value="4">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p7" id="inlineRadio3" value="3">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p7" id="inlineRadio2" value="2">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p7" id="inlineRadio1" value="1">
+          </div>
+        </td>
+        </tr>
+        {{-- ////4//// --}}
+      <tr>
+        <td>
+          <p class="m-1 p-1">Dosen mengupayakan terjadinya interaksi belajar mahasiswa secara intensif</p>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p8" id="inlineRadio1" value="5">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p8" id="inlineRadio4" value="4">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p8" id="inlineRadio3" value="3">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p8" id="inlineRadio2" value="2">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p8" id="inlineRadio1" value="1">
+          </div>
+        </td>
+        </tr>
+        {{-- ////5//// --}}
+      <tr>
+        <td>
+          <p class="m-1 p-1">Dosen memeberikan jawaban atas pertanyaan pertanyaan mahasiswa</p>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p9" id="inlineRadio1" value="5">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p9" id="inlineRadio4" value="4">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p9" id="inlineRadio3" value="3">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p9" id="inlineRadio2" value="2">
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-check-inline m-1 p-1">
+          <input class="form-check-input" type="radio" name="p9" id="inlineRadio1" value="1">
+          </div>
+        </td>
+        </tr>
+    </tbody>
+  </table>
 
   </div>
 

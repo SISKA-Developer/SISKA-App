@@ -9,6 +9,7 @@
         <title>SISKA | STMIK Bandung</title>    
         <link rel="icon" href="https://stmik-bandung.merdeka.academy/solmit.ico" /> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <!-- Styles -->
@@ -67,7 +68,7 @@
                 background: white;
                 border: 2px solid rgb(43, 43, 43);
                 border-radius: 5px;
-                text-align: center
+                text-align: center;
                 }
             .filter-radio{
                 margin-left: 30px
@@ -83,6 +84,29 @@
             .yajra-datatable {
                 background-color: #D9D9D9
             }
+            @media screen and (max-width: 600px) {
+                #main{
+                width: auto;
+                height: auto;
+                /* background-color: #D9D9D9 */
+                    }
+                    table {
+                    resize:both;
+                    overflow:auto;
+                }​
+                .yajra-datatable {
+                    width: auto;
+                }   
+                .tabel{
+                    /* width: 400px; */
+                    width:auto!important
+                }
+                #hero {
+                    width: 100%;
+                }
+                th, td { resize: both; overflow: auto; }
+            }
+
         </style>
     </head>
 <body>
@@ -99,7 +123,7 @@
                         <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
                     </div>
                     <!-- Content Row -->
-                    <div class="row">
+                    <div id="hero" class="row">
                     @yield('isicontent')                    
                     <!-- Content Row -->
                 <!-- /.container-fluid -->
@@ -111,8 +135,8 @@
   
 
 </body>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
@@ -132,7 +156,14 @@
 <script>
         // var role = localStorage.getItem("role");
         // console.log(role);
+<<<<<<< HEAD
         
+=======
+        // var table = $('#example').DataTable();
+ 
+        //  $('#yajra-datatable-smt1').css( 'display', 'block' );
+        //     table.columns.adjust().draw();
+>>>>>>> 9fa23812d821e07b18938377c9a7168d518ec7a9
     function openNav() {
       document.getElementById("sidebar").style.width = "350px";
       document.getElementById("main").style.marginLeft = "350px";

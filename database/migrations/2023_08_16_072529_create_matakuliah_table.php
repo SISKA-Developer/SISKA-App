@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ProfileImage extends Migration
+class CreateMatakuliahTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class ProfileImage extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('matakuliah', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
+            $table->string('nama');
+            $table->string('kd_mk');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class ProfileImage extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('matakuliah');
     }
 }

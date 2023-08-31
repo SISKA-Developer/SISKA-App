@@ -90,7 +90,7 @@ class SSOController extends Controller
         $request->session()->put($response->json());
         $data = $request->session()->all();
         $halaman = $request->session()->get("halaman");
-
+        // dd($data);
         if($halaman == 'kurikulum'){
             $request->session()->forget('halaman');
             return redirect(route('MatakuliahIndex'));

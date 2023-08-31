@@ -118,12 +118,12 @@
         $(document).ready(function(){
 
             // sessionStorage.setItem("nim", "1219010");
-            var nim = sessionStorage.getItem("nim");
+            var nim = "{{request()->session()->get('nim')}}";
             // console.log(nim);
 
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET
-                url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/'+ nim,
+                url: 'http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/'+ nim,
                 dataType: 'json',
                 success: function (data,val) {
                     console.log(data);

@@ -133,7 +133,7 @@
 
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET
-                url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/mahasiswa/detail/'+ nim,
+                url: 'http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/detail/'+ nim,
                 dataType: 'json',
                 success: function (data,val) {
                     console.log(data);

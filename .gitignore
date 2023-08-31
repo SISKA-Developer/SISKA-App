@@ -14,8 +14,4 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-<<<<<<< HEAD
-/app/Controllers/SSOController.php
-=======
 /app/Http/Controllers/SSOController
->>>>>>> 9fa23812d821e07b18938377c9a7168d518ec7a9

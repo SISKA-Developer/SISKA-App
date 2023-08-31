@@ -156,14 +156,10 @@
 <script>
         // var role = localStorage.getItem("role");
         // console.log(role);
-<<<<<<< HEAD
-        
-=======
         // var table = $('#example').DataTable();
  
         //  $('#yajra-datatable-smt1').css( 'display', 'block' );
         //     table.columns.adjust().draw();
->>>>>>> 9fa23812d821e07b18938377c9a7168d518ec7a9
     function openNav() {
       document.getElementById("sidebar").style.width = "350px";
       document.getElementById("main").style.marginLeft = "350px";

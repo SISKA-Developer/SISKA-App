@@ -19,15 +19,15 @@ class SSOController extends Controller
         //     base64_encode(hash('sha256', $code_verifier, true))
         //     , '='),'+/', '-_');
         $query = http_build_query([
-            "client_id" => "9a126118-2450-42fd-9ac3-789fa7c14b05",
-            "redirect_uri" => "http://siska.stmikbandung.test:81/callback",
+            "client_id" => "99480d52-a18e-4080-a14b-9196644c7373",
+            "redirect_uri" => "http://siska.stmik-bandung.ac.id:16082/siska/callback",
             "response_type" => "code",
             "scope" => "view-user",
             "state" => $state,
             // "code_challenge" => $codeChallenge,
             // "code_challenge_method" => 'S256',
         ]);
-        return redirect("http://sso.stmikbandung.test:80/oauth/authorize?" . $query);
+        return redirect("http://sso.stmik-bandung.ac.id:16081/sso/oauth/authorize?" . $query);
     }
     public function getcallback(Request $request)
     {
@@ -41,12 +41,12 @@ class SSOController extends Controller
         //error tidak muncul access token
         // $http = new GuzzleHttp\Client;
         $response = Http::asForm()->post(
-            "http://sso.stmikbandung.test:80/oauth/token",
+            "http://sso.stmik-bandung.ac.id:16081/sso/oauth/token",
             [
                 "grant_type" => "authorization_code",
-                "client_id" => "9a126118-2450-42fd-9ac3-789fa7c14b05",
-                "client_secret" => "huzzEsFw4QFHA9IOicEfIq39qVNIomMEopyGDz6f",
-                "redirect_uri" => "http://siska.stmikbandung.test:81/callback",
+                "client_id" => "99480d52-a18e-4080-a14b-9196644c7373",
+                "client_secret" => "NAez3k3bM2uzffEUhY7oDSrd0pg06WktTPucnGS8",
+                "redirect_uri" => "http://siska.stmik-bandung.ac.id:16082/siska/callback",
                 // "code-verifier" => $code_verifier,
                 "code" => $request->code
             ]);
@@ -68,7 +68,7 @@ class SSOController extends Controller
         $response = Http::withHeaders([
             "Accept" => "application/json",
             "Authorization" => "Bearer " . $access_token
-            ])->get("http://sso.stmikbandung.test:80/api/user");        
+            ])->get("http://sso.stmik-bandung.ac.id:16081/sso/api/user");        
             $userArray = $response->json();
             // dd($userArray);
             try {
@@ -90,7 +90,7 @@ class SSOController extends Controller
         $request->session()->put($response->json());
         $data = $request->session()->all();
         $halaman = $request->session()->get("halaman");
-
+        // dd($data);
         if($halaman == 'kurikulum'){
             $request->session()->forget('halaman');
             return redirect(route('MatakuliahIndex'));
@@ -106,11 +106,17 @@ class SSOController extends Controller
             $halaman1 = $request->session()->get("halaman");
             $halaman = json_encode($halaman1);
             $string = preg_replace('/[^\p{L}\p{N}\s]/u', '', $halaman);
-            return redirect('http://siska.stmikbandung.test:81/'.$string);
+            return redirect('http://siska.stmik-bandung.ac.id:16082/siska/'.$string);
 }
             // dd($string);
-            // New client created successfully.
-            // Client ID: 9a126118-2450-42fd-9ac3-789fa7c14b05
-            // Client secret: huzzEsFw4QFHA9IOicEfIq39qVNIomMEopyGDz6f
+//             dev :New client created successfully.
+//              Client ID: 993dd2d5-76a1-4254-8110-4a14153aab03
+//              Client secret: 8RTakZKmthuP6puBsubonFEKipH5Trty1babYoBu
+
+
+//  prod :New client created successfully.
+// Client ID: 9947fe29-c546-4ea2-9631-f3b925f8bbd5
+// Client secret: Pl5j9oOkWDTxwvFFyXnT4Y4YcSe5T2HCWD6xNIb6
+        // return redirect('/');
     }
 }

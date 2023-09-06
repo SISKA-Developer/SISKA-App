@@ -1,7 +1,7 @@
  <header class="navbar py-3 mb-1 border-bottom bg-white">
     <div class="container-fluid" style="grid-template-columns: 1fr 2fr;">
       <div class="col-3 d-flex justify-content-start" style="padding: 0">
-      <button class="openbtn" onclick="openNav()">☰</button>  
+      <button class="openbtn" onclick="openNav()">☰</button>
       </div>
       <div class="col-9 d-flex justify-content-end">
       <div class="d-flex align-items-center">
@@ -62,10 +62,12 @@
         // var nama = sessionStorage.getItem("nama");
         var role =  "{{request()->session()->get('role')}}";
         var nama =  "{{request()->session()->get('name')}}";
+        var nim =  "{{request()->session()->get('nim')}}";
         console.log(role);
         console.log(nama);
         sessionStorage.setItem("role", role);
         sessionStorage.setItem("nama", nama);
+        sessionStorage.setItem("nim", nim);
         // document.getElementById("role").innerHTML = role;
         // document.getElementById("nama").innerHTML = "Selamat Datang, " + nama;
 

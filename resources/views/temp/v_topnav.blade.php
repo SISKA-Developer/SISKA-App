@@ -62,10 +62,13 @@
         // var nama = sessionStorage.getItem("nama");
         var role =  "{{request()->session()->get('role')}}";
         var nama =  "{{request()->session()->get('name')}}";
+        var nim  =  "{{request()->session()->get('nim')}}";
         console.log(role);
         console.log(nama);
+        console.log(nim);
         sessionStorage.setItem("role", role);
         sessionStorage.setItem("nama", nama);
+        sessionStorage.setItem("nim", nim);
         // document.getElementById("role").innerHTML = role;
         // document.getElementById("nama").innerHTML = "Selamat Datang, " + nama;
 

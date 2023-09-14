@@ -67,10 +67,6 @@
                         </div>
                     </div> -->
 
-                    <div class="mb-3 row col-sm-3">
-                        <button type="submit" class="btn btn-primary mb-3">Edit</button>
-                    </div>
-
                 </form>
             </div>       
         </div>

@@ -78,7 +78,6 @@
                 </div>
             </div>
                 <footer>
-                    <a href="#" class="btn btn-primary">KTM</a>
                     <a href="#" class="btn btn-primary">Update</a>
                 </footer>              
         </div>

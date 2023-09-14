@@ -150,6 +150,7 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Route::get('matakuliahsmt7', [MatakuliahController::class,'getmatakuliahsmt7'])->name('getmatakuliahsmt7');
     Route::get('matakuliahsmt8', [MatakuliahController::class,'getmatakuliahsmt8'])->name('getmatakuliahsmt8');
     Route::get('getjadwalmatakuliah', [MatakuliahController::class,'getjadwalmatakuliah'])->name('getjadwalmatakuliah');
+    Route::get('getmatakuliahall', [MatakuliahController::class,'getmatakuliahall'])->name('getmatakuliahall');
     Route::post('filetujuanCapaian', [MatakuliahController::class, 'filetujuanCapaian']);
     Route::post('fileSilabus', [MatakuliahController::class, 'fileSilabus']);
 

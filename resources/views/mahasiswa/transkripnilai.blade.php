@@ -146,6 +146,25 @@
                     console.log("errror",data);
                 }
             });
+            var table = $('#transkripMhs').DataTable({
+                processing: true,
+                autoWidth: true,
+                serverSide: true,
+                responsive: true,
+                searching: true,
+                sort: true,
+                language: {
+                    processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
+                    },
+                ajax: "{{ route('getmatakuliahall') }}",
+                columns: [
+                        {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                        {data: 'kd_mk'},
+                        {data: 'nm_mk'},
+                        {data: 'sks'},
+                    ]
+            });
+            table.draw()
         })
 
     </script>

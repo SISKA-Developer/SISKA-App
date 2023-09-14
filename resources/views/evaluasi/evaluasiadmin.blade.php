@@ -30,7 +30,7 @@ ul.breadcrumb li a:hover {
 <ul class="breadcrumb">
     <li><a href="#">SISKA</a></li>
     <li><a href="#">Evaluasi</a></li>
-    <li>Evaluasi Pengelolaan Keuangan</li>
+    <li>Evaluasi Admin View</li>
 </ul>
 
 <div class="card" style="background-color: white;">
@@ -40,11 +40,11 @@ ul.breadcrumb li a:hover {
       <table class="table" id="pelaksanaan_pembelajaran_sarana">
         <thead>
         <th scope="col"><h5 style="margin:5px">Pengelolaan Keuangan</h5></th>
-          <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio5">5</label></th>
-          <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio4">4</label></th>
-          <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio3">3</label></th>
-          <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio2">2</label></th>
-          <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio1">1</label></th>
+          <th scope="col"><label class="form-check-label m-1 p-1">5</label></th>
+          <th scope="col"><label class="form-check-label m-1 p-1">4</label></th>
+          <th scope="col"><label class="form-check-label m-1 p-1">3</label></th>
+          <th scope="col"><label class="form-check-label m-1 p-1">2</label></th>
+          <th scope="col"><label class="form-check-label m-1 p-1">1</label></th>
         </thead>
         <tbody>
           <tr>

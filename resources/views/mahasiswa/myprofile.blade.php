@@ -7,7 +7,7 @@
             <li><a href="#">Mahasiswa</a></li>
             <li>My Profile</li>
         </ul>
-        
+
         <div class="card">
             <div class="card-header">
                 My Profile
@@ -16,7 +16,7 @@
                 <div class="text-center h-100" id="profile-img">
                     <!-- <img src="{{url('$images')}}" alt="profile" class="card-img-top smallimg rounded-circle"> -->
                 </div>
-                <br>                
+                <br>
                 <div class="profile-left">
                     <table id="myprofile-left" class="table-left ">
                         <?php $int=0; ?>
@@ -44,7 +44,7 @@
                         <tr>
                             <td>Tempat/Tgl Lahir</td>
                             <td id="ttl"></td>
-                        </tr>  
+                        </tr>
                     </table>
                 </div>
 
@@ -77,15 +77,45 @@
                     </table>
                 </div>
             </div>
+@php
+    $data = Request::session()->get('nim');
+@endphp
                 <footer>
-                    <a href="#" class="btn btn-primary">Update</a>
-                </footer>              
+                    <a href="#" class="btn btn-primary">KTM</a>
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalsilabus" onclick="fotoprofil()">Update</a>
+                </footer>
         </div>
+    </div>
+    <div class="modal" tabindex="-1" id="modalsilabus">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Update Foto Profil</h5>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="close"></button>
+            </div>
+            <form action="{{ url('fotoprofil') }}" method="POST" enctype="multipart/form-data">
+            <div class="modal-body">
+                    @csrf
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Masukan Foto Profil :</label>
+                    <input class="form-control" type="file" id="image" name="image">
+                    <input class="form-control" type="text" id="nim_profil" name="nim" value="">
+                  </div>
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Keterangan :</label>
+                    <input class="form-control" type="text" id="keterangan" name="keterangan">
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" onclick="javascript.void(0)" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
     </div>
 
     <style>
         .smallimg {
-            width: 200px; 
+            width: 200px;
             height: 200px;
         }
         .profile-left {
@@ -159,7 +189,7 @@
                     }
 
                     $("#dosen_wali").append("<p>"+data.data[0].dosen_wali+"</p>");
-                    
+
                     if(data.data[0].sts_mhs == "A")
                     {
                         $("#sts_mhs").append("<p> Aktif </p>");
@@ -169,14 +199,24 @@
 
                     $("#profile-img").append(
                         "<img src='/foto_profile/"+data.data[0].nim+".jpg' alt='profile' class='card-img-top smallimg rounded-circle'>")
-                },error:function(){ 
+                },error:function(){
                     console.log("errror",data);
                 }
             });
 
-            
+
 
         })
+        function fotoprofil() {
+            // var datas = data;
+            // console.log(data);
+            //ajax
+            var nim = "{{request()->session()->get('nim')}}";
+            console.log(nim);
+
+            document.getElementById("nim_profil").value = nim; // Sesuaikan id dengan "nim_profil"
+            // document.getElementById("kode_mk").value = "My value";
+        }
 
     </script>
 

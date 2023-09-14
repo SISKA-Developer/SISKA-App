@@ -33,7 +33,7 @@ ul.breadcrumb li a:hover {
     <li>Evaluasi Pembelajaran</li>
 </ul>
 
-<div class="card" style="background-color: white;">
+{{-- <div class="card" style="background-color: white;">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
       <button class="nav-link active" id="kalkulus-tab" data-bs-toggle="tab" data-bs-target="#kalkulus-tab-pane" type="button" role="tab" aria-controls="kalkulus-tab-pane" aria-selected="true">Kalkulus</button>
@@ -44,13 +44,25 @@ ul.breadcrumb li a:hover {
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="algoritma-tab" data-bs-toggle="tab" data-bs-target="#algoritma-tab-pane" type="button" role="tab" aria-controls="algoritma-tab-pane" aria-selected="false">Algoritma</button>
   </li>
-</ul>
+</ul> --}}
 
-<div class="tab-content" id="myTabContent">
+{{-- <div class="tab-content" id="myTabContent"> --}}
   <!-- kalkulus content -->
-  <div class="tab-pane fade show active" id="kalkulus-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="kalkulus" hidden>
-  <table class="table" id="kegiatan_pembelajaran_kalkulus">
+  {{-- <div class="tab-pane fade show active" id="kalkulus-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0"> --}}
+
+
+<div class="card" style="background-color: white;">
+    <form action="{{ route('evaluasi.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input id="nama_tabel" type="text" name="nama_tabel" value="pembelajaran" hidden>
+    <label for="mk_id" class="m-1 p-1">Nama Matkul yang akan dinilai</label>
+    <select class="form-select" aria-label="mk_id" name="mk_id">
+        <option selected>--Pilih Matakuliah--</option>
+        @foreach ($datas as $item)
+        <option value="{{$item['kd_mk']}}">{{$item['kd_mk']}} - {{$item['nm_mk']}} - {{$item['nm_jurusan']}}</option>
+        @endforeach
+      </select>
+  <table class="table" id="kegiatan_pembelajaran">
     <thead>
     <th scope="col"><h5 style="margin:5px">Kegiatan Awal Pembelajaran</h5></th>
       <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio5">5</label></th>
@@ -185,7 +197,7 @@ ul.breadcrumb li a:hover {
         </tr>
     </tbody>
   </table>
-  <table class="table" id="pelaksanaan_pembelajaran_kalkulus">
+  <table class="table" id="pelaksanaan_pembelajaran">
     <thead>
     <th scope="col"><h5 style="margin:5px">Pelaksanaan Pembelajaran</h5></th>
       <th scope="col"><label class="form-check-label m-1 p-1" for="inlineRadio5">5</label></th>
@@ -351,19 +363,21 @@ ul.breadcrumb li a:hover {
         </tr>
     </tbody>
   </table>
-
   </div>
-
-  <!-- fisika content -->
-  <div class="tab-pane fade" id="fisika-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-  ...
+  <div class="card" style="background-color: white;">
+    <div class="card-header" style="background-color: white;">Catatan</div>
+      <div class="card-body">
+        <input class="form-control" id="catatan" type="text" name="catatan" >
+      </div>
   </div>
-
-  <!-- algoritma content -->
-  <div class="tab-pane fade" id="algoritma-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-  ...
-  </div>
-</div>
-</div>
+    <div class="d-flex justify-content-center">
+      <div class="m-1 p-1">
+      <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
+      </div>
+      <div class="m-1 p-1">
+      <button type="reset" class="btn btn-md btn-warning">RESET</button>
+      </div>
+    </div>
+  </form>
 
 @endsection

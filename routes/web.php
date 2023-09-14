@@ -62,23 +62,23 @@ $evaluasi3 = $hashids->encode($evaluasi3);
 
 // $request = new Request();
 // $token = Cookie::get('siska_session');
- 
+
 // Get the currently authenticated user...
 // $user = Auth::user();
 // dd($user);
 // dd($user);
- 
+
 // Get the currently authenticated user's ID...
 // $id = Auth::id();
     // if(!$token){
     //     Route::get('/', function () {
     //         return view('v_home');
     //     })->middleware('auth');
-        
+
     //     Route::get('/login', function(){
     //         return redirect('http://sso.stmikbandung.test/login');
     //     })->name('login');
-        
+
     // }else{
 
 
@@ -96,16 +96,16 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     })->name('sso.logout');
 
     Route::get('/', function (Request $request) {
-        $token = $request->session()->get("access_token"); 
+        $token = $request->session()->get("access_token");
         if(!$token){
             return redirect('http://sso.stmik-bandung.ac.id:16081/sso/login');
         }else{
             return redirect(route('MatakuliahIndex'));
         }
     });
-    
+
     Route::get('/kurikulum', function (Request $request) {
-    $token = $request->session()->get("access_token"); 
+    $token = $request->session()->get("access_token");
         if(!$token){
             return redirect(route('sso.login'));
         }else{
@@ -114,16 +114,16 @@ $evaluasi3 = $hashids->encode($evaluasi3);
         }
     });
     Route::get('/mahasiswa', function (Request $request) {
-    $token = $request->session()->get("access_token"); 
+    $token = $request->session()->get("access_token");
         if(!$token){
             $request->session()->push('halaman', 'mahasiswa');
             return redirect(route('sso.login'));
         }else{
         return redirect(route('myprofile'));
         }
-    });    
+    });
     Route::get('/evaluasi', function (Request $request) {
-    $token = $request->session()->get("access_token"); 
+    $token = $request->session()->get("access_token");
         if(!$token){
             $request->session()->push('halaman', 'evaluasi');
             return redirect(route('sso.login'));
@@ -135,8 +135,8 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     //admin
 
     // Route::get('/kurikulum', [MatakuliahController::class,'index']);
-    
-    
+
+
     Route::get('/kurikulum/'. $matakuliah, [MatakuliahController::class,'matakuliah'])->name('MatakuliahIndex');
     Route::get('/kurikulum/'. $jadwalmatakuliah, [MatakuliahController::class,'jadwalMatakuliah'])->name('JadwalMatakuliahIndex');
     Route::get('/kurikulum/'. $tujuandancapaian, [MatakuliahController::class,'tujuanCapaian'])->name('TujuanCapaianIndex');
@@ -160,6 +160,7 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Route::get('/mahasiswa/'. $pengkiniandata, [MahasiswaController::class,'dataindukmahasiswa'])->name('datamahasiswaIndex');
     Route::get('/mahasiswa/'. $statuskeuangan, [MahasiswaController::class,'statusKeuangan'])->name('statuskeuanganIndex');
     Route::get('/mahasiswa/'. $transkripnilai, [MahasiswaController::class,'transkripNilai'])->name('transkripnilaiIndex');
+    Route::post('fileimage', [ImageController::class, 'fotoprofil']);
 
     Route::get('/evaluasi/'. $evaluasi1, [EvaluasiController::class,'evaluasiPembelajaran'])->name('evaluasipembelajaranIndex');
     Route::get('/evaluasi/'. $evaluasi2, [EvaluasiController::class,'evaluasiSarana'])->name('evaluasipengelolaanIndex');

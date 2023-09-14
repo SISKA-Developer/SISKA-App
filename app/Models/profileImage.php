@@ -9,6 +9,10 @@ class profileImage extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'image'
+        'image',
+        'nim',
+        'keterangan',
+
+
     ];
 }

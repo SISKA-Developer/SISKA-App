@@ -13,7 +13,7 @@
             <div class="card-header">
                 Daftar Nlai Sementara
             </div>
-            <div class="card-body">              
+            <div class="card-body">
                 <div class="transkrip-left table-responsive">
                     <table id="transkripMhs-left" class="table-left ">
                         <tr>
@@ -33,7 +33,7 @@
                         <tr>
                             <td>Tempat/Tgl Lahir</td>
                             <td id="ttl"></td>
-                        </tr> 
+                        </tr>
                         <tr>
                             <td>Jurusan</td>
                             <td id="nama_jurusan"></td>
@@ -81,7 +81,7 @@
                     <p>Mina Ismu Rahayu, M.T.<br><span>Ka. Prodi TEKNIK INFORMATIKA</span></p>
                 </div>
 
-            </div>            
+            </div>
         </div>
 
 </div>
@@ -124,16 +124,16 @@
         margin-left: 15px;
         margin-top: 15px;
     }
-    
+
 </style>
 
 @push('matakuliah')
     <script>
         $(document).ready(function(){
-            
+
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET
-                url: 'http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/1219019',
+                url: 'http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/1219010',
                 dataType: 'json',
                 success: function (data,val) {
                     console.log(data);
@@ -141,8 +141,8 @@
                     $("#nim").append("<p>"+data.data[0].nim+"</p>");
                     $("#ttl").append("<p>"+data.data[0].tmp_lahir+", "+data.data[0].tgl_lahir+"</p>");
                     $("#nama_jurusan").append("<p>"+data.data[0].nama_jurusan+"</p>");
-                   
-                },error:function(){ 
+
+                },error:function(){
                     console.log("errror",data);
                 }
             });

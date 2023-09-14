@@ -17,7 +17,7 @@ use Facade\FlareClient\Http\Response;
 
 class MatakuliahController extends Controller
 {
-    
+
     public function matakuliah(){
 
         $data = linkSilabus::all();
@@ -26,11 +26,12 @@ class MatakuliahController extends Controller
         return view('kurikulum.matakuliah',compact('data'));
     }
     public function index(){
-        $response = Http::get('http://api.stmik-bandung.ac.id:16080/apiserver/api/kurikulum');
+        $response = Http::get('http://api.stmik-bandung.ac.id:16080/apiserver/api/jadwal');
+        // $response = Http::get('http://api.stmik-bandung.ac.id:16080/apiserver/api/kurikulum');
         // $response = Http::get('https://holyhos.hasura.app/api/rest/patient');
             $data = $response->json();
             dd($data);
-        
+
             return view('kurikulum.matakuliah');
     }
         public function getmatakuliahsmt1(Request $request){
@@ -42,7 +43,7 @@ class MatakuliahController extends Controller
                     ->addIndexColumn()
                     ->make(true);
                 }
-            return view('kurikulum.kurikulum');   
+            return view('kurikulum.kurikulum');
         }
 
         public function getmatakuliahsmt2(Request $request){
@@ -54,7 +55,7 @@ class MatakuliahController extends Controller
                     ->addIndexColumn()
                     ->make(true);
                 }
-            return view('kurikulum.kurikulum');   
+            return view('kurikulum.kurikulum');
         }
         public function getmatakuliahsmt3(Request $request){
             if ($request->ajax()) {
@@ -65,7 +66,7 @@ class MatakuliahController extends Controller
                     ->addIndexColumn()
                     ->make(true);
                 }
-            return view('kurikulum.kurikulum');   
+            return view('kurikulum.kurikulum');
         }
         public function getmatakuliahsmt4(Request $request){
             if ($request->ajax()) {
@@ -76,7 +77,7 @@ class MatakuliahController extends Controller
                     ->addIndexColumn()
                     ->make(true);
                 }
-            return view('kurikulum.kurikulum');   
+            return view('kurikulum.kurikulum');
         }
         public function getmatakuliahsmt5(Request $request){
                     if ($request->ajax()) {
@@ -87,9 +88,9 @@ class MatakuliahController extends Controller
                             ->addIndexColumn()
                             ->make(true);
                     }
-                    return view('kurikulum.kurikulum');   
+                    return view('kurikulum.kurikulum');
         }
-            
+
         public function getmatakuliahsmt6(Request $request){
             if ($request->ajax()) {
             $response = Http::get('http://api.stmik-bandung.ac.id:16080/apiserver/api/kurikulum');
@@ -99,7 +100,7 @@ class MatakuliahController extends Controller
                 ->addIndexColumn()
                 ->make(true);
                 }
-            return view('kurikulum.kurikulum');   
+            return view('kurikulum.kurikulum');
         }
         public function getmatakuliahsmt7(Request $request){
             if ($request->ajax()) {
@@ -110,9 +111,9 @@ class MatakuliahController extends Controller
                 ->addIndexColumn()
                 ->make(true);
                 }
-            return view('kurikulum.kurikulum');   
+            return view('kurikulum.kurikulum');
         }
-                        
+
         public function getmatakuliahsmt8(Request $request){
             if ($request->ajax()) {
             $response = Http::get('http://api.stmik-bandung.ac.id:16080/apiserver/api/kurikulum');
@@ -122,7 +123,7 @@ class MatakuliahController extends Controller
                 ->addIndexColumn()
                 ->make(true);
                 }
-            return view('kurikulum.kurikulum');   
+            return view('kurikulum.kurikulum');
         }
     public function fileSilabus(Request $request)
         {
@@ -141,7 +142,7 @@ class MatakuliahController extends Controller
             $image = $request->file('link');
             // $request->file('file')->store('public/files');
             $image->store('public/data_file', $nama );
-        
+
             $blog = linkSilabus::create([
                 'link'     => $nama,
                 'keterangan' => $request->keterangan,
@@ -169,12 +170,12 @@ class MatakuliahController extends Controller
                 //redirect dengan pesan error
                 return redirect()->back()->with(['error' => 'Data Gagal Disimpan!']);
             }
-    
+
             // return redirect()->back()->with('status', 'File Has been uploaded successfully');
         }
-                        
+
     public function jadwalMatakuliah(){
-        return view('kurikulum.jadwalmatakuliah');   
+        return view('kurikulum.jadwalmatakuliah');
     }
     public function getjadwalmatakuliah(Request $request){
         if ($request->ajax()) {
@@ -190,9 +191,9 @@ class MatakuliahController extends Controller
             ->make(true);
             // }
         }
-        return view('kurikulum.kurikulum');   
+        return view('kurikulum.kurikulum');
     }
-    
+
     public function tujuanCapaian(){
         return view('kurikulum.tujuancapaian');
     }
@@ -211,7 +212,7 @@ class MatakuliahController extends Controller
             //redirect dengan pesan error
             return redirect()->back()->with(['error' => 'Data Gagal Disimpan!']);
         }
- 
+
 		// return redirect()->back()->with('status', 'File Has been uploaded successfully');
     }
 }

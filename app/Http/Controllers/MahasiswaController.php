@@ -12,9 +12,9 @@ use Hashids\Hashids;
 class MahasiswaController extends Controller
 {
     // public function index(){
-    //     return view('mahasiswa.myprofile'); 
+    //     return view('mahasiswa.myprofile');
     // }
-    
+
     public function myprofile(Request $request){
         // dd($request->session()->all());
         return view('mahasiswa.myprofile');
@@ -31,30 +31,31 @@ class MahasiswaController extends Controller
                 ->addIndexColumn()
                 ->make(true);
         }
-        return view('mahasiswa.status'); 
+        return view('mahasiswa.status');
     }
     public function jadwalKuliah(Request $request){
         if ($request->ajax()) {
             $nim = $request->session()->get("nim");
             $response = Http::get('http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/jadwal/'.$nim);
             $data = $response->json();
+            dd($data);
             $datas = $data['data'];
             return DataTables::of($datas)
                 ->addIndexColumn()
                 ->make(true);
         }
-        return view('mahasiswa.jadwalKuliah'); 
+        return view('mahasiswa.jadwalKuliah');
     }
     public function dataindukmahasiswa(){
- 
-        return view('mahasiswa.dataindukmahasiswa'); 
+
+        return view('mahasiswa.dataindukmahasiswa');
     }
     public function statusKeuangan(){
 
-        return view('mahasiswa.statuskeuangan'); 
+        return view('mahasiswa.statuskeuangan');
     }
     public function transkripNilai(){
 
-        return view('mahasiswa.transkripnilai'); 
+        return view('mahasiswa.transkripnilai');
     }
 }

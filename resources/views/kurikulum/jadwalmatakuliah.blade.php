@@ -23,13 +23,13 @@
                             <th>No</th>
                             <th>Kode Matakuliah</th>
                             <th>Nama Matakuliah</th>
-                            <th>Jenis Kode</th>
+                            <th>Nama Dosen</th>
                             <th>SKS</th>
                             <th>Semester</th>
                             <th>Hari</th>
                             <th>Jam</th>
                             <th>Ruang</th>
-                            <th>Action</th>    
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,12 +37,12 @@
                 </table>
             </div>
         </div>
-        
+
     </div>
-             
+
     @push('matakuliah')
     <script>
-      $(document).ready(function(){ 
+      $(document).ready(function(){
      var table = $('#yajra-datatable-jadwal').DataTable({
         processing: true,
         serverSide: true,
@@ -51,7 +51,7 @@
         sort: true,
         language: {
                     processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
-                    },  
+                    },
         ajax: "{{ route('getjadwalmatakuliah') }}",
         columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -62,19 +62,19 @@
                 {data: 'semester'},
                 // {data: 'jadwal_kuliah1'},
                 {
-                    data: 'jadwal_kuliah1', 
+                    data: 'jadwal_kuliah1',
                     render: ((data, type, row)=>{
                     // var datas = data;
                     var n = data.split(',');
-                    // alert(n[0]); 
+                    // alert(n[0]);
                     return n[0];
                     }),
                 },
-                {data: null, 
+                {data: null,
                     render: ((data, type, row)=>{
                     var datas = data.jadwal_kuliah1;
                     var n = datas.split(',');
-                    // alert(n[0]); 
+                    // alert(n[0]);
                     return data.jam + " dan " + n[1];
                     }),},
                 {data: 'kd_ruang'},
@@ -87,7 +87,7 @@
                 // var nim = ""
                 // table.column(9).search(nim).draw();
                 table.draw()
-               
+
 });
 
 </script>

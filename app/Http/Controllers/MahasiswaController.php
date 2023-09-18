@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Yajra\Datatables\Datatables;
+use App\Models\fotoprofil;
 use Illuminate\Support\Facades\Hash;
 use Hashids\Hashids;
 
@@ -57,5 +58,28 @@ class MahasiswaController extends Controller
     public function transkripNilai(){
 
         return view('mahasiswa.transkripnilai');
+    }
+    public function store(Request $request)
+    {
+        //validate form
+        $this->validate($request, [
+            'image'     => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'nim'     => 'required|min:5',
+            'keterangan'   => 'required|min:10'
+        ]);
+
+        //upload image
+        $image = $request->file('image');
+        $image->storeAs('public/posts', $image->hashName());
+
+        //create post
+        fotoprofil::create([
+            'image'     => $image->hashName(),
+            'nim'     => $request->nim,
+            'keterangan'   => $request->keterangan
+        ]);
+
+        //redirect to index
+        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }

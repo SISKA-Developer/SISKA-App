@@ -93,7 +93,7 @@
               <h5 class="modal-title">Update Foto Profil</h5>
               <button type="button" class="btn-close" data-dismiss="modal" aria-label="close"></button>
             </div>
-            <form action="{{ url('fotoprofil') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('fotoprofil') }}" method="POST" enctype="multipart/form-data">
             <div class="modal-body">
                     @csrf
                 <div class="mb-3">

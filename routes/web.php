@@ -151,6 +151,7 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Route::get('matakuliahsmt7', [MatakuliahController::class,'getmatakuliahsmt7'])->name('getmatakuliahsmt7');
     Route::get('matakuliahsmt8', [MatakuliahController::class,'getmatakuliahsmt8'])->name('getmatakuliahsmt8');
     Route::get('getjadwalmatakuliah', [MatakuliahController::class,'getjadwalmatakuliah'])->name('getjadwalmatakuliah');
+    Route::get('getmatakuliahall', [MatakuliahController::class,'getmatakuliahall'])->name('getmatakuliahall');
     Route::post('filetujuanCapaian', [MatakuliahController::class, 'filetujuanCapaian']);
     Route::post('fileSilabus', [MatakuliahController::class, 'fileSilabus']);
 
@@ -161,13 +162,13 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Route::get('/mahasiswa/'. $pengkiniandata, [MahasiswaController::class,'dataindukmahasiswa'])->name('datamahasiswaIndex');
     Route::get('/mahasiswa/'. $statuskeuangan, [MahasiswaController::class,'statusKeuangan'])->name('statuskeuanganIndex');
     Route::get('/mahasiswa/'. $transkripnilai, [MahasiswaController::class,'transkripNilai'])->name('transkripnilaiIndex');
-    Route::post('/fotoprofil', [MahasiswaController::class, 'store'])->name('fotoprofil');
+    Route::post('fotoprofil', [MahasiswaController::class, 'store'])->name('fotoprofil');
 
     Route::get('/evaluasi/'. $evaluasi1, [EvaluasiController::class,'evaluasiPembelajaran'])->name('evaluasipembelajaranIndex');
     Route::get('/evaluasi/'. $evaluasi2, [EvaluasiController::class,'evaluasiSarana'])->name('evaluasipengelolaanIndex');
     Route::get('/evaluasi/'. $evaluasi3, [EvaluasiController::class,'evaluasiKeuangan'])->name('evaluasisaranaIndex');
     Route::post('/evaluasi/store', [EvaluasiController::class,'store'])->name('evaluasi.store');
-
+    
     //for displaying PDF
     Route::get('/display/{mk_id}',[pdfController::class,'getSilabus']);
 

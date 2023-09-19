@@ -81,7 +81,6 @@
     $data = Request::session()->get('nim');
 @endphp
                 <footer>
-                    <a href="#" class="btn btn-primary">KTM</a>
                     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalsilabus" onclick="fotoprofil()">Update</a>
                 </footer>
         </div>

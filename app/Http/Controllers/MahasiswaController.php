@@ -70,7 +70,8 @@ class MahasiswaController extends Controller
 
         //upload image
         $image = $request->file('image');
-        $image->storeAs('public/posts', $image->hashName());
+        $image->storeAs('public/foto_profile', $image->hashName());
+        dd($request);
 
         //create post
         fotoprofil::create([
@@ -80,6 +81,6 @@ class MahasiswaController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('mahasiswa.myprofile')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }

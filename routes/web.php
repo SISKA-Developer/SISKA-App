@@ -167,6 +167,7 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Route::get('/mahasiswa/'. $statuskeuangan, [MahasiswaController::class,'statusKeuangan'])->name('statuskeuanganIndex');
     Route::get('/mahasiswa/'. $transkripnilai, [MahasiswaController::class,'transkripNilai'])->name('transkripnilaiIndex');
     Route::post('/fotoprofil', [MahasiswaController::class, 'store'])->name('fotoprofil');
+    Route::get('transkripnilaiAPI', [MahasiswaController::class, 'transkripnilaiAPI'])->name('transkripnilaiAPI');
 
     Route::get('/evaluasi/'. $evaluasi1, [EvaluasiController::class,'evaluasiPembelajaran'])->name('evaluasipembelajaranIndex');
     Route::get('/evaluasi/'. $evaluasi2, [EvaluasiController::class,'evaluasiSarana'])->name('evaluasipengelolaanIndex');

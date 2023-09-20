@@ -39,7 +39,7 @@ class MahasiswaController extends Controller
             $nim = $request->session()->get("nim");
             $response = Http::get('http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/jadwal/'.$nim);
             $data = $response->json();
-            dd($data);
+            // dd($data);
             $datas = $data['data'];
             return DataTables::of($datas)
                 ->addIndexColumn()
@@ -55,9 +55,23 @@ class MahasiswaController extends Controller
 
         return view('mahasiswa.statuskeuangan');
     }
-    public function transkripNilai(){
-
+    public function transkripnilaiAPI(Request $request){
+        if ($request->ajax()) {
+            $nim = $request->session()->get("nim");
+            $response = Http::get('http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/nilai/'.$nim);
+            $data = $response->json();
+            // dd($data);
+            $datas = $data['data'];
+            return DataTables::of($datas)
+                ->addIndexColumn()
+                ->make(true);
+        }
         return view('mahasiswa.transkripnilai');
+    }
+
+        public function transkripNilai(Request $request){
+
+            return view('mahasiswa.transkripnilai');
     }
     public function store(Request $request)
     {

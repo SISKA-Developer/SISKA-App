@@ -75,11 +75,11 @@
                     </table>
                 </div>
 
-                <div class="ttd_dosen">
+                {{-- <div class="ttd_dosen">
                     <p>Bandung</p>
                     <p>   </p>
                     <p>Mina Ismu Rahayu, M.T.<br><span>Ka. Prodi TEKNIK INFORMATIKA</span></p>
-                </div>
+                </div> --}}
 
             </div>
         </div>
@@ -133,7 +133,7 @@
 
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET
-                url: 'http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/1219010',
+                url: 'http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/nilai/1219010',
                 dataType: 'json',
                 success: function (data,val) {
                     console.log(data);
@@ -141,11 +141,32 @@
                     $("#nim").append("<p>"+data.data[0].nim+"</p>");
                     $("#ttl").append("<p>"+data.data[0].tmp_lahir+", "+data.data[0].tgl_lahir+"</p>");
                     $("#nama_jurusan").append("<p>"+data.data[0].nama_jurusan+"</p>");
-
                 },error:function(){
                     console.log("errror",data);
                 }
             });
+            tablenilai = $('#transkripMhs').DataTable({
+                processing: true,
+                autoWidth: true,
+                serverSide: true,
+                responsive: true,
+                searching: true,
+                sort: true,
+                language: {
+                    processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
+                    },
+                ajax: "{{ route('transkripnilaiAPI') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'kd_mk'},
+                    {data: 'nm_mk'},
+                    {data: 'sks'},
+                    {data: 'nilai'},
+                    // {data: 'catatan'},
+                ]
+            });
+            tablepembelajaran.draw()
+
         })
 
     </script>

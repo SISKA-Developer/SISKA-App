@@ -173,7 +173,7 @@ ul.breadcrumb li a:hover {
             {{-- ////5//// --}}
           <tr>
             <td>
-              <p class="m-1 p-1">Jenis, jumlah, kualitas dan aksebilitas sarana prasarana perpustakaan</p>
+              <p class="m-1 p-1">Jenis, jumlah, kualitas dan aksebilitas sarana prasarana Keuangan</p>
             </td>
             <td>
               <div class="form-check form-check-inline m-1 p-1">

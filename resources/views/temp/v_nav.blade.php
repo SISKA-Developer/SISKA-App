@@ -11,12 +11,12 @@
     // $params = $request->query->all();
     $params = Request::getRequestUri();
     $url=explode("/", $params);
-    // echo $url[2];    
+    // echo $url[2];
     @endphp
     @foreach ($sidebar as $item)
     @if ($item->role == $url[2])
     <li class="nav-item">
-      <a href="{{route($item->url)}}" class="nav-link {{ Request::is($url[1]. '/' . $item->urlname) ? 'active' : '' }}" aria-current="page">
+      <a href="{{route($item->url)}}" class="nav-link {{ Request::is($url[2]. '/' . $item->urlname) ? 'active' : '' }}" aria-current="page">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
            {{$item->name}}
       </a>
@@ -61,7 +61,7 @@
   transition: 0.5s;
   padding-top: 20px;
   padding-left: 0px;
-  padding-right: 0px; 
+  padding-right: 0px;
 }
 .sidebar hr{
   color: black

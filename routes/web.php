@@ -5,6 +5,7 @@ use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\EvaluasiController;
 use App\Http\Controllers\pdfController;
+use App\Http\Controllers\profileController;
 use App\Http\Controllers\SSOController;
 // use App\Http\Controllers\ImageController;
 // use App\Models\sidebars;
@@ -162,7 +163,8 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Route::get('/mahasiswa/'. $pengkiniandata, [MahasiswaController::class,'dataindukmahasiswa'])->name('datamahasiswaIndex');
     Route::get('/mahasiswa/'. $statuskeuangan, [MahasiswaController::class,'statusKeuangan'])->name('statuskeuanganIndex');
     Route::get('/mahasiswa/'. $transkripnilai, [MahasiswaController::class,'transkripNilai'])->name('transkripnilaiIndex');
-    Route::post('fotoprofil', [MahasiswaController::class, 'store'])->name('fotoprofil');
+    Route::post('fotoprofil', [profileController::class, 'store'])->name('fotoprofil');
+    
 
     Route::get('/evaluasi/'. $evaluasi1, [EvaluasiController::class,'evaluasiPembelajaran'])->name('evaluasipembelajaranIndex');
     Route::get('/evaluasi/'. $evaluasi2, [EvaluasiController::class,'evaluasiSarana'])->name('evaluasipengelolaanIndex');
@@ -173,7 +175,7 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Route::get('/display/{mk_id}',[pdfController::class,'getSilabus']);
 
     // }
-
+    
 
     Auth::routes(['register' => false, 'reset' => false]);
 

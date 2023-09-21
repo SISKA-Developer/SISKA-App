@@ -57,7 +57,7 @@
                     </table>
                 </div>
 
-                <div class="transkrip-down table-responsive">
+                <!-- <div class="transkrip-down table-responsive">
                     <table id="transkripMhs-down" class="table-down ">
                         <tr>
                             <td>Jumlah Mata Kuliah</td>
@@ -73,13 +73,13 @@
                             <td id="ipk"></td>
                         </tr>
                     </table>
-                </div>
-
+                </div> -->
+<!-- 
                 {{-- <div class="ttd_dosen">
                     <p>Bandung</p>
                     <p>   </p>
                     <p>Mina Ismu Rahayu, M.T.<br><span>Ka. Prodi TEKNIK INFORMATIKA</span></p>
-                </div> --}}
+                </div> --}} -->
 
             </div>
         </div>
@@ -130,10 +130,10 @@
 @push('matakuliah')
     <script>
         $(document).ready(function(){
-
+            var nim = "{{request()->session()->get('nim')}}";
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET
-                url: 'http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/nilai/1219010',
+                url: 'http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/nilai/'+ nim,
                 dataType: 'json',
                 success: function (data,val) {
                     console.log(data);

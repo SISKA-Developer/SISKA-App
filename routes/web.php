@@ -130,6 +130,11 @@ $evaluasi3 = $hashids->encode($evaluasi3);
             $request->session()->push('halaman', 'evaluasi');
             return redirect(route('sso.login'));
         }else{
+            $role = $request->session()->get('role');
+            // dd($role);
+            if ($role == 'admin' || $role == 'Admin') {
+                return redirect(route('evaluasi.admin'));
+            }
             return redirect(route('evaluasipembelajaranIndex'));
             }
         });
@@ -163,14 +168,27 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Route::get('/mahasiswa/'. $pengkiniandata, [MahasiswaController::class,'dataindukmahasiswa'])->name('datamahasiswaIndex');
     Route::get('/mahasiswa/'. $statuskeuangan, [MahasiswaController::class,'statusKeuangan'])->name('statuskeuanganIndex');
     Route::get('/mahasiswa/'. $transkripnilai, [MahasiswaController::class,'transkripNilai'])->name('transkripnilaiIndex');
+<<<<<<< HEAD
     Route::post('fotoprofil', [profileController::class, 'store'])->name('fotoprofil');
     
+=======
+    Route::post('/fotoprofil', [MahasiswaController::class, 'store'])->name('fotoprofil');
+    Route::get('transkripnilaiAPI', [MahasiswaController::class, 'transkripnilaiAPI'])->name('transkripnilaiAPI');
+>>>>>>> e90888bb0afc9a002e8902e77efd555b77c9bc23
 
     Route::get('/evaluasi/'. $evaluasi1, [EvaluasiController::class,'evaluasiPembelajaran'])->name('evaluasipembelajaranIndex');
     Route::get('/evaluasi/'. $evaluasi2, [EvaluasiController::class,'evaluasiSarana'])->name('evaluasipengelolaanIndex');
     Route::get('/evaluasi/'. $evaluasi3, [EvaluasiController::class,'evaluasiKeuangan'])->name('evaluasisaranaIndex');
     Route::post('/evaluasi/store', [EvaluasiController::class,'store'])->name('evaluasi.store');
+<<<<<<< HEAD
     
+=======
+    Route::get('/evaluasi/evaluasiadmin', [EvaluasiController::class,'evaluasiadminapi'])->name('evaluasiadminapi');
+    Route::get('/evaluasi/admin', [EvaluasiController::class,'evaluasiadmin'])->name('evaluasi.admin');
+    Route::get('/evaluasi/saranaadmin', [EvaluasiController::class,'evaluasisaranaadmin'])->name('evaluasisaranaadmin');
+    Route::get('/evaluasi/keuanganadmin', [EvaluasiController::class,'evaluasikeuanganadmin'])->name('evaluasikeuanganadmin');
+
+>>>>>>> e90888bb0afc9a002e8902e77efd555b77c9bc23
     //for displaying PDF
     Route::get('/display/{mk_id}',[pdfController::class,'getSilabus']);
 

@@ -11,7 +11,7 @@
     // $params = $request->query->all();
     $params = Request::getRequestUri();
     $url=explode("/", $params);
-    // echo $url[1];    
+    // echo $url[2];
     @endphp
     @foreach ($sidebar as $item)
     @if ($item->role == $url[1])
@@ -61,7 +61,7 @@
   transition: 0.5s;
   padding-top: 20px;
   padding-left: 0px;
-  padding-right: 0px; 
+  padding-right: 0px;
 }
 .sidebar hr{
   color: black

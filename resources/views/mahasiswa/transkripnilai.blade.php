@@ -14,6 +14,7 @@
                 Daftar Nlai Sementara
             </div>
             <div class="card-body">
+                <p>*catatan : Nilai yang tertera bukan transkrip nilai resmi, hanya nilai sementara dan bukan rujukan untuk pihak ke-3 </p>
                 <div class="transkrip-left table-responsive">
                     <table id="transkripMhs-left" class="table-left ">
                         <tr>
@@ -130,10 +131,11 @@
 @push('matakuliah')
     <script>
         $(document).ready(function(){
-
+            var nim = sessionStorage.getItem("nim");
+            console.log(nim);
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET
-                url: 'http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/nilai/1219010',
+                url: 'http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/nilai/'+ nim,
                 dataType: 'json',
                 success: function (data,val) {
                     console.log(data);

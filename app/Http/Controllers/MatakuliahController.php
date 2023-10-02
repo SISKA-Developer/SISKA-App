@@ -34,6 +34,28 @@ class MatakuliahController extends Controller
 
             return view('kurikulum.matakuliah');
     }
+    public function getmatakuliahall (){
+
+    $response = Http::get('http://api.stmik-bandung.ac.id:16080/apiserver/api/kurikulum');
+        $data = $response->json();
+        $semester1 = $data["semester1"];
+        $semester2 = $data["semester2"];
+        $semester3 = $data["semester3"];
+        $semester4 = $data["semester4"];
+        $semester5 = $data["semester5"];
+        $semester6 = $data["semester6"];
+        $semester7 = $data["semester7"];
+        $semester8 = $data["semester8"];
+        $datas = $semester1 + $semester2 + $semester3 + $semester4 + $semester5 + $semester6 + $semester7 + $semester8;
+        // dd($datas);
+        return DataTables::of($datas)
+                    ->addIndexColumn()
+                    ->make(true);
+
+        // return $datas;
+
+    }
+
         public function getmatakuliahsmt1(Request $request){
             if ($request->ajax()) {
                 $response = Http::get('http://api.stmik-bandung.ac.id:16080/apiserver/api/kurikulum');

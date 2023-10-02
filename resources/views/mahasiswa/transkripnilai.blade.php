@@ -147,6 +147,7 @@
                     console.log("errror",data);
                 }
             });
+            
             tablenilai = $('#transkripMhs').DataTable({
                 processing: true,
                 autoWidth: true,
@@ -167,7 +168,8 @@
                     // {data: 'catatan'},
                 ]
             });
-            tablepembelajaran.draw()
+            tablenilai.draw()
+
 
         })
 

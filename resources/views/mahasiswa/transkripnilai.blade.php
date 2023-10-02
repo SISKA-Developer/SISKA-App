@@ -14,6 +14,7 @@
                 Daftar Nlai Sementara
             </div>
             <div class="card-body">
+                <p>*catatan : Nilai yang tertera bukan transkrip nilai resmi, hanya nilai sementara dan bukan rujukan untuk pihak ke-3 </p>
                 <div class="transkrip-left table-responsive">
                     <table id="transkripMhs-left" class="table-left ">
                         <tr>
@@ -75,11 +76,11 @@
                     </table>
                 </div>
 
-                <div class="ttd_dosen">
+                {{-- <div class="ttd_dosen">
                     <p>Bandung</p>
                     <p>   </p>
                     <p>Mina Ismu Rahayu, M.T.<br><span>Ka. Prodi TEKNIK INFORMATIKA</span></p>
-                </div>
+                </div> --}}
 
             </div>
         </div>
@@ -130,10 +131,11 @@
 @push('matakuliah')
     <script>
         $(document).ready(function(){
-
+            var nim = sessionStorage.getItem("nim");
+            console.log(nim);
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET
-                url: 'http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/1219010',
+                url: 'http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/nilai/'+ nim,
                 dataType: 'json',
                 success: function (data,val) {
                     console.log(data);
@@ -141,12 +143,12 @@
                     $("#nim").append("<p>"+data.data[0].nim+"</p>");
                     $("#ttl").append("<p>"+data.data[0].tmp_lahir+", "+data.data[0].tgl_lahir+"</p>");
                     $("#nama_jurusan").append("<p>"+data.data[0].nama_jurusan+"</p>");
-
                 },error:function(){
                     console.log("errror",data);
                 }
             });
-            var table = $('#transkripMhs').DataTable({
+            
+            tablenilai = $('#transkripMhs').DataTable({
                 processing: true,
                 autoWidth: true,
                 serverSide: true,
@@ -156,15 +158,19 @@
                 language: {
                     processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
                     },
-                ajax: "{{ route('getmatakuliahall') }}",
+                ajax: "{{ route('transkripnilaiAPI') }}",
                 columns: [
-                        {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                        {data: 'kd_mk'},
-                        {data: 'nm_mk'},
-                        {data: 'sks'},
-                    ]
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'kd_mk'},
+                    {data: 'nm_mk'},
+                    {data: 'sks'},
+                    {data: 'nilai'},
+                    // {data: 'catatan'},
+                ]
             });
-            table.draw()
+            tablenilai.draw()
+
+
         })
 
     </script>

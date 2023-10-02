@@ -59,7 +59,16 @@ ul.breadcrumb li a:hover {
     <select class="form-select" aria-label="mk_id" name="mk_id">
         <option selected>--Pilih Matakuliah--</option>
         @foreach ($datas as $item)
-        <option value="{{$item['kd_mk']}}">{{$item['kd_mk']}} - {{$item['nm_mk']}} - {{$item['nm_jurusan']}}</option>
+        {{-- @if (Session::get('role') == 'Teknik Informatika')
+                @if ($item['nm_jurusan'] == 'Teknik Informatika')
+                    <option value="{{$item['kd_mk']}} - {{$item['nm_mk']}}">{{$item['kd_mk']}} - {{$item['nm_mk']}} - {{$item['nm_jurusan']}}</option>
+                @endif
+            @elseif (Session::get('role') == 'Sistem Informasi')
+                @if ($item['nm_jurusan'] == 'Sistem Informasi')
+                    <option value="{{$item['kd_mk']}} - {{$item['nm_mk']}}">{{$item['kd_mk']}} - {{$item['nm_mk']}} - {{$item['nm_jurusan']}}</option>
+                @endif
+            @endif --}}
+        <option value="{{$item['kd_mk']}} - {{$item['nm_mk']}}">{{$item['kd_mk']}} - {{$item['nm_mk']}} - {{$item['nm_jurusan']}}</option>
         @endforeach
       </select>
   <table class="table" id="kegiatan_pembelajaran">

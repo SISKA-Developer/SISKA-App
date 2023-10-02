@@ -129,6 +129,11 @@ $evaluasi3 = $hashids->encode($evaluasi3);
             $request->session()->push('halaman', 'evaluasi');
             return redirect(route('sso.login'));
         }else{
+            $role = $request->session()->get('role');
+            // dd($role);
+            if ($role == 'admin' || $role == 'Admin') {
+                return redirect(route('evaluasi.admin'));
+            }
             return redirect(route('evaluasipembelajaranIndex'));
             }
         });
@@ -163,11 +168,16 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Route::get('/mahasiswa/'. $statuskeuangan, [MahasiswaController::class,'statusKeuangan'])->name('statuskeuanganIndex');
     Route::get('/mahasiswa/'. $transkripnilai, [MahasiswaController::class,'transkripNilai'])->name('transkripnilaiIndex');
     Route::post('/fotoprofil', [MahasiswaController::class, 'store'])->name('fotoprofil');
+    Route::get('transkripnilaiAPI', [MahasiswaController::class, 'transkripnilaiAPI'])->name('transkripnilaiAPI');
 
     Route::get('/evaluasi/'. $evaluasi1, [EvaluasiController::class,'evaluasiPembelajaran'])->name('evaluasipembelajaranIndex');
     Route::get('/evaluasi/'. $evaluasi2, [EvaluasiController::class,'evaluasiSarana'])->name('evaluasipengelolaanIndex');
     Route::get('/evaluasi/'. $evaluasi3, [EvaluasiController::class,'evaluasiKeuangan'])->name('evaluasisaranaIndex');
     Route::post('/evaluasi/store', [EvaluasiController::class,'store'])->name('evaluasi.store');
+    Route::get('/evaluasi/evaluasiadmin', [EvaluasiController::class,'evaluasiadminapi'])->name('evaluasiadminapi');
+    Route::get('/evaluasi/admin', [EvaluasiController::class,'evaluasiadmin'])->name('evaluasi.admin');
+    Route::get('/evaluasi/saranaadmin', [EvaluasiController::class,'evaluasisaranaadmin'])->name('evaluasisaranaadmin');
+    Route::get('/evaluasi/keuanganadmin', [EvaluasiController::class,'evaluasikeuanganadmin'])->name('evaluasikeuanganadmin');
 
     //for displaying PDF
     Route::get('/display/{mk_id}',[pdfController::class,'getSilabus']);

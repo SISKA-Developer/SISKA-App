@@ -55,7 +55,6 @@ class MatakuliahController extends Controller
         // return $datas;
 
     }
-
         public function getmatakuliahsmt1(Request $request){
             if ($request->ajax()) {
                 $response = Http::get('http://api.stmikbandung.test:82/api/matakuliah/semester/1');
@@ -203,6 +202,7 @@ class MatakuliahController extends Controller
         if ($request->ajax()) {
         $response = Http::get('http://api.stmikbandung.test:82/api/jadwal/');
         $data = $response->json();
+        // dd($data);
         $datas = $data['data'];
         // if (!$datas['jadwal_kuliah']){
         //     return 404;

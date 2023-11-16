@@ -12,6 +12,9 @@
             <div class="card-header">
                 My Profile
             </div>
+            @if (request()->session()->get('role') == 'Admin')
+                <div><p>Anda adalah Admin</p></div>
+            @else
             <div class="card-body">
                 <div class="text-center h-100" id="profile-img">
                     <!-- <img src="{{url('$images')}}" alt="profile" class="card-img-top smallimg rounded-circle"> -->
@@ -77,13 +80,14 @@
                     </table>
                 </div>
             </div>
+            @endif
 @php
     $data = Request::session()->get('nim');
 @endphp
-                <footer>
+                {{-- <footer>
                     <a href="#" class="btn btn-primary">KTM</a>
                     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalsilabus" onclick="fotoprofil()">Update</a>
-                </footer>
+                </footer> --}}
         </div>
     </div>
     <div class="modal" tabindex="-1" id="modalsilabus">
@@ -152,45 +156,45 @@
 
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET
-                url: 'http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/'+ nim,
+                url: 'http://api.stmikbandung.test:82/api/mahasiswa/'+ nim,
                 dataType: 'json',
                 success: function (data,val) {
                     console.log(data);
-                    $("#nm_mhs").append("<p>"+data.data[0].nm_mhs+"</p>");
+                    $("#nm_mhs").append("<p>"+data.data.nm_mhs+"</p>");
 
-                    $("#nim").append("<p>"+data.data[0].nim+"</p>");
+                    $("#nim").append("<p>"+data.data.nim+"</p>");
 
-                    $("#alamat").append("<p>"+data.data[0].alamat+"</p>");
+                    $("#alamat").append("<p>"+data.data.alamat+"</p>");
 
-                    $("#email").append("<p>"+data.data[0].email+"</p>");
+                    $("#email").append("<p>"+data.data.email+"</p>");
 
-                    $("#telp").append("<p>"+data.data[0].nmr_hp+"</p>");
+                    $("#telp").append("<p>"+data.data.nmr_hp+"</p>");
 
-                    $("#ttl").append("<p>"+data.data[0].tmp_lahir+", "+data.data[0].tgl_lahir+"</p>");
+                    $("#ttl").append("<p>"+data.data.ttl+"</p>");
 
-                    if(data.data[0].jk == "L")
+                    if(data.data.jk == "L"|| "l")
                     {
                         $("#jk").append("<p> Laki-Laki </p>");
                     } else {
                         $("#jk").append("<p> Perempuan </p>");
                     }
 
-                    $("#angkatan").append("<p>"+data.data[0].angkatan+"</p>");
+                    $("#angkatan").append("<p>"+data.data.masuk_tahun+"</p>");
 
-                    $("#nama_jurusan").append("<p>"+data.data[0].nama_jurusan+"</p>");
+                    $("#nama_jurusan").append("<p>"+data.data.jurusan+"</p>");
 
-                    if(data.data[0].jns_mhs == "R")
+                    if(data.data.jns_mhs == "R")
                     {
                         $("#jns_mhs").append("<p> Reguler </p>");
-                    }else if(data.data[0].jns_mhs == "K"){
+                    }else if(data.data.jns_mhs == "K"){
                         $("#jns_mhs").append("<p> Karyawan </p>");
                     }else{
                         $("#jns_mhs").append("<p> Eksekutif </p>");
                     }
 
-                    $("#dosen_wali").append("<p>"+data.data[0].dosen_wali+"</p>");
+                    $("#dosen_wali").append("<p>"+data.data.dosen_wali+"</p>");
 
-                    if(data.data[0].sts_mhs == "A")
+                    if(data.data.sts_mhs == "A")
                     {
                         $("#sts_mhs").append("<p> Aktif </p>");
                     }else{
@@ -198,7 +202,7 @@
                     }
 
                     $("#profile-img").append(
-                        "<img src='/foto_profile/"+data.data[0].nim+".jpg' alt='profile' class='card-img-top smallimg rounded-circle'>")
+                        "<img src='http://api.stmikbandung.test:82/api/images/"+data.data.image+"' alt='profile' class='card-img-top smallimg rounded-circle'>")
                 },error:function(){
                     console.log("errror",data);
                 }

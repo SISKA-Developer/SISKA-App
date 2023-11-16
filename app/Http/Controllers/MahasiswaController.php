@@ -36,15 +36,19 @@ class MahasiswaController extends Controller
     }
     public function jadwalKuliah(Request $request){
         if ($request->ajax()) {
-            $nim = $request->session()->get("nim");
-            $response = Http::get('http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/jadwal/'.$nim);
+            $response = Http::get('http://api.stmikbandung.test:82/api/jadwal/');
             $data = $response->json();
             // dd($data);
             $datas = $data['data'];
+            // if (!$datas['jadwal_kuliah']){
+            //     return 404;
+            // }
+            // else{
             return DataTables::of($datas)
                 ->addIndexColumn()
                 ->make(true);
-        }
+                // }
+            }
         return view('mahasiswa.jadwalKuliah');
     }
     public function dataindukmahasiswa(){
@@ -58,7 +62,21 @@ class MahasiswaController extends Controller
     public function transkripnilaiAPI(Request $request){
         if ($request->ajax()) {
             $nim = $request->session()->get("nim");
-            $response = Http::get('http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/nilai/'.$nim);
+            $response = Http::get('http://api.stmikbandung.test:82/api/nilai/nim/'.$nim);
+            $data = $response->json();
+            // dd($data);
+            $datas = $data['data'];
+            return DataTables::of($datas)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('mahasiswa.transkripnilai');
+    }
+
+    public function transkripnilaiALL(Request $request){
+        if ($request->ajax()) {
+            $nim = $request->session()->get("nim");
+            $response = Http::get('http://api.stmikbandung.test:82/api/nilai/');
             $data = $response->json();
             // dd($data);
             $datas = $data['data'];

@@ -24,15 +24,15 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode Matakuliah</th>
-                                <th>Nama Matakuliah</th>
-                                <th>Nama Dosen</th>
-                                <th>SKS</th>
-                                <th>Semester</th>
-                                <th>Kelas</th>
-                                <th>Hari</th>
-                                <th>Jam</th>
-                                <th>Ruang</th>
+                            <th>Kode Matakuliah</th>
+                            <th>Nama Matakuliah</th>
+                            <th>Nama Dosen</th>
+                            <th>SKS</th>
+                            <th>Semester</th>
+                            <th>Hari</th>
+                            <th>Jam</th>
+                            <th>Kelas</th>
+                            <th>Ruang</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,30 +45,63 @@
 
 @push('matakuliah')
 <script>
-    
+
     $(document).ready(function(){
         table = $('#jadwalPerkuliahan').DataTable({
             processing: true,
-            serverSide: true,
-            responsive: true,
-            searching: true,
-            sort: true,   
-            ajax: "{{ route('jadwalkuliahIndex') }}",
-            columns: [
+        serverSide: true,
+        responsive: true,
+        searching: true,
+        sort: true,
+        language: {
+                    processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
+                    },
+        ajax: "{{ route('getjadwalmatakuliah') }}",
+        columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'kd_mk'},
-                {data: 'nm_mk'},
-                {data: 'nm_dosen'},
-                {data: 'sks'},
-                {data: 'semester'},
-                {data: 'jns_mhs'},
-                {data: 'jadwal_kuliah1'},
-                {data: 'jam'},
-                {data: 'kd_ruang'},
+                {data: null,
+                    render: ((data, type, row)=>{
+                    var datas = data.matakuliah.nm_mk;
+                    return datas;})
+                },
+                {data: 'nama_dosen'},
+                {data: null,
+                    render: ((data, type, row)=>{
+                    var datas = data.matakuliah.sks;
+                    return datas;})
+                },
+                {data: null,
+                    render: ((data, type, row)=>{
+                    var datas = data.matakuliah.semester;
+                    return datas;})
+                },
+                {data: 'hari'},
+                {data: null,
+                    render: ((data, type, row)=>{
+                    var masuk = data.masuk;
+                    var selesai = data.selesai;
+                    return masuk + " - " + selesai;
+                }),},
+                // {data: 'kelas'},
+                {data: null,
+                    render: ((data, type, row)=>{
+                    var data = data.kelas;
+                    if (data == 'R'){
+                        return '<span class="badge badge-primary">Reguler</span>';
+                    }
+                }),},
+                // {data: 'selesai'},
+                {data: 'ruangan'},
+                // {data: null,
+                //     render: ((data, type, row)=>{
+                //     var data = data.kd_mk;
+                //     return '<div class="d-flex mx-1"></a> <button type="button" onclick="ubahjadwal(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Ubah Jadwal Matakuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-pencil"></i></button></div>'
+                // }),},
             ]
         });
     });
-    
+
 </script>
 
 @endpush

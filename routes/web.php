@@ -109,9 +109,9 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Route::get('/kurikulum', function (Request $request) {
     $token = $request->session()->get("access_token");
         if(!$token){
+            $request->session()->push('halaman', 'kurikulum');
             return redirect(route('sso.login'));
         }else{
-            $request->session()->push('halaman', 'kurikulum');
             return redirect(route('MatakuliahIndex'));
         }
     });
@@ -141,7 +141,7 @@ $evaluasi3 = $hashids->encode($evaluasi3);
 
     //admin
 
-    // Route::get('/kurikulum', [MatakuliahController::class,'index']);
+    // Route::get('/kurikulum', [MahasiswaController::class,'transkripnilaiAPI']);
 
 
     Route::get('/kurikulum/'. $matakuliah, [MatakuliahController::class,'matakuliah'])->name('MatakuliahIndex');
@@ -170,6 +170,7 @@ $evaluasi3 = $hashids->encode($evaluasi3);
     Route::get('/mahasiswa/'. $transkripnilai, [MahasiswaController::class,'transkripNilai'])->name('transkripnilaiIndex');
     Route::post('/fotoprofil', [MahasiswaController::class, 'store'])->name('fotoprofil');
     Route::get('transkripnilaiAPI', [MahasiswaController::class, 'transkripnilaiAPI'])->name('transkripnilaiAPI');
+    Route::get('transkripnilaiALL', [MahasiswaController::class, 'transkripnilaiALL'])->name('transkripnilaiALL');
 
     Route::get('/evaluasi/'. $evaluasi1, [EvaluasiController::class,'evaluasiPembelajaran'])->name('evaluasipembelajaranIndex');
     Route::get('/evaluasi/'. $evaluasi2, [EvaluasiController::class,'evaluasiSarana'])->name('evaluasipengelolaanIndex');

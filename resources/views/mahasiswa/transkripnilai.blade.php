@@ -2,13 +2,40 @@
 @section('isicontent')
 
 <div class="container">
-
     <ul class="breadcrumb">
         <li><a href="#">SISKA</a></li>
         <li><a href="#">Mahasiswa</a></li>
         <li>Transkrip Nilai</li>
     </ul>
+@if (request()->session()->get('role') == 'Admin')
+    <div class="my-2">
+        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;Tambah Data</button>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="text-center mt-2">Data Transkrip Nilai Mahasiswa</h3>
+        </div>
+        <div class="card-body">
+            <table id="transkripNilai" class="display table table-striped table-bordered dt-responsive nowrap">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>NIM</th>
+                        <th>Nama Lengkap</th>
+                        <th>Jurusan</th>
+                        <th>Semester</th>
+                        <th>Nama Matakuliah</th>
+                        <th>Nilai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br/>
 
+@else
     <div class="card">
             <div class="card-header">
                 Daftar Nlai Sementara
@@ -43,7 +70,7 @@
                 </div>
 
                 <div class="transkrip table-responsive" >
-                    <table id="transkripMhs" class="table table-striped table-bordered dt-responsive" style="background-color: white">
+                    <table id="Nilai" class="table table-striped table-bordered dt-responsive">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -86,8 +113,92 @@
         </div>
 
 </div>
+@endif
+@push('matakuliah')
+    <script>
+        $(document).ready(function(){
+            var nim = sessionStorage.getItem("nim");
+            console.log(nim);
+            $.ajax({
+                type: 'GET', //THIS NEEDS TO BE GET
+                url: 'http://api.stmikbandung.test:82/api/mahasiswa/'+ nim,
+                dataType: 'json',
+                success: function (data,val) {
+                    console.log(data);
+                    $("#nm_mhs").append("<p>"+data.data.nm_mhs+"</p>");
+                    $("#nim").append("<p>"+data.data.nim+"</p>");
+                    $("#ttl").append("<p>"+data.data.ttl+"</p>");
+                    $("#nama_jurusan").append("<p>"+data.data.jurusan+"</p>");
+                },error:function(){
+                    console.log("errror",data);
+                }
+            });
+        });
 
-<style>
+            // Initialize DataTable for Nilai
+            table = $('#Nilai').DataTable({
+                processing: true,
+                autoWidth: true,
+                serverSide: true,
+                responsive: true,
+                searching: true,
+                sort: true,
+                ajax: "{{ route('transkripnilaiAPI') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'kd_mk', name: 'Kode Matakuliah'},
+                    {data: 'matakuliah.nm_mk', name: 'Nama Matakuliah'},
+                    {data: 'matakuliah.sks', name: 'sks'},
+                    {data: 'nilai', name: 'Nilai'},
+
+                ]
+            });
+            transkrip = $('#transkripNilai').DataTable({
+                processing: true,
+                autoWidth: true,
+                serverSide: true,
+                responsive: true,
+                searching: true,
+                sort: true,
+                language: {
+                    processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
+                    },
+                ajax: "{{ route('transkripnilaiALL') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'nim'},
+                    {data: null,
+                    render: ((data, type, row)=>{
+                    var datas = data.mahasiswa.nm_mhs;
+                    return datas;})
+                    },
+                    {data: null,
+                    render: ((data, type, row)=>{
+                    var datas = data.mahasiswa.jurusan;
+                    return datas;})
+                    },
+                    {data: null,
+                    render: ((data, type, row)=>{
+                    var datas = data.matakuliah.semester;
+                    return datas;})
+                    },
+                    {data: null,
+                    render: ((data, type, row)=>{
+                    var datas = data.matakuliah.nm_mk;
+                    return datas;})
+                    },
+                    // {data: 'sks'},
+                    {data: 'nilai'},
+                    // {data: 'catatan'},
+                ]
+            });
+            // tablenilai.draw()
+            transkrip.draw()
+
+    </script>
+
+    @endpush
+    <style>
     .transkrip-left {
         width: 50%;
         float: left;
@@ -125,55 +236,5 @@
         margin-left: 15px;
         margin-top: 15px;
     }
-
 </style>
-
-@push('matakuliah')
-    <script>
-        $(document).ready(function(){
-            var nim = sessionStorage.getItem("nim");
-            console.log(nim);
-            $.ajax({
-                type: 'GET', //THIS NEEDS TO BE GET
-                url: 'http://api.stmik-bandung.ac.id:16080/apiserver/api/mahasiswa/nilai/'+ nim,
-                dataType: 'json',
-                success: function (data,val) {
-                    console.log(data);
-                    $("#nm_mhs").append("<p>"+data.data[0].nm_mhs+"</p>");
-                    $("#nim").append("<p>"+data.data[0].nim+"</p>");
-                    $("#ttl").append("<p>"+data.data[0].tmp_lahir+", "+data.data[0].tgl_lahir+"</p>");
-                    $("#nama_jurusan").append("<p>"+data.data[0].nama_jurusan+"</p>");
-                },error:function(){
-                    console.log("errror",data);
-                }
-            });
-            
-            tablenilai = $('#transkripMhs').DataTable({
-                processing: true,
-                autoWidth: true,
-                serverSide: true,
-                responsive: true,
-                searching: true,
-                sort: true,
-                language: {
-                    processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
-                    },
-                ajax: "{{ route('transkripnilaiAPI') }}",
-                columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'kd_mk'},
-                    {data: 'nm_mk'},
-                    {data: 'sks'},
-                    {data: 'nilai'},
-                    // {data: 'catatan'},
-                ]
-            });
-            tablenilai.draw()
-
-
-        })
-
-    </script>
-
-    @endpush
 @endsection

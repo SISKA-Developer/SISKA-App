@@ -133,7 +133,12 @@ ul.breadcrumb li a:hover {
                     render: function(data, type, row) {
                         return data;
                     }},
-                    {data: 'total_nilai'},
+                    // {data: 'total_nilai'},
+                    {data: null,
+                    render: ((data, type, row)=>{
+                    var masuk = data.total_nilai;
+                    return masuk / 9;
+                }),},
                     // {data: 'catatan'},
                 ]
             });

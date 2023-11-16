@@ -6,6 +6,12 @@
             <li><a href="#">Kurikulum</a></li>
             <li>Jadwal Mata Kuliah</li>
         </ul>
+        {{-- @if (request()->session()->get('role') == 'Admin')
+        <div class="my-2">
+            <a href="/tambahjadwal" class="btn btn-primary mx-2">Tambah Jadwal</a>
+            </div>
+        @endif --}}
+
         <div class="card">
             <div class="card-header d-flex justify-content-space-between">
                 <div class="col-6 p-0">
@@ -28,8 +34,9 @@
                             <th>Semester</th>
                             <th>Hari</th>
                             <th>Jam</th>
+                            <th>Kelas</th>
                             <th>Ruang</th>
-                            <th>Action</th>
+                            {{-- <th>Action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -37,8 +44,106 @@
                 </table>
             </div>
         </div>
-
     </div>
+
+    <div class="modal" tabindex="-1" id="modaldetail">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Detail Matakuliah</h5>
+              <button type="button" id="closetabs" class="btn-close" data-dismiss="modal" aria-label="close" onclick="closetabs()"></button>
+            </div>
+                <div class="modal-body">
+                      <div class="row">
+                        <div class="col-7 col-sm-5">
+                          Nama Matakuliah
+                        </div>
+                        <div class="col-1 col-sm-1">
+                            :
+                          </div>
+                        <div class="col-4 col-sm-6">
+                            <input type="text" name="nm_mk" value="" id="nm_mk">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 col-sm-5">
+                          Kode Matakuliah
+                        </div>
+                        <div class="col-1 col-sm-1">
+                            :
+                          </div>
+                        <div class="col-4 col-sm-6">
+                            <input type="text" name="kd_mk" value="" id="kd_mk">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 col-sm-5">
+                          Nama Jurusan
+                        </div>
+                        <div class="col-1 col-sm-1">
+                            :
+                          </div>
+                        <div class="col-4 col-sm-6" id="nm_jurusan">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 col-sm-5">
+                          Nama Jurusan Dalam Bahasa Internasional
+                        </div>
+                        <div class="col-1 col-sm-1">
+                            :
+                          </div>
+                        <div class="col-4 col-sm-6" id="nm_intl">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 col-sm-5">
+                          Kode Jurusan
+                        </div>
+                        <div class="col-1 col-sm-1">
+                            :
+                          </div>
+                        <div class="col-4 col-sm-6" id="kd_jur">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 col-sm-5">
+                          Kode Kurikulum
+                        </div>
+                        <div class="col-1 col-sm-1">
+                            :
+                          </div>
+                        <div class="col-4 col-sm-6" id="kd_kur">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 col-sm-5">
+                          Semester
+                        </div>
+                        <div class="col-1 col-sm-1">
+                            :
+                          </div>
+                        <div class="col-4 col-sm-6" id="semester">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 col-sm-5">
+                          SKS
+                        </div>
+                        <div class="col-1 col-sm-1">
+                            :
+                          </div>
+                        <div class="col-4 col-sm-6" id="sks">
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+              {{-- <button type="button" onclick="javascript.void(0)" id="" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+              {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+            </div>
+          </div>
+        </div>
+      </div>
 
     @push('matakuliah')
     <script>
@@ -56,31 +161,44 @@
         columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'kd_mk'},
-                {data: 'nm_mk'},
-                {data: 'nm_dosen'},
-                {data: 'sks'},
-                {data: 'semester'},
-                // {data: 'jadwal_kuliah1'},
-                {
-                    data: 'jadwal_kuliah1',
+                {data: null,
                     render: ((data, type, row)=>{
-                    // var datas = data;
-                    var n = data.split(',');
-                    // alert(n[0]);
-                    return n[0];
-                    }),
+                    var datas = data.matakuliah.nm_mk;
+                    return datas;})
+                },
+                {data: 'nama_dosen'},
+                {data: null,
+                    render: ((data, type, row)=>{
+                    var datas = data.matakuliah.sks;
+                    return datas;})
                 },
                 {data: null,
                     render: ((data, type, row)=>{
-                    var datas = data.jadwal_kuliah1;
-                    var n = datas.split(',');
-                    // alert(n[0]);
-                    return data.jam + " dan " + n[1];
-                    }),},
-                {data: 'kd_ruang'},
-                {data: 'jns_mhs'},
-
-                // {data: 'nim'}
+                    var datas = data.matakuliah.semester;
+                    return datas;})
+                },
+                {data: 'hari'},
+                {data: null,
+                    render: ((data, type, row)=>{
+                    var masuk = data.masuk;
+                    var selesai = data.selesai;
+                    return masuk + " - " + selesai;
+                }),},
+                // {data: 'kelas'},
+                {data: null,
+                    render: ((data, type, row)=>{
+                    var data = data.kelas;
+                    if (data == 'R'){
+                        return '<span class="badge badge-primary">Reguler</span>';
+                    }
+                }),},
+                // {data: 'selesai'},
+                {data: 'ruangan'},
+                // {data: null,
+                //     render: ((data, type, row)=>{
+                //     var data = data.kd_mk;
+                //     return '<div class="d-flex mx-1"></a> <button type="button" onclick="ubahjadwal(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Ubah Jadwal Matakuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-pencil"></i></button></div>'
+                // }),},
             ]
         });
                 table.column(9).visible(false);
@@ -89,6 +207,40 @@
                 table.draw()
 
 });
+function ubahjadwal(dataId) {
+    console.log(dataId);
+    $.ajax({
+        type: 'GET',
+        url: `http://api.stmikbandung.test:82/api/jadwal/${dataId}`,
+        dataType: 'json',
+        success: function (response) {
+            var data = response.data;
+            console.log(data);
+
+            // Map field names to corresponding HTML element IDs
+            const fieldMappings = {
+                'kd_mk': 'kd_mk',
+                'hari': 'hari',
+                'masuk': 'masuk',
+                'selesai': 'selesai',
+                'nama_dosen': 'nama_dosen',
+                'kelas': 'kelas',
+                'ruangan': 'ruangan',
+            };
+
+            // Loop through the fieldMappings and update the HTML elements
+            Object.keys(fieldMappings).forEach(field => {
+                const elementId = fieldMappings[field];
+                const value = data[field] || '-';
+                $(`#${elementId}`).append(`<p>${value}</p>`);
+            });
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}
+
 
 </script>
     @endpush

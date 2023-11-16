@@ -9,7 +9,7 @@
             <li>Mata Kuliah</li>
         </ul>
 
-        <a href="/tambahmatakuliah" class="btn btn-primary" id="btnadmin">Tambah Matakuliah</a>
+        {{-- <a href="/tambahmatakuliah" class="btn btn-primary" id="btnadmin">Tambah Matakuliah</a> --}}
 
         <div class="tabel" style="background-color: white">
             <ul class="nav nav-tabs" id="matakuliahtab" role="tablist">
@@ -463,7 +463,7 @@
     <script>
         var role =  "{{request()->session()->get('role')}}";
         // var role = sessionStorage.getItem("role");
-        var btn = document.getElementById("btnadmin")
+        // var btn = document.getElementById("btnadmin")
         var x1 = document.getElementById("formcheck1")
         var x2 = document.getElementById("formcheck2")
         var x3 = document.getElementById("formcheck3")
@@ -474,7 +474,7 @@
         var x8 = document.getElementById("formcheck8")
         if(role == "Teknik Informatika" || role == "Sistem Informasi"){
             console.log("guttt")
-            btn.style.visibility = "hidden";
+            // btn.style.visibility = "hidden";
             x1.style.visibility = "hidden";
             x2.style.visibility = "hidden";
             x3.style.visibility = "hidden";
@@ -485,7 +485,7 @@
             x8.style.visibility = "hidden";
         }else{
             console.log("notguutt")
-            btn.style.visibility = "visible";
+            // btn.style.visibility = "visible";
             x1.style.visibility = "visible";
             x2.style.visibility = "visible";
             x3.style.visibility = "visible";

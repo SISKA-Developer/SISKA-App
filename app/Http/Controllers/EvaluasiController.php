@@ -11,21 +11,11 @@ use Yajra\DataTables\DataTables;
 class EvaluasiController extends Controller
 {
     public function evaluasiPembelajaran(){
-        $response = Http::get('http://api.stmik-bandung.ac.id:16080/apiserver/api/kurikulum');
+        $response = Http::get('http://api.stmikbandung.test:82/api/matakuliah');
         $data = $response->json();
-        $semester1 = $data["semester1"];
-        $semester2 = $data["semester2"];
-        $semester3 = $data["semester3"];
-        $semester4 = $data["semester4"];
-        $semester5 = $data["semester5"];
-        $semester6 = $data["semester6"];
-        $semester7 = $data["semester7"];
-        $semester8 = $data["semester8"];
-        $genap = $semester2 + $semester4 + $semester6 + $semester8;
-        $datas = $semester1 + $semester3 + $semester5 + $semester7;
+        $datas = $data['data'];
+        // $json = json_code($datas);
         // dd($datas);
-        // $json = json_encode($datas);
-        // dd($json);
         return view('evaluasi.evaluasipembelajaran', compact('datas'));
     }
     public function evaluasiSarana(){
@@ -58,7 +48,7 @@ class EvaluasiController extends Controller
     }
     public function evaluasiadminapi(){
         $data = evaluasi::select('mk_id')
-            ->selectRaw('SUM(p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8) as total_nilai')
+            ->selectRaw('SUM(p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9) as total_nilai')
             ->whereBetween('p1', [1, 5])
             ->whereBetween('p2', [1, 5])
             ->whereBetween('p3', [1, 5])
@@ -66,6 +56,8 @@ class EvaluasiController extends Controller
             ->whereBetween('p5', [1, 5])
             ->whereBetween('p6', [1, 5])
             ->whereBetween('p7', [1, 5])
+            ->whereBetween('p8', [1, 5])
+            ->whereBetween('p9', [1, 5])
             ->groupBy('mk_id')
             ->get();
 
@@ -108,8 +100,9 @@ class EvaluasiController extends Controller
 
         foreach ($data as $item) {
             // Menghitung total nilai dari p1 sampai p5
-            $totalNilai = $item->p1 + $item->p2 + $item->p3 + $item->p4 + $item->p5;
-            $item->total_nilai = $totalNilai;
+        $totalbagi = $item->p1 + $item->p2 + $item->p3 + $item->p4 + $item->p5;
+        $totalNilai = $totalbagi / 5;
+        $item->total_nilai = $totalNilai;
         }
 
         return DataTables::of($data)
@@ -124,7 +117,8 @@ class EvaluasiController extends Controller
 
     foreach ($data as $item) {
         // Menghitung total nilai dari p1 sampai p5
-        $totalNilai = $item->p1 + $item->p2 + $item->p3 + $item->p4 + $item->p5;
+        $totalbagi = $item->p1 + $item->p2 + $item->p3 + $item->p4 + $item->p5;
+        $totalNilai = $totalbagi / 5;
         $item->total_nilai = $totalNilai;
     }
 

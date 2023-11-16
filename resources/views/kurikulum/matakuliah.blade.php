@@ -8,6 +8,9 @@
             <li><a href="#">Kurikulum</a></li>
             <li>Mata Kuliah</li>
         </ul>
+
+        <a href="/tambahmatakuliah" class="btn btn-primary" id="btnadmin">Tambah Matakuliah</a>
+
         <div class="tabel" style="background-color: white">
             <ul class="nav nav-tabs" id="matakuliahtab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -455,11 +458,12 @@
   </div>
 </div>
 
-            
+
     @push('matakuliah')
     <script>
         var role =  "{{request()->session()->get('role')}}";
         // var role = sessionStorage.getItem("role");
+        var btn = document.getElementById("btnadmin")
         var x1 = document.getElementById("formcheck1")
         var x2 = document.getElementById("formcheck2")
         var x3 = document.getElementById("formcheck3")
@@ -470,24 +474,26 @@
         var x8 = document.getElementById("formcheck8")
         if(role == "Teknik Informatika" || role == "Sistem Informasi"){
             console.log("guttt")
+            btn.style.visibility = "hidden";
             x1.style.visibility = "hidden";
-            x2.style.visibility = "hidden";   
-            x3.style.visibility = "hidden";   
-            x4.style.visibility = "hidden";   
-            x5.style.visibility = "hidden";   
-            x6.style.visibility = "hidden";   
-            x7.style.visibility = "hidden";   
-            x8.style.visibility = "hidden";   
+            x2.style.visibility = "hidden";
+            x3.style.visibility = "hidden";
+            x4.style.visibility = "hidden";
+            x5.style.visibility = "hidden";
+            x6.style.visibility = "hidden";
+            x7.style.visibility = "hidden";
+            x8.style.visibility = "hidden";
         }else{
             console.log("notguutt")
-            x1.style.visibility = "visible";   
-            x2.style.visibility = "visible";   
-            x3.style.visibility = "visible";   
-            x4.style.visibility = "visible";   
-            x5.style.visibility = "visible";   
-            x6.style.visibility = "visible";   
-            x7.style.visibility = "visible";   
-            x8.style.visibility = "visible";   
+            btn.style.visibility = "visible";
+            x1.style.visibility = "visible";
+            x2.style.visibility = "visible";
+            x3.style.visibility = "visible";
+            x4.style.visibility = "visible";
+            x5.style.visibility = "visible";
+            x6.style.visibility = "visible";
+            x7.style.visibility = "visible";
+            x8.style.visibility = "visible";
         }
       $(document).ready(function(){
         $("body").tooltip({ selector: '[data-bs-toggle=tooltip]' });
@@ -497,10 +503,10 @@
                 serverSide: true,
                 responsive: true,
                 searching: true,
-                sort: true,   
+                sort: true,
                 language: {
                     processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
-                    },      
+                    },
                 ajax: "{{ route('getmatakuliahsmt1') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -511,7 +517,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'kd_mk', 
+                            data: 'kd_mk',
                             render: ((data, type, row)=>{
                                 var role = sessionStorage.getItem("role");
                                 if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
@@ -522,8 +528,8 @@
                                     return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                                 }
                             }),
-                            name: 'action', 
-                            orderable: true, 
+                            name: 'action',
+                            orderable: true,
                             searchable: true
                         },
                     ]
@@ -549,10 +555,10 @@
             console.log(data);
             $.ajax({
                 type: 'GET', //THIS NEEDS TO BE GET
-                url: 'http://api.stmik-bandung.ac.id:16080/server/public/api/kurikulum/'+ data,
+                url: 'http://api.stmikbandung.test:82/api/matakuliah/'+ data,
                 dataType: 'json',
                 success: function (data) {
-                    var datas = data.data[0];
+                    var datas = data.data;
                     console.log(datas);
                     $("#nm_jurusan").append("<p>" + datas.nm_jurusan + "</p>");
                     $("#nm_mk").append("<p>" + datas.nm_mk + "</p>");
@@ -566,12 +572,12 @@
                     }else{
                         $("#nm_intl").append("<p>" + datas.nm_intl + "</p>");
                     }
-                    
+
                     // $.each(datas, function(index, data, val) {
                     //     $("#nama").text(datas.sks);
                     //     console.log(val);
                     //     console.log(data);
-                    // $("#nama").text(datas.sks); 
+                    // $("#nama").text(datas.sks);
                     // });
                     // $(".result").html(data);
                     // document.getElementById("nama").innerHTML = "Selamat Datang, " + data.data[0].nm_jurusan;
@@ -583,7 +589,7 @@
                 // });
                 //         container.append('<br>');
                 //     });
-                },error:function(){ 
+                },error:function(){
                     console.log(data);
                 }
     });
@@ -598,7 +604,7 @@
                 success: function (data) {
                     var datas = data.data[0];
                     console.log(datas);
-                },error:function(){ 
+                },error:function(){
                     console.log(data);
                 }
     });
@@ -622,7 +628,7 @@
         document.getElementById("sks").innerHTML = ""
         document.getElementById("nm_intl").innerHTML = ""
         })
-     
+
         $('#smt2-tab').on('click', function(e){
             console.log("table2");
             table = $('#yajra-datatable-smt2').DataTable({
@@ -633,7 +639,7 @@
                 sort: true,
                 language: {
                     processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
-                    },     
+                    },
                 ajax: "{{ route('getmatakuliahsmt2') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -644,7 +650,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'kd_mk', 
+                            data: 'kd_mk',
                             render: ((data, type, row)=>{
                                 var role = sessionStorage.getItem("role");
                                 if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
@@ -655,8 +661,8 @@
                                     return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                                 }
                             }),
-                            name: 'action', 
-                            orderable: true, 
+                            name: 'action',
+                            orderable: true,
                             searchable: true
                         },
                     ]
@@ -685,10 +691,10 @@
                 serverSide: true,
                 responsive: true,
                 searching: true,
-                sort: true, 
+                sort: true,
                 language: {
                     processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
-                    },    
+                    },
                 ajax: "{{ route('getmatakuliahsmt3') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -699,7 +705,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'kd_mk', 
+                            data: 'kd_mk',
                             render: ((data, type, row)=>{
                                 var role = sessionStorage.getItem("role");
                                 if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
@@ -710,8 +716,8 @@
                                     return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                                 }
                             }),
-                            name: 'action', 
-                            orderable: true, 
+                            name: 'action',
+                            orderable: true,
                             searchable: true
                         },
                     ]
@@ -743,7 +749,7 @@
                 sort: true,
                 language: {
                     processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
-                    },     
+                    },
                 ajax: "{{ route('getmatakuliahsmt4') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -754,7 +760,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'kd_mk', 
+                            data: 'kd_mk',
                             render: ((data, type, row)=>{
                                 var role = sessionStorage.getItem("role");
                                 if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
@@ -765,8 +771,8 @@
                                     return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                                 }
                             }),
-                            name: 'action', 
-                            orderable: true, 
+                            name: 'action',
+                            orderable: true,
                             searchable: true
                         },
                     ]
@@ -798,7 +804,7 @@
                 sort: true,
                 language: {
                     processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
-                    },     
+                    },
                 ajax: "{{ route('getmatakuliahsmt5') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -809,7 +815,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'kd_mk', 
+                            data: 'kd_mk',
                             render: ((data, type, row)=>{
                                 var role = sessionStorage.getItem("role");
                                 if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
@@ -820,8 +826,8 @@
                                     return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                                 }
                             }),
-                            name: 'action', 
-                            orderable: true, 
+                            name: 'action',
+                            orderable: true,
                             searchable: true
                         },
                     ]
@@ -853,7 +859,7 @@
                 sort: true,
                 language: {
                     processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
-                    },     
+                    },
                 ajax: "{{ route('getmatakuliahsmt6') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -864,7 +870,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'kd_mk', 
+                            data: 'kd_mk',
                             render: ((data, type, row)=>{
                                 var role = sessionStorage.getItem("role");
                                 if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
@@ -875,8 +881,8 @@
                                     return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                                 }
                             }),
-                            name: 'action', 
-                            orderable: true, 
+                            name: 'action',
+                            orderable: true,
                             searchable: true
                         },
                     ]
@@ -908,7 +914,7 @@
                 sort: true,
                 language: {
                     processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
-                    },     
+                    },
                 ajax: "{{ route('getmatakuliahsmt7') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -919,7 +925,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'kd_mk', 
+                            data: 'kd_mk',
                             render: ((data, type, row)=>{
                                 var role = sessionStorage.getItem("role");
                                 if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
@@ -930,8 +936,8 @@
                                     return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                                 }
                             }),
-                            name: 'action', 
-                            orderable: true, 
+                            name: 'action',
+                            orderable: true,
                             searchable: true
                         },
                     ]
@@ -963,7 +969,7 @@
                 sort: true,
                 language: {
                     processing: '<span class="spinner-border text-primary"></span><span style="margin-left:10px;">Loading...</span>'
-                    },     
+                    },
                 ajax: "{{ route('getmatakuliahsmt8') }}",
                 columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
@@ -974,7 +980,7 @@
                         {data: 'semester'},
                         {data: 'sks'},
                         {
-                            data: 'kd_mk', 
+                            data: 'kd_mk',
                             render: ((data, type, row)=>{
                                 var role = sessionStorage.getItem("role");
                                 if(role == 'Teknik Informatika' || role == 'Sistem Informasi'){
@@ -985,8 +991,8 @@
                                     return '<div class="d-flex mx-1"><button type="button" onclick="editRowData(`'+data+'`)" class="mx-1 edit btn btn-success btn-sm" data-bs-toggle="tooltip" title="Tambah Silabus" data-toggle="modal" data-target="#modalsilabus"><i class="fa-solid fa-plus"></i></button> <button type="button" onclick="detailRowData(`'+data+'`)" class="delete btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Lihat Detail Mata Kuliah" data-toggle="modal" data-target="#modaldetail"><i class="fa-solid fa-eye"></i></button></div>'
                                 }
                             }),
-                            name: 'action', 
-                            orderable: true, 
+                            name: 'action',
+                            orderable: true,
                             searchable: true
                         },
                     ]
